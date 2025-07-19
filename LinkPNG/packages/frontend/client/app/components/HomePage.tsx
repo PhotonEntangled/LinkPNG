@@ -6,12 +6,14 @@ import HeroCarousel from "./HeroCarousel"
 import FlashSale from "./FlashSale"
 import ProductCard from "./ProductCard"
 import Footer from "./Footer"
+import FloatingGameButton from "./FloatingGameButton"
 import { Zap, CreditCard, Utensils, Gift, Video, Shirt, Smartphone, Globe } from "lucide-react"
 import Image from "next/image"
 
 interface Product {
   id: number;
   name: string;
+  nameKey?: string; // Translation key for product name
   price: number;
   originalPrice?: number;
   image: string;
@@ -21,149 +23,155 @@ interface Product {
   rating?: number;
 }
 
-// Mock data - Replace with API calls
-const carouselImages = [
-  {
-    id: 1,
-    image: "/placeholder.svg?height=200&width=800&text=Flash+Sale+50%+OFF",
-    title: "Flash Sale 50% OFF",
-    subtitle: "Limited Time Only!",
-  },
-  {
-    id: 2,
-    image: "/placeholder.svg?height=200&width=800&text=Free+Shipping+PNG",
-    title: "Free Shipping Nationwide",
-    subtitle: "Orders over K50",
-  },
-  {
-    id: 3,
-    image: "/placeholder.svg?height=200&width=800&text=New+Arrivals",
-    title: "New Arrivals Daily",
-    subtitle: "Fresh products every day",
-  },
-]
-
-const flashSaleProducts = [
-  {
-    id: 1,
-    name: "Wireless Bluetooth Headphones",
-    price: 45.99,
-    originalPrice: 89.99,
-    image: "/placeholder.svg?height=150&width=150&text=Headphones",
-    discount: 49,
-    sold: 234,
-    stock: 500,
-  },
-  {
-    id: 2,
-    name: "Smart Phone Case",
-    price: 12.99,
-    originalPrice: 25.99,
-    image: "/placeholder.svg?height=150&width=150&text=Phone+Case",
-    discount: 50,
-    sold: 156,
-    stock: 300,
-  },
-  {
-    id: 3,
-    name: "USB Fast Charger",
-    price: 18.99,
-    originalPrice: 35.99,
-    image: "/placeholder.svg?height=150&width=150&text=Charger",
-    discount: 47,
-    sold: 89,
-    stock: 200,
-  },
-  {
-    id: 4,
-    name: "Bluetooth Speaker",
-    price: 29.99,
-    originalPrice: 59.99,
-    image: "/placeholder.svg?height=150&width=150&text=Speaker",
-    discount: 50,
-    sold: 67,
-    stock: 150,
-  },
-]
-
-const dailyDiscoverProducts = [
-  {
-    id: 1,
-    name: "Premium Coffee Beans 1kg",
-    price: 25.99,
-    originalPrice: 35.99,
-    image: "/placeholder.svg?height=200&width=200&text=Coffee",
-    discount: 28,
-    sold: 145,
-    rating: 4.8,
-  },
-  {
-    id: 2,
-    name: "Organic Coconut Oil 500ml",
-    price: 15.99,
-    image: "/placeholder.svg?height=200&width=200&text=Coconut+Oil",
-    sold: 89,
-    rating: 4.6,
-  },
-  {
-    id: 3,
-    name: "Traditional Bilum Bag",
-    price: 45.99,
-    image: "/placeholder.svg?height=200&width=200&text=Bilum+Bag",
-    sold: 234,
-    rating: 4.9,
-  },
-  {
-    id: 4,
-    name: "PNG Coffee Mug Set",
-    price: 22.99,
-    originalPrice: 29.99,
-    image: "/placeholder.svg?height=200&width=200&text=Mug+Set",
-    discount: 23,
-    sold: 67,
-    rating: 4.5,
-  },
-  {
-    id: 5,
-    name: "Solar Power Bank",
-    price: 39.99,
-    originalPrice: 59.99,
-    image: "/placeholder.svg?height=200&width=200&text=Power+Bank",
-    discount: 33,
-    sold: 123,
-    rating: 4.7,
-  },
-  {
-    id: 6,
-    name: "PNG Flag T-Shirt",
-    price: 18.99,
-    image: "/placeholder.svg?height=200&width=200&text=T-Shirt",
-    sold: 78,
-    rating: 4.4,
-  },
-  {
-    id: 7,
-    name: "Tropical Fruit Snacks",
-    price: 8.99,
-    originalPrice: 12.99,
-    image: "/placeholder.svg?height=200&width=200&text=Snacks",
-    discount: 31,
-    sold: 456,
-    rating: 4.3,
-  },
-  {
-    id: 8,
-    name: "Handwoven Basket",
-    price: 32.99,
-    image: "/placeholder.svg?height=200&width=200&text=Basket",
-    sold: 34,
-    rating: 4.8,
-  },
-]
-
 export default function HomePage() {
-  const { setCurrentPage, setSelectedProduct } = useApp()
   const { t } = useLanguage()
+  
+  // Function to get translated product name
+  const getProductName = (product: Product): string => {
+    if (product.nameKey) {
+      return t(product.nameKey)
+    }
+    return product.name // Fallback to original name
+  }
+
+  // Mock data - Replace with API calls
+  const carouselImages = [
+    {
+      id: 1,
+      image: "/placeholder.svg?height=200&width=800&text=Flash+Sale+50%+OFF",
+      title: t('flashSaleBanner'),
+      subtitle: t('flashSaleBannerSubtitle'),
+    },
+    {
+      id: 2,
+      image: "/placeholder.svg?height=200&width=800&text=Free+Shipping+PNG",
+      title: t('freeShippingBanner'),
+      subtitle: t('freeShippingBannerSubtitle'),
+    },
+    {
+      id: 3,
+      image: "/placeholder.svg?height=200&width=800&text=New+Arrivals",
+      title: t('newArrivalsBanner'),
+      subtitle: t('newArrivalsBannerSubtitle'),
+    },
+  ]
+
+  const flashSaleProducts = [
+    {
+      id: 1,
+      name: "Traditional Bilum Bag - Highlands Style",
+      nameKey: "bilumBagHighlands",
+      price: 85.00,
+      originalPrice: 120.00,
+      image: "/placeholder.svg?height=150&width=150&text=Bilum+Bag",
+      discount: 29,
+      sold: 234,
+      stock: 45,
+      province: "Western Highlands"
+    },
+    {
+      id: 2,
+      name: "PNG Arabica Coffee - Western Highlands",
+      nameKey: "westernHighlandsCoffee",
+      price: 42.00,
+      originalPrice: 55.00,
+      image: "/placeholder.svg?height=150&width=150&text=PNG+Coffee",
+      discount: 24,
+      sold: 156,
+      stock: 88,
+      province: "Western Highlands"
+    },
+    {
+      id: 3,
+      name: "Taro Chips - Morobe Style",
+      nameKey: "morobeTaroChips",
+      price: 18.00,
+      originalPrice: 25.00,
+      image: "/placeholder.svg?height=150&width=150&text=Taro+Chips",
+      discount: 28,
+      sold: 89,
+      stock: 120,
+      province: "Morobe"
+    },
+    {
+      id: 4,
+      name: "PNG Flag T-Shirt - Premium Cotton",
+      nameKey: "pngFlagTshirt",
+      price: 28.00,
+      originalPrice: 35.00,
+      image: "/placeholder.svg?height=150&width=150&text=PNG+Shirt",
+      discount: 20,
+      sold: 67,
+      stock: 95
+    },
+  ]
+
+  const dailyDiscoverProducts = [
+    {
+      id: 1,
+      name: "Sigri Estate Coffee - Wahgi Valley",
+      nameKey: "sigriEstateCoffee",
+      price: 65.00,
+      image: "/placeholder.svg?height=200&width=200&text=Sigri+Coffee",
+      sold: 145,
+      rating: 4.9,
+      province: "Western Highlands"
+    },
+    {
+      id: 2,
+      name: "Wild Honey - Madang Forest",
+      nameKey: "madangWildHoney",
+      price: 55.00,
+      image: "/placeholder.svg?height=200&width=200&text=Wild+Honey",
+      sold: 89,
+      rating: 4.8,
+      province: "Madang"
+    },
+    {
+      id: 3,
+      name: "Sepik River Wood Carving - Crocodile Spirit",
+      nameKey: "sepikWoodCarving",
+      price: 450.00,
+      originalPrice: 600.00,
+      image: "/placeholder.svg?height=200&width=200&text=Sepik+Carving",
+      discount: 25,
+      sold: 34,
+      rating: 4.9,
+      province: "East Sepik"
+    },
+    {
+      id: 4,
+      name: "Traditional Shell Jewelry Set - Manus",
+      nameKey: "manusShellJewelry",
+      price: 180.00,
+      image: "/placeholder.svg?height=200&width=200&text=Shell+Jewelry",
+      sold: 67,
+      rating: 4.7,
+      province: "Manus"
+    },
+    {
+      id: 5,
+      name: "Traditional Sago Flour - Western Province",
+      nameKey: "westernSagoFlour",
+      price: 25.00,
+      image: "/placeholder.svg?height=200&width=200&text=Sago+Flour",
+      sold: 123,
+      rating: 4.6,
+      province: "Western Province"
+    },
+    {
+      id: 6,
+      name: "Coconut Oil Soap - Bougainville Natural",
+      nameKey: "bougainvilleCoconutSoap",
+      price: 15.00,
+      image: "/placeholder.svg?height=200&width=200&text=Coconut+Soap",
+      sold: 198,
+      rating: 4.5,
+      province: "Bougainville"
+    },
+  ]
+
+  const { setCurrentPage, setSelectedProduct } = useApp()
 
   // Move arrays inside component to access t() function
   const quickActions = [
@@ -179,34 +187,40 @@ export default function HomePage() {
 
   const categories = [
     {
-      image: "/placeholder.svg?height=150&width=150&text=Home+Garden",
-      name: t("homeGarden"),
+      image: "/placeholder.svg?height=150&width=150&text=Traditional+Crafts",
+      name: t("traditionalCrafts"),
+      color: "bg-amber-100",
+      icon: "🏺"
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=PNG+Coffee", 
+      name: t("pngCoffee"),
+      color: "bg-amber-900 text-white",
+      icon: "☕"
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Local+Foods",
+      name: t("localFoods"),
       color: "bg-green-100",
+      icon: "🥥"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=Beauty+Health", 
-      name: t("beautyHealth"),
-      color: "bg-pink-100",
+      image: "/placeholder.svg?height=150&width=150&text=PNG+Fashion",
+      name: t("pngFashion"),
+      color: "bg-red-100",
+      icon: "👕"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=Electronics",
-      name: t("electronics"),
+      image: "/placeholder.svg?height=150&width=150&text=Personal+Care",
+      name: t("personalCare"),
       color: "bg-blue-100",
+      icon: "🧴"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=Fashion",
-      name: t("fashion"),
+      image: "/placeholder.svg?height=150&width=150&text=Modern+PNG",
+      name: t("modernPng"),
       color: "bg-purple-100",
-    },
-    {
-      image: "/placeholder.svg?height=150&width=150&text=Sports+Outdoor",
-      name: t("sportsOutdoor"),
-      color: "bg-orange-100",
-    },
-    {
-      image: "/placeholder.svg?height=150&width=150&text=Local+Products",
-      name: t("localProducts"),
-      color: "bg-yellow-100",
+      icon: "🎨"
     },
   ]
 
@@ -214,6 +228,17 @@ export default function HomePage() {
     setSelectedProduct(product)
     setCurrentPage("product")
   }
+
+  // Create translated versions of products
+  const translatedFlashSaleProducts = flashSaleProducts.map(product => ({
+    ...product,
+    name: getProductName(product)
+  }))
+
+  const translatedDailyDiscoverProducts = dailyDiscoverProducts.map(product => ({
+    ...product,
+    name: getProductName(product)
+  }))
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -239,7 +264,7 @@ export default function HomePage() {
       </section>
 
       {/* Flash Sale Section */}
-      <FlashSale products={flashSaleProducts} onProductClick={handleProductClick} />
+      <FlashSale products={translatedFlashSaleProducts} onProductClick={handleProductClick} />
 
       {/* Category Showcase */}
       <section className="bg-white py-6 mt-2">
@@ -270,7 +295,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <h2 className="text-lg font-bold mb-4 text-gray-800">{t("dailyDiscover")}</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {dailyDiscoverProducts.map((product) => (
+            {translatedDailyDiscoverProducts.map((product) => (
               <div key={product.id} onClick={() => handleProductClick(product)}>
                 <ProductCard product={product} />
               </div>
@@ -286,7 +311,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Demo Tracking Section - Hidden unless in demo mode */}
+      <section className="hidden" data-testid="tracking-demo">
+        <div className="container mx-auto px-4 py-8">
+          <h2 className="text-xl font-bold mb-4">Track Your Order</h2>
+          <div className="bg-white rounded-lg shadow p-6">
+            <p className="text-gray-600">Order #PNG-2024-001 is on its way!</p>
+            <button 
+              onClick={() => setCurrentPage("tracking")}
+              className="mt-4 bg-png-blue text-white px-6 py-2 rounded-lg hover:bg-png-blue/90"
+            >
+              Track Order
+            </button>
+          </div>
+        </div>
+      </section>
+
       <Footer />
+      
+      {/* Floating Game Button */}
+      <FloatingGameButton />
     </div>
   )
 }

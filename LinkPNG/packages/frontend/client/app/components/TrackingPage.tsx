@@ -2,11 +2,13 @@
 
 import { useState } from "react"
 import { ArrowLeft, Package, MapPin, Phone, MessageCircle, Copy, Check } from "lucide-react"
-import { useApp } from "../hooks/useApp"
+import { useApp } from "../context/AppContext"
+import { useLanguage } from "../context/LanguageContext"
 import Header from "./Header"
 import Footer from "./Footer"
 import TrackingTimeline from "./TrackingTimeline"
 import OrderItem from "./OrderItem"
+import { formatKina } from "@/lib/utils"
 
 // Mock order data - Replace with API call
 const mockOrderData = {
@@ -95,6 +97,7 @@ const mockOrderData = {
 
 export default function TrackingPage() {
   const { setCurrentPage } = useApp()
+  const { t } = useLanguage()
   const [copiedTracking, setCopiedTracking] = useState(false)
 
   const copyTrackingNumber = () => {
@@ -133,9 +136,9 @@ export default function TrackingPage() {
               className="flex items-center gap-2 text-gray-600 hover:text-[#E50000]"
             >
               <ArrowLeft className="w-5 h-5" />
-              Back
+              {t("back")}
             </button>
-            <h1 className="text-2xl font-bold">Track Your Order</h1>
+            <h1 className="text-2xl font-bold">{t("trackYourOrder")}</h1>
           </div>
         </div>
       </div>
@@ -145,17 +148,17 @@ export default function TrackingPage() {
         <div className="bg-white rounded-lg p-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-2">Order #{mockOrderData.orderNumber}</h2>
+              <h2 className="text-xl font-bold text-gray-800 mb-2">{t("orderNumber")} #{mockOrderData.orderNumber}</h2>
               <div className="flex items-center gap-4 text-sm text-gray-600">
-                <span>Placed on {mockOrderData.orderDate}</span>
+                <span>{t("orderDate")}: {mockOrderData.orderDate}</span>
                 <span>•</span>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusBadge(mockOrderData.status)}`}>
-                  {mockOrderData.status.replace("_", " ").toUpperCase()}
+                  {t(mockOrderData.status)}
                 </span>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-sm text-gray-600 mb-1">Estimated Delivery</div>
+              <div className="text-sm text-gray-600 mb-1">{t("estimatedDelivery")}</div>
               <div className="text-lg font-bold text-[#E50000]">{mockOrderData.estimatedDelivery}</div>
             </div>
           </div>
@@ -164,7 +167,7 @@ export default function TrackingPage() {
           <div className="bg-gray-50 rounded-lg p-4 mb-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-sm text-gray-600 mb-1">Tracking Number</div>
+                <div className="text-sm text-gray-600 mb-1">{t("trackingNumber")}</div>
                 <div className="font-mono text-lg font-bold">{mockOrderData.trackingNumber}</div>
               </div>
               <button
@@ -172,7 +175,7 @@ export default function TrackingPage() {
                 className="flex items-center gap-2 px-3 py-2 bg-[#E50000] text-white rounded-lg hover:bg-red-700 transition-colors"
               >
                 {copiedTracking ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                {copiedTracking ? "Copied!" : "Copy"}
+                {copiedTracking ? t("copied") : t("copyNumber")}
               </button>
             </div>
           </div>
@@ -182,22 +185,22 @@ export default function TrackingPage() {
             <button className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
               <Phone className="w-5 h-5 text-[#E50000]" />
               <div className="text-left">
-                <div className="font-medium">Call Courier</div>
+                <div className="font-medium">{t("callCourier")}</div>
                 <div className="text-sm text-gray-600">+675 180 1234</div>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
               <MessageCircle className="w-5 h-5 text-[#E50000]" />
               <div className="text-left">
-                <div className="font-medium">Live Chat</div>
-                <div className="text-sm text-gray-600">Get instant help</div>
+                <div className="font-medium">{t("liveChat")}</div>
+                <div className="text-sm text-gray-600">{t("getInstantHelp")}</div>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
               <Package className="w-5 h-5 text-[#E50000]" />
               <div className="text-left">
-                <div className="font-medium">Report Issue</div>
-                <div className="text-sm text-gray-600">Order problems</div>
+                <div className="font-medium">{t("reportIssue")}</div>
+                <div className="text-sm text-gray-600">{t("orderProblems")}</div>
               </div>
             </button>
           </div>
@@ -207,18 +210,18 @@ export default function TrackingPage() {
           {/* Tracking Timeline */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-6">Order Progress</h3>
+              <h3 className="text-lg font-bold mb-6">{t("orderProgress")}</h3>
               <TrackingTimeline steps={mockOrderData.trackingSteps} />
             </div>
 
             {/* Delivery Map Placeholder */}
             <div className="bg-white rounded-lg p-6 mt-6">
-              <h3 className="text-lg font-bold mb-4">Delivery Location</h3>
+              <h3 className="text-lg font-bold mb-4">{t("deliveryLocation")}</h3>
               <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-600">Live tracking map coming soon</p>
-                  <p className="text-sm text-gray-500">Currently in Port Moresby area</p>
+                  <p className="text-gray-600">{t("liveTrackingComingSoon")}</p>
+                  <p className="text-sm text-gray-500">{t("currentlyInPortMoresbyArea")}</p>
                 </div>
               </div>
             </div>
@@ -228,7 +231,7 @@ export default function TrackingPage() {
           <div className="space-y-6">
             {/* Order Items */}
             <div className="bg-white rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4">Order Items ({mockOrderData.items.length})</h3>
+              <h3 className="text-lg font-bold mb-4">{t("orderItems")} ({mockOrderData.items.length})</h3>
               <div className="space-y-4">
                 {mockOrderData.items.map((item) => (
                   <OrderItem key={item.id} item={item} />
@@ -236,18 +239,18 @@ export default function TrackingPage() {
               </div>
               <div className="border-t pt-4 mt-4">
                 <div className="flex justify-between text-lg font-bold">
-                  <span>Total</span>
-                  <span className="text-[#E50000]">K{mockOrderData.totalAmount.toFixed(2)}</span>
+                  <span>{t("total")}</span>
+                  <span className="text-[#E50000]">{formatKina(mockOrderData.totalAmount)}</span>
                 </div>
               </div>
             </div>
 
             {/* Delivery Information */}
             <div className="bg-white rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4">Delivery Information</h3>
+              <h3 className="text-lg font-bold mb-4">{t("deliveryDetails")}</h3>
               <div className="space-y-4">
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">Delivery Address</div>
+                  <div className="text-sm text-gray-600 mb-1">{t("deliveryAddress")}</div>
                   <div className="font-medium">{mockOrderData.deliveryAddress.name}</div>
                   <div className="text-sm text-gray-700">
                     {mockOrderData.deliveryAddress.address}
@@ -258,28 +261,28 @@ export default function TrackingPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">Phone Number</div>
+                  <div className="text-sm text-gray-600 mb-1">{t("phoneNumber")}</div>
                   <div className="font-medium">{mockOrderData.deliveryAddress.phone}</div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">Shipping Method</div>
-                  <div className="font-medium">{mockOrderData.shippingMethod}</div>
+                  <div className="text-sm text-gray-600 mb-1">{t("shippingMethod")}</div>
+                  <div className="font-medium">{t("standardDelivery")}</div>
                 </div>
               </div>
             </div>
 
             {/* Customer Service */}
             <div className="bg-white rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-4">Need Help?</h3>
+              <h3 className="text-lg font-bold mb-4">{t("needHelp")}</h3>
               <div className="space-y-3">
                 <button className="w-full bg-[#E50000] text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors">
-                  Contact Customer Service
+                  {t("contactCustomerService")}
                 </button>
                 <button className="w-full border border-gray-300 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                  View Order Details
+                  {t("viewOrderDetails")}
                 </button>
                 <button className="w-full border border-gray-300 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                  Return/Refund Request
+                  {t("returnRefundRequest")}
                 </button>
               </div>
             </div>

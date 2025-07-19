@@ -3,12 +3,14 @@
 import { useState } from "react"
 import { ArrowLeft, Star, ShoppingCart, Minus, Plus, Truck, Shield, RotateCcw } from "lucide-react"
 import { useApp } from "../hooks/useApp"
+import { useLanguage } from "../context/LanguageContext"
 import Header from "./Header"
 import Footer from "./Footer"
 import Image from "next/image"
 
 export default function ProductDetailPage() {
   const { selectedProduct, setCurrentPage, addToCart } = useApp()
+  const { t } = useLanguage()
   const [selectedImage, setSelectedImage] = useState(0)
   const [quantity, setQuantity] = useState(1)
 
@@ -17,9 +19,9 @@ export default function ProductDetailPage() {
       <div className="min-h-screen bg-gray-50">
         <Header />
         <div className="container mx-auto px-4 py-8 text-center">
-          <p>Product not found</p>
+          <p>{t("productNotFound")}</p>
           <button onClick={() => setCurrentPage("home")} className="mt-4 bg-[#E50000] text-white px-6 py-2 rounded-lg">
-            Back to Home
+            {t("backToHome")}
           </button>
         </div>
         <Footer />
@@ -37,13 +39,13 @@ export default function ProductDetailPage() {
     ],
     description: `Premium quality ${selectedProduct.name}. This product offers excellent value and has been carefully selected for our PNG customers.`,
     features: [
-      "High quality materials",
-      "Fast shipping within PNG",
-      "Local warranty support",
-      "Authentic product guarantee",
+      t("highQualityMaterials"),
+      t("fastShippingWithinPng"),
+      t("localWarrantySupport"),
+      t("authenticProductGuarantee"),
     ],
     seller: {
-      name: "LinkPNG Verified Seller",
+      name: t("linkpngVerifiedSeller"),
       rating: 4.8,
       followers: 1234,
     },
@@ -71,7 +73,7 @@ export default function ProductDetailPage() {
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <button onClick={() => setCurrentPage("home")} className="flex items-center gap-1 hover:text-[#E50000]">
               <ArrowLeft className="w-4 h-4" />
-              Back to Home
+              {t("backToHome")}
             </button>
           </div>
         </div>
@@ -129,9 +131,9 @@ export default function ProductDetailPage() {
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600">{product.rating || 4.5} (125 reviews)</span>
+                  <span className="text-sm text-gray-600">{product.rating || 4.5} (125 {t("reviews")})</span>
                 </div>
-                <span className="text-sm text-gray-600">{product.sold} sold</span>
+                <span className="text-sm text-gray-600">{product.sold} {t("sold")}</span>
               </div>
 
               {/* Price */}
@@ -150,7 +152,7 @@ export default function ProductDetailPage() {
               {/* Quantity and Actions */}
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <span className="font-medium">Quantity:</span>
+                  <span className="font-medium">{t("quantity")}</span>
                   <div className="flex items-center border rounded-lg">
                     <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 hover:bg-gray-100">
                       <Minus className="w-4 h-4" />
@@ -168,13 +170,13 @@ export default function ProductDetailPage() {
                     className="flex-1 bg-[#E50000] text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
                   >
                     <ShoppingCart className="w-5 h-5" />
-                    Add to Cart
+                    {t("addToCart")}
                   </button>
                   <button
                     onClick={handleBuyNow}
                     className="flex-1 bg-[#FFCF00] text-black py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors"
                   >
-                    Buy Now
+                    {t("buyNow")}
                   </button>
                 </div>
               </div>
@@ -183,15 +185,15 @@ export default function ProductDetailPage() {
               <div className="border-t pt-4 mt-6 space-y-3">
                 <div className="flex items-center gap-3 text-sm">
                   <Truck className="w-4 h-4 text-green-600" />
-                  <span>Free shipping to Port Moresby</span>
+                  <span>{t("freeShippingToPortMoresby")}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Shield className="w-4 h-4 text-blue-600" />
-                  <span>Secure payment guaranteed</span>
+                  <span>{t("securePaymentGuaranteed")}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <RotateCcw className="w-4 h-4 text-purple-600" />
-                  <span>7-day return policy</span>
+                  <span>{t("sevenDayReturnPolicy")}</span>
                 </div>
               </div>
             </div>
@@ -200,10 +202,10 @@ export default function ProductDetailPage() {
 
         {/* Product Details */}
         <div className="mt-8 bg-white rounded-lg p-6">
-          <h2 className="text-xl font-bold mb-4">Product Details</h2>
+          <h2 className="text-xl font-bold mb-4">{t("productDetails")}</h2>
           <p className="text-gray-700 mb-6">{product.description}</p>
 
-          <h3 className="font-semibold mb-3">Key Features:</h3>
+          <h3 className="font-semibold mb-3">{t("keyFeatures")}:</h3>
           <ul className="space-y-2">
             {product.features.map((feature: string, index: number) => (
               <li key={index} className="flex items-center gap-2">

@@ -77,7 +77,7 @@ export default function FlashSale({ products, onProductClick }: FlashSaleProps) 
         </div>
 
         {/* Flash Sale Products */}
-        <div className="relative">
+        <div className="relative" data-testid="product-grid">
           <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
             {products.map((product) => (
               <div

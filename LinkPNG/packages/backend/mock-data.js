@@ -1,24 +1,250 @@
+// Authentic PNG Product Catalog - Demo Data
 const products = [
-  { id: 1, name: 'Ox & Palm Corned Beef', category: 'Food', price: 15.99, image: '/products/ox-palm.png' },
-  { id: 2, name: 'Maggi Instant Noodles', category: 'Food', price: 2.50, image: '/products/maggi-noodles.png' },
-  { id: 3, name: 'Coco Pops', category: 'Food', price: 25.00, image: '/products/coco-pops.png' },
-  { id: 4, name: 'Milo', category: 'Food', price: 30.00, image: '/products/milo.png' },
-  { id: 5, name: 'Kraft Peanut Butter', category: 'Food', price: 22.50, image: '/products/kraft-peanut-butter.png' },
-  { id: 6, name: 'SP Lager', category: 'Drinks', price: 8.00, image: '/products/sp-lager.png' },
-  { id: 7, name: 'Coconut Water', category: 'Drinks', price: 5.00, image: '/products/coconut-water.png' },
-  { id: 8, name: 'Nescafé Coffee', category: 'Drinks', price: 18.00, image: '/products/nescafe.png' },
-  { id: 9, name: 'Fanta (Orange)', category: 'Drinks', price: 3.50, image: '/products/fanta.png' },
-  { id: 10, name: 'Bounty Coconut Drink', category: 'Drinks', price: 4.00, image: '/products/bounty-drink.png' },
-  { id: 11, name: 'Omo Laundry Powder', category: 'Household', price: 35.00, image: '/products/omo.png' },
-  { id: 12, name: 'Sunlight Dishwashing Liquid', category: 'Household', price: 12.00, image: '/products/sunlight.png' },
-  { id: 13, name: 'Dettol Antiseptic Liquid', category: 'Household', price: 20.00, image: '/products/dettol.png' },
-  { id: 14, name: 'Colgate Toothpaste', category: 'Personal Care', price: 7.50, image: '/products/colgate.png' },
-  { id: 15, name: 'Comfort Fabric Conditioner', category: 'Household', price: 28.00, image: '/products/comfort.png' },
-  { id: 16, name: 'Palmolive Soap', category: 'Personal Care', price: 4.50, image: '/products/palmolive.png' },
-  { id: 17, name: 'Nivea Cream', category: 'Personal Care', price: 15.00, image: '/products/nivea.png' },
-  { id: 18, name: 'Head & Shoulders Shampoo', category: 'Personal Care', price: 24.00, image: '/products/head-shoulders.png' },
-  { id: 19, name: 'Gillette Razors', category: 'Personal Care', price: 10.00, image: '/products/gillette.png' },
-  { id: 20, name: 'Lifebuoy Soap', category: 'Personal Care', price: 3.00, image: '/products/lifebuoy.png' },
+  // TRADITIONAL CRAFTS & CULTURAL ITEMS
+  { 
+    id: 1, 
+    name: 'Traditional Bilum Bag - Highlands Style', 
+    nameKey: 'bilumBagHighlands',
+    category: 'Traditional Crafts', 
+    price: 85.00, 
+    originalPrice: 120.00,
+    image: '/products/bilum-highlands.png',
+    province: 'Western Highlands',
+    description: 'Hand-woven bilum bag from the Western Highlands, featuring traditional geometric patterns in natural fiber',
+    culturalNote: 'Made by women\'s cooperatives using traditional weaving techniques passed down through generations'
+  },
+  { 
+    id: 2, 
+    name: 'Sepik River Wood Carving - Crocodile Spirit', 
+    nameKey: 'sepikWoodCarving',
+    category: 'Traditional Crafts', 
+    price: 450.00, 
+    originalPrice: 600.00,
+    image: '/products/sepik-carving.png',
+    province: 'East Sepik',
+    description: 'Authentic Sepik River wood carving representing the crocodile spirit, carved from traditional kwila wood',
+    culturalNote: 'Each carving tells ancestral stories and represents spiritual connections to the Sepik River'
+  },
+  { 
+    id: 3, 
+    name: 'Traditional Shell Jewelry Set - Manus', 
+    nameKey: 'manusShellJewelry',
+    category: 'Traditional Crafts', 
+    price: 180.00, 
+    image: '/products/manus-shells.png',
+    province: 'Manus',
+    description: 'Beautiful shell jewelry set from Manus Province, featuring traditional Pacific pearl arrangements',
+    culturalNote: 'Crafted by master artisans using shells from pristine Manus waters'
+  },
+  { 
+    id: 4, 
+    name: 'Tapa Cloth Wall Hanging - Oro Style', 
+    nameKey: 'oroTapaCloth',
+    category: 'Traditional Crafts', 
+    price: 320.00, 
+    image: '/products/oro-tapa.png',
+    province: 'Oro (Northern)',
+    description: 'Traditional tapa cloth featuring intricate Oro Province patterns, made from mulberry bark',
+    culturalNote: 'Ancient art form representing tribal identity and ceremonial significance'
+  },
+
+  // PNG COFFEE - WORLD RENOWNED
+  { 
+    id: 5, 
+    name: 'PNG Arabica Coffee - Western Highlands', 
+    nameKey: 'westernHighlandsCoffee',
+    category: 'PNG Coffee', 
+    price: 42.00, 
+    originalPrice: 55.00,
+    image: '/products/highlands-coffee.png',
+    province: 'Western Highlands',
+    description: 'Premium single-origin arabica coffee from the Western Highlands, known for its rich flavor and mountain-grown quality',
+    culturalNote: 'Grown by smallholder farmers in the highlands, supporting local communities'
+  },
+  { 
+    id: 6, 
+    name: 'Sigri Estate Coffee - Wahgi Valley', 
+    nameKey: 'sigriEstateCoffee',
+    category: 'PNG Coffee', 
+    price: 65.00, 
+    image: '/products/sigri-coffee.png',
+    province: 'Western Highlands',
+    description: 'World-famous Sigri Estate coffee, consistently rated among the world\'s best coffees',
+    culturalNote: 'Estate established in 1950s, combining traditional methods with modern processing'
+  },
+  { 
+    id: 7, 
+    name: 'Eastern Highlands Organic Coffee', 
+    nameKey: 'easternHighlandsCoffee',
+    category: 'PNG Coffee', 
+    price: 38.00, 
+    image: '/products/eastern-coffee.png',
+    province: 'Eastern Highlands',
+    description: 'Certified organic coffee from Eastern Highlands, shade-grown and bird-friendly',
+    culturalNote: 'Supports sustainable farming practices and bird conservation'
+  },
+
+  // LOCAL FOOD PRODUCTS
+  { 
+    id: 8, 
+    name: 'Traditional Sago Flour - Western Province', 
+    nameKey: 'westernSagoFlour',
+    category: 'Local Foods', 
+    price: 25.00, 
+    image: '/products/sago-flour.png',
+    province: 'Western Province',
+    description: 'Pure sago flour from Western Province, a traditional staple food of PNG',
+    culturalNote: 'Harvested from sago palms using traditional extraction methods'
+  },
+  { 
+    id: 9, 
+    name: 'Dried Fish - Milne Bay Traditional', 
+    nameKey: 'milneBayDriedFish',
+    category: 'Local Foods', 
+    price: 35.00, 
+    image: '/products/dried-fish.png',
+    province: 'Milne Bay',
+    description: 'Traditional dried fish from Milne Bay, prepared using ancestral smoking techniques',
+    culturalNote: 'Sustainable fishing practices supporting coastal communities'
+  },
+  { 
+    id: 10, 
+    name: 'Taro Chips - Morobe Style', 
+    nameKey: 'morobeTaroChips',
+    category: 'Local Foods', 
+    price: 18.00, 
+    originalPrice: 25.00,
+    image: '/products/taro-chips.png',
+    province: 'Morobe',
+    description: 'Crispy taro chips from Morobe Province, made from locally grown taro',
+    culturalNote: 'Traditional root vegetable prepared with modern processing techniques'
+  },
+  { 
+    id: 11, 
+    name: 'Wild Honey - Madang Forest', 
+    nameKey: 'madangWildHoney',
+    category: 'Local Foods', 
+    price: 55.00, 
+    image: '/products/madang-honey.png',
+    province: 'Madang',
+    description: 'Pure wild honey from Madang rainforests, collected using traditional methods',
+    culturalNote: 'Supports forest conservation and traditional honey gathering practices'
+  },
+
+  // PNG FASHION & MODERN CULTURAL ITEMS
+  { 
+    id: 12, 
+    name: 'PNG Flag T-Shirt - Premium Cotton', 
+    nameKey: 'pngFlagTshirt',
+    category: 'PNG Fashion', 
+    price: 28.00, 
+    originalPrice: 35.00,
+    image: '/products/png-flag-shirt.png',
+    description: 'High-quality PNG flag t-shirt made from premium cotton, perfect for showing national pride',
+    culturalNote: 'Features the Bird of Paradise and Southern Cross constellation'
+  },
+  { 
+    id: 13, 
+    name: 'Traditional Patterns Laptop Bag', 
+    nameKey: 'traditionalPatternsLaptop',
+    category: 'PNG Fashion', 
+    price: 95.00, 
+    image: '/products/traditional-laptop-bag.png',
+    description: 'Modern laptop bag featuring traditional PNG patterns, perfect for urban professionals',
+    culturalNote: 'Blends traditional motifs with contemporary design for the modern PNG professional'
+  },
+  { 
+    id: 14, 
+    name: 'Kundu Drum Miniature - Decorative', 
+    nameKey: 'kunduDrumMiniature',
+    category: 'Traditional Crafts', 
+    price: 125.00, 
+    image: '/products/kundu-drum.png',
+    description: 'Miniature kundu drum, perfect for decoration or cultural education',
+    culturalNote: 'Traditional communication instrument used across many PNG cultures'
+  },
+
+  // HOUSEHOLD & PRACTICAL ITEMS
+  { 
+    id: 15, 
+    name: 'Coconut Oil Soap - Bougainville Natural', 
+    nameKey: 'bougainvilleCoconutSoap',
+    category: 'Personal Care', 
+    price: 15.00, 
+    image: '/products/coconut-soap.png',
+    province: 'Bougainville',
+    description: 'Natural coconut oil soap from Bougainville, made with traditional ingredients',
+    culturalNote: 'Supporting Bougainville recovery through sustainable local production'
+  },
+  { 
+    id: 16, 
+    name: 'Woven Grass Sleeping Mat - Gulf Province', 
+    nameKey: 'gulfWovenMat',
+    category: 'Traditional Crafts', 
+    price: 75.00, 
+    image: '/products/grass-mat.png',
+    province: 'Gulf',
+    description: 'Traditional woven sleeping mat from Gulf Province, made from native grass',
+    culturalNote: 'Traditional bedding still used in many rural PNG communities'
+  },
+  { 
+    id: 17, 
+    name: 'PNG Spices Mix - Traditional Recipe', 
+    nameKey: 'pngSpicesMix',
+    category: 'Local Foods', 
+    price: 22.00, 
+    image: '/products/png-spices.png',
+    description: 'Traditional PNG spice mix featuring local herbs and seasonings',
+    culturalNote: 'Secret family recipes passed down through generations'
+  },
+  { 
+    id: 18, 
+    name: 'Bird of Paradise Artwork - Digital Print', 
+    nameKey: 'birdOfParadiseArt',
+    category: 'Modern PNG', 
+    price: 45.00, 
+    image: '/products/bird-paradise-art.png',
+    description: 'Beautiful Bird of Paradise artwork, perfect for home or office decoration',
+    culturalNote: 'PNG national bird representing the spirit of independence'
+  },
+  { 
+    id: 19, 
+    name: 'Traditional Clay Pot - Pottery Village', 
+    nameKey: 'traditionalClayPot',
+    category: 'Traditional Crafts', 
+    price: 65.00, 
+    image: '/products/clay-pot.png',
+    description: 'Handmade clay pot from traditional pottery villages, perfect for cooking or decoration',
+    culturalNote: 'Ancient pottery techniques still practiced in remote villages'
+  },
+  { 
+    id: 20, 
+    name: 'PNG Independence T-Shirt Collection', 
+    nameKey: 'pngIndependenceTshirt',
+    category: 'PNG Fashion', 
+    price: 32.00, 
+    image: '/products/independence-shirt.png',
+    description: 'Commemorative PNG Independence t-shirt featuring cultural symbols and national colors',
+    culturalNote: 'Celebrating PNG independence and cultural heritage'
+  },
 ];
 
-module.exports = { products }; 
+// Product categories for navigation
+const categories = [
+  { id: 1, name: 'Traditional Crafts', nameKey: 'traditionalCrafts', icon: '🏺' },
+  { id: 2, name: 'PNG Coffee', nameKey: 'pngCoffee', icon: '☕' },
+  { id: 3, name: 'Local Foods', nameKey: 'localFoods', icon: '🥥' },
+  { id: 4, name: 'PNG Fashion', nameKey: 'pngFashion', icon: '👕' },
+  { id: 5, name: 'Personal Care', nameKey: 'personalCare', icon: '🧴' },
+  { id: 6, name: 'Modern PNG', nameKey: 'modernPng', icon: '🎨' },
+];
+
+// PNG Provinces for location-based features
+const provinces = [
+  'Central', 'Chimbu (Simbu)', 'Eastern Highlands', 'East New Britain', 'East Sepik',
+  'Enga', 'Gulf', 'Hela', 'Jiwaka', 'Madang', 'Manus', 'Milne Bay', 'Morobe',
+  'National Capital District', 'New Ireland', 'Oro (Northern)', 'Sandaun (West Sepik)',
+  'Southern Highlands', 'Western', 'Western Highlands', 'West New Britain', 'Bougainville'
+];
+
+module.exports = { products, categories, provinces }; 

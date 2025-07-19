@@ -3,12 +3,15 @@
 import { useState } from "react"
 import { ArrowLeft, CreditCard, Smartphone, Truck, MapPin } from "lucide-react"
 import { useApp } from "../context/AppContext"
+import { useLanguage } from "../context/LanguageContext"
 import Header from "./Header"
 import Footer from "./Footer"
 import Image from "next/image"
+import { formatKina } from "@/lib/utils"
 
 export default function CheckoutPage() {
   const { cartItems, setCurrentPage } = useApp()
+  const { t } = useLanguage()
   const [paymentMethod, setPaymentMethod] = useState("mobile")
   const [deliveryAddress, setDeliveryAddress] = useState({
     name: "",
@@ -39,9 +42,9 @@ export default function CheckoutPage() {
               className="flex items-center gap-2 text-gray-600 hover:text-[#E50000]"
             >
               <ArrowLeft className="w-5 h-5" />
-              Back to Cart
+              {t("backToCart")}
             </button>
-            <h1 className="text-2xl font-bold">Checkout</h1>
+            <h1 className="text-2xl font-bold">{t("checkout")}</h1>
           </div>
         </div>
       </div>
@@ -54,78 +57,78 @@ export default function CheckoutPage() {
             <div className="bg-white rounded-lg p-6">
               <div className="flex items-center gap-3 mb-4">
                 <MapPin className="w-5 h-5 text-[#E50000]" />
-                <h2 className="text-lg font-bold">Delivery Address</h2>
+                <h2 className="text-lg font-bold">{t("deliveryAddress")}</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t("fullName")}</label>
                   <input
                     type="text"
                     value={deliveryAddress.name}
                     onChange={(e) => setDeliveryAddress({ ...deliveryAddress, name: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#E50000]"
-                    placeholder="Enter your full name"
+                    placeholder={t("enterFullName")}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t("phoneNumber")}</label>
                   <input
                     type="tel"
                     value={deliveryAddress.phone}
                     onChange={(e) => setDeliveryAddress({ ...deliveryAddress, phone: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#E50000]"
-                    placeholder="+675 XXXX XXXX"
+                    placeholder={t("enterPhoneNumber")}
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t("streetAddress")}</label>
                   <textarea
                     value={deliveryAddress.address}
                     onChange={(e) => setDeliveryAddress({ ...deliveryAddress, address: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#E50000]"
                     rows={3}
-                    placeholder="Enter your complete address"
+                    placeholder={t("enterCompleteAddress")}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t("city")}</label>
                   <select
                     value={deliveryAddress.city}
                     onChange={(e) => setDeliveryAddress({ ...deliveryAddress, city: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#E50000]"
                   >
-                    <option value="Port Moresby">Port Moresby</option>
-                    <option value="Lae">Lae</option>
-                    <option value="Mount Hagen">Mount Hagen</option>
-                    <option value="Madang">Madang</option>
-                    <option value="Wewak">Wewak</option>
+                    <option value="Port Moresby">{t("portMoresby")}</option>
+                    <option value="Lae">{t("lae")}</option>
+                    <option value="Mount Hagen">{t("mountHagen")}</option>
+                    <option value="Madang">{t("madang")}</option>
+                    <option value="Wewak">{t("wewak")}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Province</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t("province")}</label>
                   <select
                     value={deliveryAddress.province}
                     onChange={(e) => setDeliveryAddress({ ...deliveryAddress, province: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#E50000]"
                   >
-                    <option value="National Capital District">National Capital District</option>
-                    <option value="Morobe">Morobe</option>
-                    <option value="Western Highlands">Western Highlands</option>
-                    <option value="Madang">Madang</option>
-                    <option value="East Sepik">East Sepik</option>
+                    <option value="National Capital District">{t("nationalCapitalDistrict")}</option>
+                    <option value="Morobe">{t("morobe")}</option>
+                    <option value="Western Highlands">{t("westernHighlands")}</option>
+                    <option value="Madang">{t("madang")}</option>
+                    <option value="East Sepik">{t("eastSepik")}</option>
                   </select>
                 </div>
               </div>
             </div>
 
             {/* Payment Method */}
-            <div className="bg-white rounded-lg p-6">
-              <h2 className="text-lg font-bold mb-4">Payment Method</h2>
+            <div className="bg-white rounded-lg p-6" data-testid="payment-section">
+              <h2 className="text-lg font-bold mb-4">{t("paymentMethod")}</h2>
 
               <div className="space-y-3">
                 <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
@@ -139,8 +142,8 @@ export default function CheckoutPage() {
                   />
                   <Smartphone className="w-5 h-5 text-blue-600" />
                   <div>
-                    <div className="font-medium">Mobile Money</div>
-                    <div className="text-sm text-gray-600">Pay with Digicel, Bmobile, or other mobile wallets</div>
+                    <div className="font-medium">{t("mobileMoney")}</div>
+                    <div className="text-sm text-gray-600">{t("payWithMobileMoney")}</div>
                   </div>
                 </label>
 
@@ -155,8 +158,8 @@ export default function CheckoutPage() {
                   />
                   <CreditCard className="w-5 h-5 text-green-600" />
                   <div>
-                    <div className="font-medium">Credit/Debit Card</div>
-                    <div className="text-sm text-gray-600">Visa, Mastercard, and other major cards</div>
+                    <div className="font-medium">{t("creditDebitCard")}</div>
+                    <div className="text-sm text-gray-600">{t("visaMastercardEtc")}</div>
                   </div>
                 </label>
 
@@ -171,8 +174,8 @@ export default function CheckoutPage() {
                   />
                   <Truck className="w-5 h-5 text-orange-600" />
                   <div>
-                    <div className="font-medium">Cash on Delivery</div>
-                    <div className="text-sm text-gray-600">Pay when your order arrives</div>
+                    <div className="font-medium">{t("cashOnDelivery")}</div>
+                    <div className="text-sm text-gray-600">{t("payWhenOrderArrives")}</div>
                   </div>
                 </label>
               </div>
@@ -182,7 +185,7 @@ export default function CheckoutPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-6 sticky top-6">
-              <h2 className="text-lg font-bold mb-4">Order Summary</h2>
+              <h2 className="text-lg font-bold mb-4">{t("orderSummary")}</h2>
 
               {/* Order Items */}
               <div className="space-y-3 mb-4">
@@ -198,8 +201,8 @@ export default function CheckoutPage() {
                     <div className="flex-1">
                       <h4 className="text-sm font-medium line-clamp-2">{item.name}</h4>
                       <div className="flex justify-between items-center mt-1">
-                        <span className="text-xs text-gray-600">Qty: {item.quantity || 1}</span>
-                        <span className="text-sm font-medium">K{(item.price * (item.quantity || 1)).toFixed(2)}</span>
+                        <span className="text-xs text-gray-600">{t("qty")}: {item.quantity || 1}</span>
+                        <span className="text-sm font-medium">{t("price")}: {formatKina(item.price * (item.quantity || 1))}</span>
                       </div>
                     </div>
                   </div>
@@ -208,16 +211,16 @@ export default function CheckoutPage() {
 
               <div className="border-t pt-4 space-y-2 mb-4">
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>K{subtotal.toFixed(2)}</span>
+                  <span>{t("subtotal")}</span>
+                  <span>{t("price")}: {formatKina(subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Shipping</span>
-                  <span className="text-green-600">FREE</span>
+                  <span>{t("shipping")}</span>
+                  <span className="text-green-600">{t("freeLabel")}</span>
                 </div>
                 <div className="flex justify-between text-lg font-bold">
-                  <span>Total</span>
-                  <span className="text-[#E50000]">K{total.toFixed(2)}</span>
+                  <span>{t("total")}</span>
+                  <span className="text-[#E50000]">{t("price")}: {formatKina(total)}</span>
                 </div>
               </div>
 
@@ -225,11 +228,11 @@ export default function CheckoutPage() {
                 onClick={handlePlaceOrder}
                 className="w-full bg-[#E50000] text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
               >
-                Place Order
+                {t("placeOrder")}
               </button>
 
               <div className="mt-4 text-xs text-gray-600 text-center">
-                By placing your order, you agree to our Terms of Service and Privacy Policy
+                {t("termsOfServiceAndPrivacyPolicy")}
               </div>
             </div>
           </div>

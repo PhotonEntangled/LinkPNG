@@ -2,6 +2,8 @@
 
 import { useState, type ReactNode } from "react"
 import { AppContext } from "./AppContext"
+import DemoOverlay from "../components/DemoOverlay"
+import DemoControls from "../components/DemoControls"
 
 export interface Product {
   id: number;
@@ -27,11 +29,14 @@ export interface AppContextType {
   addToCart: (product: Product) => void
   selectedOrderId?: string
   setSelectedOrderId: (orderId: string) => void
+  searchTerm: string
+  setSearchTerm: (term: string) => void
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [currentPage, setCurrentPage] = useState("home")
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [searchTerm, setSearchTerm] = useState("") // Add search term state
   const [cartItems, setCartItems] = useState<Product[]>([
     {
       id: 1,
@@ -78,9 +83,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
         addToCart,
         selectedOrderId,
         setSelectedOrderId,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}
+      <DemoOverlay />
+      <DemoControls />
     </AppContext.Provider>
   )
 }

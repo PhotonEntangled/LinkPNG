@@ -60,9 +60,9 @@ export default function CartPage() {
               className="flex items-center gap-2 text-gray-600 hover:text-[#E50000]"
             >
               <ArrowLeft className="w-5 h-5" />
-              Continue Shopping
+              {t("continueShopping")}
             </button>
-            <h1 className="text-2xl font-bold">Shopping Cart ({cartItems.length})</h1>
+            <h1 className="text-2xl font-bold">{t("shoppingCart")} ({cartItems.length})</h1>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function CartPage() {
                   onChange={toggleSelectAll}
                   className="w-4 h-4 text-[#E50000] rounded focus:ring-[#E50000]"
                 />
-                <span className="font-medium">Select All ({cartItems.length} items)</span>
+                <span className="font-medium">{t("selectAll")} ({cartItems.length} {t("items")})</span>
               </label>
             </div>
 
@@ -108,7 +108,7 @@ export default function CartPage() {
                   {/* Product Details */}
                   <div className="flex-1">
                     <h3 className="font-medium text-gray-800 mb-1">{item.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">by {item.seller}</p>
+                    <p className="text-sm text-gray-600 mb-2">{t("by")} {item.seller}</p>
 
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-png-red font-bold text-lg">{formatKina(item.price)}</span>
@@ -150,13 +150,13 @@ export default function CartPage() {
                 <div className="text-gray-400 mb-4">
                   <ShoppingCart className="w-16 h-16 mx-auto" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">Your cart is empty</h3>
-                <p className="text-gray-600 mb-4">Add some products to get started!</p>
+                <h3 className="text-lg font-medium text-gray-800 mb-2">{t("yourCartIsEmpty")}</h3>
+                <p className="text-gray-600 mb-4">{t("addSomeProducts")}</p>
                 <button
                   onClick={() => setCurrentPage("home")}
                   className="bg-[#E50000] text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
                 >
-                  Start Shopping
+                  {t("startShopping")}
                 </button>
               </div>
             )}
@@ -179,7 +179,7 @@ export default function CartPage() {
                   </span>
                 </div>
                 {subtotal > 0 && subtotal < 50 && (
-                  <p className="text-sm text-gray-600">Add {formatKina(50 - subtotal)} {t("freeShippingMessage")}</p>
+                  <p className="text-sm text-gray-600">{t("addFreeShippingMessage")}</p>
                 )}
               </div>
 
@@ -200,7 +200,7 @@ export default function CartPage() {
 
               <div className="mt-4 text-center">
                 <button onClick={() => setCurrentPage("home")} className="text-[#E50000] text-sm hover:underline">
-                  Continue Shopping
+                  {t("continueShopping")}
                 </button>
               </div>
             </div>

@@ -4,6 +4,8 @@ import "./globals.css"
 import { metadata } from "./metadata"
 import { AppProvider } from "./context/AppProvider"
 import { LanguageProvider } from "./context/LanguageContext"
+import { DemoModeProvider } from "./context/DemoModeContext"
+import DemoOverlay from "./components/DemoOverlay"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,7 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <LanguageProvider>
-          <AppProvider>{children}</AppProvider>
+          <DemoModeProvider>
+            <AppProvider>{children}</AppProvider>
+            <DemoOverlay />
+          </DemoModeProvider>
         </LanguageProvider>
       </body>
     </html>
