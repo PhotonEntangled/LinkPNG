@@ -3,6 +3,7 @@
 import { Star, Heart } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
+import { formatKina } from "@/lib/utils"
 
 interface Product {
   id: number
@@ -76,9 +77,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Price */}
         <div className="mb-2">
           <div className="flex items-center gap-2">
-            <span className="text-[#E50000] font-bold text-lg">K{product.price}</span>
+            <span className="text-png-red font-bold text-lg">{formatKina(product.price)}</span>
             {product.originalPrice && (
-              <span className="text-gray-500 text-sm line-through">K{product.originalPrice}</span>
+              <span className="text-gray-500 text-sm line-through">{formatKina(product.originalPrice)}</span>
             )}
           </div>
         </div>

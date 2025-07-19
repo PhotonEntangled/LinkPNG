@@ -6,6 +6,7 @@ import { useApp } from "../context/AppContext"
 import Header from "./Header"
 import Footer from "./Footer"
 import Image from "next/image"
+import { formatKina } from "@/lib/utils"
 
 export default function CartPage() {
   const { cartItems, setCartItems, setCurrentPage } = useApp()
@@ -108,9 +109,9 @@ export default function CartPage() {
                     <p className="text-sm text-gray-600 mb-2">by {item.seller}</p>
 
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-[#E50000] font-bold text-lg">K{item.price}</span>
+                      <span className="text-png-red font-bold text-lg">{formatKina(item.price)}</span>
                       {item.originalPrice && (
-                        <span className="text-gray-500 text-sm line-through">K{item.originalPrice}</span>
+                        <span className="text-gray-500 text-sm line-through">{formatKina(item.originalPrice)}</span>
                       )}
                     </div>
 

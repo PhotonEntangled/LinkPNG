@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Clock } from "lucide-react"
 import Image from "next/image"
+import { formatKina } from "@/lib/utils"
 
 interface FlashSaleProduct {
   id: number
@@ -97,8 +98,8 @@ export default function FlashSale({ products, onProductClick }: FlashSaleProps) 
                 <h3 className="text-sm font-medium text-gray-800 mb-2 line-clamp-2 h-10">{product.name}</h3>
 
                 <div className="mb-2">
-                  <div className="text-[#E50000] font-bold text-lg">K{product.price}</div>
-                  <div className="text-gray-500 text-sm line-through">K{product.originalPrice}</div>
+                  <div className="text-png-red font-bold text-lg">{formatKina(product.price)}</div>
+                  <div className="text-gray-500 text-sm line-through">{formatKina(product.originalPrice)}</div>
                 </div>
 
                 {/* Progress Bar */}

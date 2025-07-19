@@ -47,6 +47,12 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Official PNG National Colors */
+    --png-red: 353 85% 43%; /* #CE1126 */
+    --png-black: 0 0% 0%; /* #000000 */
+    --png-gold: 48 100% 50%; /* #FFCD00 */
+    --png-white: 0 0% 100%; /* #FFFFFF */
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -81,6 +87,12 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Official PNG National Colors (same for dark mode) */
+    --png-red: 353 85% 43%; /* #CE1126 */
+    --png-black: 0 0% 0%; /* #000000 */
+    --png-gold: 48 100% 50%; /* #FFCD00 */
+    --png-white: 0 0% 100%; /* #FFFFFF */
   }
 }
 
@@ -94,13 +106,48 @@ body {
 }
 
 @layer components {
+  /* Official PNG National Color Utilities */
   .linkpng-red {
-    @apply bg-[#E50000] text-white;
+    @apply bg-[#CE1126] text-white;
+  }
+  .linkpng-gold {
+    @apply bg-[#FFCD00] text-black;
   }
   .linkpng-yellow {
-    @apply bg-[#FFCF00] text-black;
+    @apply bg-[#FFCD00] text-black;
   }
   .linkpng-black {
     @apply bg-black text-white;
+  }
+  .linkpng-white {
+    @apply bg-white text-black;
+  }
+  
+  /* Text color variants */
+  .text-png-red {
+    @apply text-[#CE1126];
+  }
+  .text-png-gold {
+    @apply text-[#FFCD00];
+  }
+  .text-png-black {
+    @apply text-black;
+  }
+  .text-png-white {
+    @apply text-white;
+  }
+  
+  /* Border color variants */
+  .border-png-red {
+    @apply border-[#CE1126];
+  }
+  .border-png-gold {
+    @apply border-[#FFCD00];
+  }
+  .border-png-black {
+    @apply border-black;
+  }
+  .border-png-white {
+    @apply border-white;
   }
 }
