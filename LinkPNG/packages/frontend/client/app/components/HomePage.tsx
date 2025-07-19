@@ -1,5 +1,6 @@
 "use client"
 import { useApp } from "../hooks/useApp"
+import { useLanguage } from "../context/LanguageContext"
 import Header from "./Header"
 import HeroCarousel from "./HeroCarousel"
 import FlashSale from "./FlashSale"
@@ -160,52 +161,54 @@ const dailyDiscoverProducts = [
   },
 ]
 
-const quickActions = [
-  { icon: Zap, label: "Top Up", color: "bg-blue-500" },
-  { icon: CreditCard, label: "Pay Bills", color: "bg-green-500" },
-  { icon: Utensils, label: "LinkPNG Food", color: "bg-red-500" },
-  { icon: Gift, label: "Promos", color: "bg-purple-500" },
-  { icon: Video, label: "Live", color: "bg-pink-500" },
-  { icon: Shirt, label: "Fashion", color: "bg-indigo-500" },
-  { icon: Smartphone, label: "Electronics", color: "bg-yellow-500" },
-  { icon: Globe, label: "Global Deals", color: "bg-teal-500" },
-]
-
-const categories = [
-  {
-    name: "Home & Garden",
-    image: "/placeholder.svg?height=120&width=120&text=Home",
-    color: "bg-green-100",
-  },
-  {
-    name: "Beauty & Health",
-    image: "/placeholder.svg?height=120&width=120&text=Beauty",
-    color: "bg-pink-100",
-  },
-  {
-    name: "Electronics",
-    image: "/placeholder.svg?height=120&width=120&text=Electronics",
-    color: "bg-blue-100",
-  },
-  {
-    name: "Fashion",
-    image: "/placeholder.svg?height=120&width=120&text=Fashion",
-    color: "bg-purple-100",
-  },
-  {
-    name: "Sports & Outdoor",
-    image: "/placeholder.svg?height=120&width=120&text=Sports",
-    color: "bg-orange-100",
-  },
-  {
-    name: "Local Products",
-    image: "/placeholder.svg?height=120&width=120&text=Local",
-    color: "bg-yellow-100",
-  },
-]
-
 export default function HomePage() {
   const { setCurrentPage, setSelectedProduct } = useApp()
+  const { t } = useLanguage()
+
+  // Move arrays inside component to access t() function
+  const quickActions = [
+    { icon: Zap, label: t("topUp"), color: "bg-blue-500" },
+    { icon: CreditCard, label: t("payBills"), color: "bg-green-500" },
+    { icon: Utensils, label: t("linkpngFood"), color: "bg-red-500" },
+    { icon: Gift, label: t("promos"), color: "bg-purple-500" },
+    { icon: Video, label: t("live"), color: "bg-pink-500" },
+    { icon: Shirt, label: t("fashion"), color: "bg-indigo-500" },
+    { icon: Smartphone, label: t("electronics"), color: "bg-yellow-500" },
+    { icon: Globe, label: t("globalDeals"), color: "bg-teal-500" },
+  ]
+
+  const categories = [
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Home+Garden",
+      name: t("homeGarden"),
+      color: "bg-green-100",
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Beauty+Health", 
+      name: t("beautyHealth"),
+      color: "bg-pink-100",
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Electronics",
+      name: t("electronics"),
+      color: "bg-blue-100",
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Fashion",
+      name: t("fashion"),
+      color: "bg-purple-100",
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Sports+Outdoor",
+      name: t("sportsOutdoor"),
+      color: "bg-orange-100",
+    },
+    {
+      image: "/placeholder.svg?height=150&width=150&text=Local+Products",
+      name: t("localProducts"),
+      color: "bg-yellow-100",
+    },
+  ]
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product)
@@ -241,7 +244,7 @@ export default function HomePage() {
       {/* Category Showcase */}
       <section className="bg-white py-6 mt-2">
         <div className="container mx-auto px-4">
-          <h2 className="text-lg font-bold mb-4 text-gray-800">Shop By Category</h2>
+          <h2 className="text-lg font-bold mb-4 text-gray-800">{t("shopByCategory")}</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {categories.map((category, index) => (
               <div
@@ -265,7 +268,7 @@ export default function HomePage() {
       {/* Daily Discover Product Grid */}
       <section className="bg-white py-6 mt-2">
         <div className="container mx-auto px-4">
-          <h2 className="text-lg font-bold mb-4 text-gray-800">Daily Discover</h2>
+          <h2 className="text-lg font-bold mb-4 text-gray-800">{t("dailyDiscover")}</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {dailyDiscoverProducts.map((product) => (
               <div key={product.id} onClick={() => handleProductClick(product)}>
@@ -277,7 +280,7 @@ export default function HomePage() {
           {/* Load More Button */}
           <div className="text-center mt-8">
             <button className="bg-[#E50000] text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors">
-              Load More Products
+              {t("loadMore")}
             </button>
           </div>
         </div>

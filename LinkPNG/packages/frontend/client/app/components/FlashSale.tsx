@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Clock } from "lucide-react"
 import Image from "next/image"
 import { formatKina } from "@/lib/utils"
+import { useLanguage } from "../context/LanguageContext"
 
 interface FlashSaleProduct {
   id: number
@@ -45,16 +46,18 @@ export default function FlashSale({ products, onProductClick }: FlashSaleProps) 
     return () => clearInterval(timer)
   }, [])
 
+  const { t } = useLanguage()
+
   return (
     <section className="bg-gradient-to-r from-[#E50000] to-red-600 py-6 mt-2">
       <div className="container mx-auto px-4">
         {/* Flash Sale Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="bg-[#FFCF00] text-black px-3 py-1 rounded-lg font-bold text-lg">⚡ FLASH SALE</div>
+            <div className="bg-[#FFCF00] text-black px-3 py-1 rounded-lg font-bold text-lg">⚡ {t("flashSale")}</div>
             <div className="flex items-center gap-2 text-white">
               <Clock className="w-4 h-4" />
-              <span className="text-sm">Ends in:</span>
+              <span className="text-sm">{t("endsIn")}</span>
               <div className="flex gap-1">
                 <span className="bg-black bg-opacity-30 px-2 py-1 rounded text-sm font-mono">
                   {String(timeLeft.hours).padStart(2, "0")}
@@ -70,7 +73,7 @@ export default function FlashSale({ products, onProductClick }: FlashSaleProps) 
               </div>
             </div>
           </div>
-          <button className="text-white text-sm hover:underline">View All</button>
+          <button className="text-white text-sm hover:underline">{t("viewAll")}</button>
         </div>
 
         {/* Flash Sale Products */}
@@ -110,7 +113,7 @@ export default function FlashSale({ products, onProductClick }: FlashSaleProps) 
                       style={{ width: `${(product.sold / product.stock) * 100}%` }}
                     />
                   </div>
-                  <div className="text-xs text-gray-600 mt-1">{product.sold} sold</div>
+                  <div className="text-xs text-gray-600 mt-1">{product.sold} {t("sold")}</div>
                 </div>
               </div>
             ))}

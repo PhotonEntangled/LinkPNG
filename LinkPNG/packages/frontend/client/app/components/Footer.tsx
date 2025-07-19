@@ -1,7 +1,10 @@
 import React from "react"
 import { TrendingUp } from "lucide-react"
+import { useLanguage } from "../context/LanguageContext"
 
 function Footer() {
+  const { t } = useLanguage()
+  
   return (
     <footer className="bg-gray-800 text-white py-12">
       <div className="container mx-auto px-4 py-8">
@@ -12,7 +15,7 @@ function Footer() {
               LinkPNG
             </div>
             <p className="text-gray-300 text-sm mb-4">
-              Papua New Guinea&apos;s premier online marketplace. Shop with confidence, deliver with care.
+              {t("companyDescription")}
             </p>
             <div className="flex gap-4">
               <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-sm">f</div>
@@ -23,31 +26,31 @@ function Footer() {
 
           {/* Customer Service */}
           <div>
-            <h3 className="font-semibold mb-4">Customer Service</h3>
+            <h3 className="font-semibold mb-4">{t("customerService")}</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Help Center
+                  {t("helpCenter")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Contact Us
+                  {t("contactUs")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Return Policy
+                  {t("returnPolicy")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Shipping Info
+                  {t("shippingInfo")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Track Order
+                  {t("trackOrder")}
                 </a>
               </li>
             </ul>
@@ -55,31 +58,31 @@ function Footer() {
 
           {/* About LinkPNG */}
           <div>
-            <h3 className="font-semibold mb-4">About LinkPNG</h3>
+            <h3 className="font-semibold mb-4">{t("aboutLinkpng")}</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  About Us
+                  {t("aboutUs")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Careers
+                  {t("careers")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Press
+                  {t("press")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Investor Relations
+                  {t("investorRelations")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Sustainability
+                  {t("sustainability")}
                 </a>
               </li>
             </ul>
@@ -87,10 +90,10 @@ function Footer() {
 
           {/* Payment & Logistics */}
           <div>
-            <h3 className="font-semibold mb-4">Payment & Delivery</h3>
+            <h3 className="font-semibold mb-4">{t("paymentDelivery")}</h3>
             <div className="space-y-4">
               <div>
-                <p className="text-sm text-gray-300 mb-2">Payment Methods</p>
+                <p className="text-sm text-gray-300 mb-2">{t("paymentMethods")}</p>
                 <div className="flex gap-2 flex-wrap">
                   <div className="bg-white text-black px-2 py-1 rounded text-xs">VISA</div>
                   <div className="bg-white text-black px-2 py-1 rounded text-xs">Mobile Money</div>
@@ -98,7 +101,7 @@ function Footer() {
                 </div>
               </div>
               <div>
-                <p className="text-sm text-gray-300 mb-2">Delivery Partners</p>
+                <p className="text-sm text-gray-300 mb-2">{t("deliveryPartners")}</p>
                 <div className="flex gap-2 flex-wrap">
                   <div className="bg-blue-600 text-white px-2 py-1 rounded text-xs">PNG Post</div>
                   <div className="bg-green-600 text-white px-2 py-1 rounded text-xs">Express</div>
@@ -111,7 +114,7 @@ function Footer() {
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
           <div className="flex items-center gap-2">
             <TrendingUp className="w-4 h-4" />
-            <span>We&apos;re committed to fair trade.</span>
+            <span>{t("fairTrade")}</span>
           </div>
           <div className="text-sm">
             <p>&copy; {new Date().getFullYear()} LinkPNG. All rights reserved.</p>
