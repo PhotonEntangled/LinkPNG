@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ArrowLeft, Minus, Plus, Trash2, ShoppingCart } from "lucide-react"
 import { useApp } from "../context/AppContext"
+import { useLanguage } from "../context/LanguageContext"
 import Header from "./Header"
 import Footer from "./Footer"
 import Image from "next/image"
@@ -10,6 +11,7 @@ import { formatKina } from "@/lib/utils"
 
 export default function CartPage() {
   const { cartItems, setCartItems, setCurrentPage } = useApp()
+  const { t } = useLanguage()
   const [selectedItems, setSelectedItems] = useState<number[]>(cartItems.map((item) => item.id))
   const [selectAll, setSelectAll] = useState(true)
 
@@ -163,37 +165,37 @@ export default function CartPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-6 sticky top-6">
-              <h2 className="text-lg font-bold mb-4">Order Summary</h2>
+              <h2 className="text-lg font-bold mb-4">{t("orderSummary")}</h2>
 
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between">
-                  <span>Subtotal ({selectedItems.length} items)</span>
-                  <span>K{subtotal.toFixed(2)}</span>
+                  <span>{t("subtotal")} ({selectedItems.length} {t("items")})</span>
+                  <span>{formatKina(subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Shipping</span>
+                  <span>{t("shipping")}</span>
                   <span className={shipping === 0 ? "text-green-600" : ""}>
-                    {shipping === 0 ? "FREE" : `K${shipping.toFixed(2)}`}
+                    {shipping === 0 ? t("free") : formatKina(shipping)}
                   </span>
                 </div>
                 {subtotal > 0 && subtotal < 50 && (
-                  <p className="text-sm text-gray-600">Add K{(50 - subtotal).toFixed(2)} more for free shipping</p>
+                  <p className="text-sm text-gray-600">Add {formatKina(50 - subtotal)} {t("freeShippingMessage")}</p>
                 )}
               </div>
 
               <div className="border-t pt-4 mb-6">
                 <div className="flex justify-between text-lg font-bold">
-                  <span>Total</span>
-                  <span className="text-[#E50000]">K{total.toFixed(2)}</span>
+                  <span>{t("total")}</span>
+                  <span className="text-png-red">{formatKina(total)}</span>
                 </div>
               </div>
 
               <button
                 disabled={selectedItems.length === 0}
                 onClick={() => setCurrentPage("checkout")}
-                className="w-full bg-[#E50000] text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="w-full linkpng-red text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
-                Check Out ({selectedItems.length})
+                {t("checkout")} ({selectedItems.length})
               </button>
 
               <div className="mt-4 text-center">

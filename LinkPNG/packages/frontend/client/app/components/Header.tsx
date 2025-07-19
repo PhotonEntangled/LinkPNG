@@ -1,19 +1,23 @@
 "use client"
 
-import { useState } from "react"
 import { Search, ShoppingCart, Menu, Bell, User, Globe } from "lucide-react"
 import { useApp } from "../context/AppContext"
+import { useLanguage } from "../context/LanguageContext"
 
 export default function Header() {
   const { cartItems, setCurrentPage } = useApp()
-  const [currentLanguage, setCurrentLanguage] = useState("EN")
+  const { language, setLanguage, t, isEnglish } = useLanguage()
   const cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
+
+  const toggleLanguage = () => {
+    setLanguage(isEnglish ? "tok" : "en")
+  }
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top Promotional Bar */}
-      <div className="bg-[#E50000] text-white text-center py-2 text-sm">
-        🚚 Free Shipping on Orders Over K50 | 📱 Download LinkPNG App for Exclusive Deals
+      <div className="linkpng-red text-white text-center py-2 text-sm">
+        🚚 {t("freeShippingPromo")} | 📱 {t("appDownload")}
       </div>
 
       {/* Main Header */}
@@ -26,17 +30,17 @@ export default function Header() {
 
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => setCurrentPage("home")}>
-            <div className="bg-[#E50000] text-white px-3 py-2 rounded-lg font-bold text-lg">LinkPNG</div>
+            <div className="linkpng-red text-white px-3 py-2 rounded-lg font-bold text-lg">LinkPNG</div>
           </div>
 
           {/* Language Selector */}
           <div className="relative">
             <button
               className="flex items-center gap-1 px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-              onClick={() => setCurrentLanguage(currentLanguage === "EN" ? "TOK" : "EN")}
+              onClick={toggleLanguage}
             >
               <Globe className="w-4 h-4" />
-              <span>{currentLanguage === "EN" ? "English" : "Tok Pisin"}</span>
+              <span>{isEnglish ? t("english") : t("tokPisin")}</span>
             </button>
           </div>
 
@@ -45,73 +49,75 @@ export default function Header() {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search for products, brands, and more..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#E50000] pr-12"
+                placeholder={t("search")}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-png-red pr-12"
               />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#E50000] text-white p-2 rounded-md hover:bg-red-700 transition-colors">
-                <Search className="w-4 h-4" />
+              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-png-red">
+                <Search className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Right Side Icons */}
+          {/* Right Side Actions */}
           <div className="flex items-center gap-4">
-            <button className="hidden md:block">
-              <Bell className="w-6 h-6 text-gray-600" />
+            {/* Notifications */}
+            <button className="relative p-2 text-gray-600 hover:text-png-red">
+              <Bell className="w-6 h-6" />
+              <span className="absolute -top-1 -right-1 bg-png-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                3
+              </span>
             </button>
 
-            <button className="relative" onClick={() => setCurrentPage("cart")}>
-              <ShoppingCart className="w-6 h-6 text-gray-600" />
+            {/* Cart */}
+            <button 
+              className="relative p-2 text-gray-600 hover:text-png-red"
+              onClick={() => setCurrentPage("cart")}
+            >
+              <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#E50000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-png-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
             </button>
 
-            <button className="hidden md:block">
-              <User className="w-6 h-6 text-gray-600" />
+            {/* User Account */}
+            <button className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red">
+              <User className="w-6 h-6" />
+              <span className="hidden md:block text-sm">{t("myAccount")}</span>
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Navigation Menu - Desktop */}
-      <div className="hidden md:block border-t border-gray-200">
-        <div className="container mx-auto px-4">
-          <nav className="flex items-center gap-8 py-2 text-sm">
-            <button
+        {/* Navigation Menu */}
+        <nav className="mt-4 hidden md:block">
+          <div className="flex items-center gap-8">
+            <button 
+              className="text-gray-700 hover:text-png-red font-medium transition-colors"
               onClick={() => setCurrentPage("home")}
-              className="text-gray-700 hover:text-[#E50000] transition-colors"
             >
-              Categories
+              {t("home")}
             </button>
-            <a href="#" className="text-gray-700 hover:text-[#E50000] transition-colors">
-              Flash Sale
-            </a>
-            <a href="#" className="text-gray-700 hover:text-[#E50000] transition-colors">
-              New Arrivals
-            </a>
-            <a href="#" className="text-gray-700 hover:text-[#E50000] transition-colors">
-              Local Products
-            </a>
-            <button
-              onClick={() => setCurrentPage("tracking")}
-              className="text-gray-700 hover:text-[#E50000] transition-colors"
-            >
-              Track Order
+            <button className="text-gray-700 hover:text-png-red font-medium transition-colors">
+              Bilums & Bags
             </button>
-            <a href="#" className="text-gray-700 hover:text-[#E50000] transition-colors">
-              Electronics
-            </a>
-            <a href="#" className="text-gray-700 hover:text-[#E50000] transition-colors">
-              Fashion
-            </a>
-            <a href="#" className="text-gray-700 hover:text-[#E50000] transition-colors">
-              Home & Garden
-            </a>
-          </nav>
-        </div>
+            <button className="text-gray-700 hover:text-png-red font-medium transition-colors">
+              Carvings & Art
+            </button>
+            <button className="text-gray-700 hover:text-png-red font-medium transition-colors">
+              PNG Coffee & Food
+            </button>
+            <button className="text-gray-700 hover:text-png-red font-medium transition-colors">
+              Local Fashion
+            </button>
+            <button className="text-gray-700 hover:text-png-red font-medium transition-colors">
+              Traditional Crafts
+            </button>
+            <button className="text-gray-700 hover:text-png-red font-medium transition-colors">
+              {t("categories")}
+            </button>
+          </div>
+        </nav>
       </div>
     </header>
   )
