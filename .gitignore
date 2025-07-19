@@ -58,4 +58,10 @@ claude-task-master/
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Cursor rules (project-specific)
+.cursorrules
+
+# Task Master files (keep research docs)
+.taskmaster/ 

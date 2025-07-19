@@ -1,0 +1,21 @@
+{
+	"mcpServers": {
+		"task-master-ai": {
+			"command": "node",
+			"args": ["../claude-task-master/mcp-server/server.js"],
+			"env": {
+				"ANTHROPIC_API_KEY": "sk-ant-api03-vZ1kgNvEa5WA8gNZKBZR_pqR9Q7cAbG7dxjUOBADdP7tKk3dM3Ds3ljJ6C_lRUX5Qsb_O8zJpQZnT8vASDcQrQ-lCbwIgAA",
+				"PERPLEXITY_API_KEY": "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",
+				"OPENAI_API_KEY": "OPENAI_API_KEY_HERE",
+				"GOOGLE_API_KEY": "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",
+				"GROQ_API_KEY": "GROQ_API_KEY_HERE",
+				"XAI_API_KEY": "XAI_API_KEY_HERE",
+				"OPENROUTER_API_KEY": "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",
+				"MISTRAL_API_KEY": "MISTRAL_API_KEY_HERE",
+				"AZURE_OPENAI_API_KEY": "AZURE_OPENAI_API_KEY_HERE",
+				"OLLAMA_API_KEY": "OLLAMA_API_KEY_HERE",
+				"GITHUB_API_KEY": "GITHUB_API_KEY_HERE"
+			}
+		}
+	}
+}

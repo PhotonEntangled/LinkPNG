@@ -1,0 +1,40 @@
+# LinkPNG E-commerce Platform - Product Requirements Document (PRD)
+
+## 1. Introduction
+
+This document outlines the product requirements for the initial Minimum Viable Product (MVP) of the LinkPNG e-commerce platform. The primary goal is to create a high-fidelity simulation for investor demonstrations, focusing on a simple, visually-driven user experience tailored for the Papua New Guinean market.
+
+## 2. Core Problem
+
+Traditional e-commerce platforms are often too complex for markets with varying literacy levels and limited access to traditional banking. LinkPNG aims to solve this by providing a radically simple, mobile-first platform with flexible payment options.
+
+## 3. Key Features (MVP Simulation)
+
+### 3.1. Frontend User Experience
+- **Radical Simplicity:** A visual-first interface with large, clear icons and minimal text.
+- **Voice Search:** A prominent voice search feature to overcome literacy barriers.
+- **Product Browsing:** Simple grid-based display of products with clear images.
+- **Product Details:** A clean product page with essential information and a clear "Add to Cart" button.
+- **Shopping Cart:** A straightforward cart and checkout process.
+- **Order Tracking:** A detailed, visualized delivery tracking page showing the hub-and-spoke journey of a package.
+
+### 3.2. Backend Simulation
+- **Placeholder Data:** The backend will serve static, placeholder data for products, users, and orders.
+- **Simulated Logistics:** The system will simulate a logistics partnership, providing realistic tracking updates for the frontend.
+
+### 3.3. Payments
+- The user interface will show options for:
+    - Mobile Money / Card Payments (simulated)
+    - Cash-In Network (simulated)
+    - Cash-on-Delivery (simulated)
+
+### 3.4. Gamification
+- A simple "Spin the Wheel" game will be accessible from the main interface to simulate user engagement strategies.
+
+## 4. Technical Stack (Initial)
+
+- **Architecture:** Progressive Web App (PWA)
+- **Frontend:** React
+- **Backend:** Node.js with Express.js
+- **Database:** (Simulated, no actual database for MVP)
+- **Deployment:** Vercel/Netlify (Frontend), Heroku/AWS Free Tier (Backend) 
