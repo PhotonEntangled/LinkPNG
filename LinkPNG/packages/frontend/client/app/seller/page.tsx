@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Plus, TrendingUp, Package, Star, Eye, Edit, Trash2, BarChart3, DollarSign, ArrowLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -31,7 +32,7 @@ const listings = [
     name: "Wireless Bluetooth Headphones",
     price: 79.99,
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop",
-    status: "active",
+    status: "active" as const,
     views: 1247,
     sales: 89,
     trustScore: 50,
@@ -42,7 +43,7 @@ const listings = [
     name: "USB-C Fast Charger",
     price: 24.99,
     image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=100&h=100&fit=crop",
-    status: "active",
+    status: "active" as const,
     views: 856,
     sales: 156,
     trustScore: 91,
@@ -53,7 +54,7 @@ const listings = [
     name: "Wireless Mouse",
     price: 34.99,
     image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=100&h=100&fit=crop",
-    status: "inactive",
+    status: "inactive" as const,
     views: 432,
     sales: 23,
     trustScore: 85,
@@ -64,7 +65,7 @@ const listings = [
     name: "Bluetooth Speaker",
     price: 59.99,
     image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=100&h=100&fit=crop",
-    status: "pending",
+    status: "pending" as const,
     views: 0,
     sales: 0,
     trustScore: 76,
@@ -124,6 +125,7 @@ export default function SellerDashboard() {
   const [sellerListings, setSellerListings] = useState(listings)
   const { toast } = useToast()
   const { setCurrentPage } = useApp()
+  const router = useRouter()
 
   const handleAddProduct = (productData: any) => {
     // Create new product with proper ID and default values
@@ -172,7 +174,7 @@ export default function SellerDashboard() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4 mb-4">
             <button 
-              onClick={() => setCurrentPage("home")}
+              onClick={() => router.push("/")}
               className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />

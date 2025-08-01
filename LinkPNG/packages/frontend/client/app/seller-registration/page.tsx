@@ -176,6 +176,7 @@ export default function SellerRegistrationPage() {
                 <Card 
                   className={`cursor-pointer transition-all ${formData.sellerType === "individual" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"}`}
                   onClick={() => updateFormData({ sellerType: "individual" })}
+                  data-seller-type="individual"
                 >
                   <CardContent className="p-4 text-center">
                     <User className="w-8 h-8 mx-auto mb-2 text-blue-600" />
@@ -186,6 +187,7 @@ export default function SellerRegistrationPage() {
                 <Card 
                   className={`cursor-pointer transition-all ${formData.sellerType === "business" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"}`}
                   onClick={() => updateFormData({ sellerType: "business" })}
+                  data-seller-type="business"
                 >
                   <CardContent className="p-4 text-center">
                     <Building className="w-8 h-8 mx-auto mb-2 text-blue-600" />
@@ -368,6 +370,7 @@ export default function SellerRegistrationPage() {
                     key={method.id}
                     className={`cursor-pointer transition-all ${formData.payoutMethod === method.id ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"}`}
                     onClick={() => updateFormData({ payoutMethod: method.id })}
+                    data-payout-method={method.id}
                   >
                     <CardContent className="p-4 text-center">
                       <h3 className="font-medium">{method.name}</h3>

@@ -87,6 +87,7 @@ export default function BecomeSellerPage() {
                 size="lg" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
                 onClick={handleStartSelling}
+                data-action="start-registration"
               >
                 Start Selling Today
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -239,6 +240,7 @@ export default function BecomeSellerPage() {
               size="lg" 
               className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
               onClick={handleStartSelling}
+              data-action="start-registration"
             >
               Begin Seller Registration
               <ArrowRight className="w-5 h-5 ml-2" />

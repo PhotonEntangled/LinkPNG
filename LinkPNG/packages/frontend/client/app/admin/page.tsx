@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Users, AlertTriangle, TrendingUp, Eye, Check, X, MessageSquare, BarChart3, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -117,6 +118,7 @@ export default function AdminDashboard() {
   const [moderatedItems, setModeratedItems] = useState(flaggedItems)
   const { toast } = useToast()
   const { setCurrentPage } = useApp()
+  const router = useRouter()
 
   const handleApprove = (id: number, comment: string) => {
     setModeratedItems(prev => prev.filter(item => item.id !== id))
@@ -135,7 +137,7 @@ export default function AdminDashboard() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4 mb-4">
             <button 
-              onClick={() => setCurrentPage("home")}
+              onClick={() => router.push("/")}
               className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />

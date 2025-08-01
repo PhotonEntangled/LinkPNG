@@ -1,10 +1,18 @@
 "use client"
 import { useDemoMode } from "../context/DemoModeContext"
-import { useEffect } from "react"
-import { Play, Eye, EyeOff } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Play, Eye, EyeOff, UserCheck, Square } from "lucide-react"
+import AutomatedSellerDemo from "./AutomatedSellerDemo"
 
 export default function DemoControls() {
   const { isDemoMode, enableDemoMode, playDemo } = useDemoMode()
+  const [sellerDemo, setSellerDemo] = useState<any>(null)
+
+  // Initialize the automated seller demo
+  useEffect(() => {
+    const demo = AutomatedSellerDemo({})
+    setSellerDemo(demo)
+  }, [])
 
   // Secret key combination (Ctrl+Shift+I) to activate investor mode
   useEffect(() => {
@@ -39,9 +47,47 @@ export default function DemoControls() {
           Start Demo
         </button>
       ) : (
-        <div className="bg-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2">
-          <EyeOff className="w-4 h-4 text-png-red" />
-          <span className="text-sm font-medium">Demo Mode Active</span>
+        <div className="space-y-2">
+          <div className="bg-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2">
+            <EyeOff className="w-4 h-4 text-png-red" />
+            <span className="text-sm font-medium">Demo Mode Active</span>
+          </div>
+          
+          {/* Automated Seller Demo Button */}
+          <button
+            onClick={() => {
+              if (sellerDemo?.isRunning) {
+                sellerDemo?.stopDemo()
+              } else {
+                sellerDemo?.startDemo()
+              }
+            }}
+            className={`${
+              sellerDemo?.isRunning 
+                ? 'bg-red-600 hover:bg-red-700' 
+                : 'bg-purple-600 hover:bg-purple-700'
+            } text-white px-4 py-2 rounded-lg shadow-lg transition-colors flex items-center gap-2 w-full`}
+            disabled={!sellerDemo}
+          >
+            {sellerDemo?.isRunning ? (
+              <>
+                <Square className="w-4 h-4" />
+                Stop Seller Demo
+              </>
+            ) : (
+              <>
+                <UserCheck className="w-4 h-4" />
+                Auto Seller Demo
+              </>
+            )}
+          </button>
+          
+          {/* Demo Progress Indicator */}
+          {sellerDemo?.isRunning && (
+            <div className="bg-black/80 text-white px-3 py-2 rounded text-xs">
+              Step {sellerDemo.currentStep + 1} of {sellerDemo.totalSteps}
+            </div>
+          )}
         </div>
       )}
     </div>
