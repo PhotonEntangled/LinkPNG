@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd LinkPNG/packages/frontend/client && npm run build",
-  "devCommand": "cd LinkPNG/packages/frontend/client && npm run dev",
-  "installCommand": "cd LinkPNG/packages/frontend/client && npm install",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
   "outputDirectory": "LinkPNG/packages/frontend/client/.next"
 }
