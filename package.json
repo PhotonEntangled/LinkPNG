@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install": "cd LinkPNG/packages/frontend/client && npm install",
     "build": "cd LinkPNG/packages/frontend/client && npm run build",
     "dev": "cd LinkPNG/packages/frontend/client && npm run dev",
     "start": "cd LinkPNG/packages/frontend/client && npm start"
