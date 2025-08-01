@@ -389,6 +389,155 @@ export default function SellerDashboard() {
           </TabsContent>
 
           <TabsContent value="analytics" className="mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                <DollarSign className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">K12,450</div>
+                <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+                <Package className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">1,247</div>
+                <p className="text-xs text-muted-foreground">+12% from last month</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Conversion Rate</CardTitle>
+                <BarChart3 className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">3.2%</div>
+                <p className="text-xs text-muted-foreground">+0.5% from last month</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Page Views</CardTitle>
+                <Eye className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">38,942</div>
+                <p className="text-xs text-muted-foreground">+8.3% from last month</p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Top Performing Products</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src="/images/products/bilum-highlands.svg"
+                        alt="Traditional Bilum"
+                        width={40}
+                        height={40}
+                        className="rounded"
+                      />
+                      <div>
+                        <p className="font-medium text-sm">Traditional Bilum Bag</p>
+                        <p className="text-xs text-gray-500">K85.00</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium text-sm">89 sales</p>
+                      <p className="text-xs text-green-600">+15%</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src="/images/products/highlands-coffee.svg"
+                        alt="PNG Coffee"
+                        width={40}
+                        height={40}
+                        className="rounded"
+                      />
+                      <div>
+                        <p className="font-medium text-sm">PNG Coffee Beans</p>
+                        <p className="text-xs text-gray-500">K42.00</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium text-sm">156 sales</p>
+                      <p className="text-xs text-green-600">+22%</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src="/images/products/kundu-drum.svg"
+                        alt="Kundu Drum"
+                        width={40}
+                        height={40}
+                        className="rounded"
+                      />
+                      <div>
+                        <p className="font-medium text-sm">Traditional Kundu Drum</p>
+                        <p className="text-xs text-gray-500">K125.00</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium text-sm">34 sales</p>
+                      <p className="text-xs text-green-600">+8%</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Traffic Sources</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Direct</span>
+                    <div className="flex items-center gap-2">
+                      <Progress value={45} className="w-24 h-2" />
+                      <span className="text-sm font-medium">45%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Search</span>
+                    <div className="flex items-center gap-2">
+                      <Progress value={32} className="w-24 h-2" />
+                      <span className="text-sm font-medium">32%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Social Media</span>
+                    <div className="flex items-center gap-2">
+                      <Progress value={18} className="w-24 h-2" />
+                      <span className="text-sm font-medium">18%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Referrals</span>
+                    <div className="flex items-center gap-2">
+                      <Progress value={5} className="w-24 h-2" />
+                      <span className="text-sm font-medium">5%</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
@@ -415,14 +564,129 @@ export default function SellerDashboard() {
           </TabsContent>
 
           <TabsContent value="reviews" className="mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm">Average Rating</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold">4.7</div>
+                  <div className="flex items-center gap-1 mt-1">
+                    {[1,2,3,4,5].map((star) => (
+                      <Star key={star} className={`w-4 h-4 ${star <= 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">From 3,240 reviews</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm">Recent Reviews</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold">156</div>
+                  <p className="text-xs text-green-600">+12 this week</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm">Response Rate</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold">94%</div>
+                  <p className="text-xs text-gray-500">Within 24 hours</p>
+                </CardContent>
+              </Card>
+            </div>
+            
             <Card>
               <CardHeader>
-                <CardTitle>Customer Reviews</CardTitle>
+                <CardTitle>Latest Customer Reviews</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <Star className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Review management coming soon</p>
+                <div className="space-y-4">
+                  <div className="border-b pb-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                        M
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-medium text-sm">Maria K.</span>
+                          <div className="flex items-center gap-1">
+                            {[1,2,3,4,5].map((star) => (
+                              <Star key={star} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            ))}
+                          </div>
+                          <span className="text-xs text-gray-500">2 days ago</span>
+                        </div>
+                        <p className="text-sm text-gray-700 mb-2">
+                          "Amazing traditional bilum bag! The quality is outstanding and it arrived quickly from Western Highlands. Perfect for carrying my market goods. Will definitely buy again!"
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-xs">Traditional Bilum Bag</Badge>
+                          <Button variant="ghost" size="sm" className="h-6 text-xs">Reply</Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-b pb-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                        J
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-medium text-sm">James T.</span>
+                          <div className="flex items-center gap-1">
+                            {[1,2,3,4].map((star) => (
+                              <Star key={star} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            ))}
+                            <Star className="w-3 h-3 text-gray-300" />
+                          </div>
+                          <span className="text-xs text-gray-500">1 week ago</span>
+                        </div>
+                        <p className="text-sm text-gray-700 mb-2">
+                          "Great PNG coffee beans! Rich flavor and authentic taste. Shipping was fast to Port Moresby. Only issue was packaging could be better."
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-xs">PNG Coffee Beans</Badge>
+                          <Button variant="ghost" size="sm" className="h-6 text-xs">Reply</Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-b pb-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                        S
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-medium text-sm">Sarah L.</span>
+                          <div className="flex items-center gap-1">
+                            {[1,2,3,4,5].map((star) => (
+                              <Star key={star} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            ))}
+                          </div>
+                          <span className="text-xs text-gray-500">2 weeks ago</span>
+                        </div>
+                        <p className="text-sm text-gray-700 mb-2">
+                          "Beautiful traditional kundu drum! The craftsmanship is incredible and it sounds amazing. Perfect addition to our cultural center. Highly recommend this seller!"
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-xs">Traditional Kundu Drum</Badge>
+                          <Button variant="ghost" size="sm" className="h-6 text-xs">Reply</Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="text-center mt-6">
+                  <Button variant="outline">View All Reviews</Button>
                 </div>
               </CardContent>
             </Card>

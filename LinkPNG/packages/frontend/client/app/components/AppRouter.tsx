@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { useApp } from "../context/AppContext"
 import HomePage from "./HomePage"
 import ProductDetailPage from "./ProductDetailPage"
@@ -13,6 +14,11 @@ import SellerOnboardingSuccessPage from "../seller-onboarding-success/page"
 
 export default function AppRouter() {
   const { currentPage } = useApp()
+
+  // Scroll to top whenever page changes
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentPage])
 
   switch (currentPage) {
     case "home":

@@ -34,9 +34,9 @@ export default function ProductDetailPage() {
     ...selectedProduct,
     images: [
       selectedProduct.image,
-      "/placeholder.svg?height=400&width=400&text=Image+2",
-      "/placeholder.svg?height=400&width=400&text=Image+3",
-      "/placeholder.svg?height=400&width=400&text=Image+4",
+      selectedProduct.image,
+      selectedProduct.image,
+      selectedProduct.image,
     ],
     description: `Premium quality ${selectedProduct.name}. This product offers excellent value and has been carefully selected for our PNG customers.`,
     features: [

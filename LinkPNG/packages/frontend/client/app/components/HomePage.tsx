@@ -187,37 +187,37 @@ export default function HomePage() {
 
   const categories = [
     {
-      image: "/images/categories/traditional-crafts.webp",
+      image: "/images/categories/traditional-crafts.svg",
       name: t("traditionalCrafts"),
       color: "bg-amber-100",
       icon: "🏺"
     },
     {
-      image: "/images/categories/png-coffee.webp", 
+      image: "/images/categories/png-coffee.svg", 
       name: t("pngCoffee"),
       color: "bg-amber-900 text-white",
       icon: "☕"
     },
     {
-      image: "/images/categories/local-foods.webp",
+      image: "/images/categories/local-foods.svg",
       name: t("localFoods"),
       color: "bg-green-100",
       icon: "🥥"
     },
     {
-      image: "/images/categories/png-fashion.webp",
+      image: "/images/categories/png-fashion.svg",
       name: t("pngFashion"),
       color: "bg-red-100",
       icon: "👕"
     },
     {
-      image: "/images/categories/personal-care.webp",
+      image: "/images/categories/personal-care.svg",
       name: t("personalCare"),
       color: "bg-blue-100",
       icon: "🧴"
     },
     {
-      image: "/images/categories/modern-png.webp",
+      image: "/images/categories/modern-png.svg",
       name: t("modernPng"),
       color: "bg-purple-100",
       icon: "🎨"

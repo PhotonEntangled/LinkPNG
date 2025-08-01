@@ -33,7 +33,7 @@ const mockOrderData = {
       name: "Premium Coffee Beans 1kg",
       price: 25.99,
       quantity: 2,
-      image: "/placeholder.svg?height=80&width=80&text=Coffee",
+      image: "/images/products/highlands-coffee.svg",
       seller: "PNG Coffee Co.",
     },
     {
@@ -41,7 +41,7 @@ const mockOrderData = {
       name: "Traditional Bilum Bag",
       price: 45.99,
       quantity: 1,
-      image: "/placeholder.svg?height=80&width=80&text=Bilum",
+      image: "/images/products/bilum-highlands.svg",
       seller: "Local Crafts PNG",
     },
   ],
