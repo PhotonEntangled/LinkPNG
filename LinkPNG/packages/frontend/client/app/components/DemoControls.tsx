@@ -1,18 +1,14 @@
 "use client"
 import { useDemoMode } from "../context/DemoModeContext"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Play, Eye, EyeOff, UserCheck, Square } from "lucide-react"
-import AutomatedSellerDemo from "./AutomatedSellerDemo"
+import { useAutomatedSellerDemo } from "./AutomatedSellerDemo"
 
 export default function DemoControls() {
   const { isDemoMode, enableDemoMode, playDemo } = useDemoMode()
-  const [sellerDemo, setSellerDemo] = useState<any>(null)
-
-  // Initialize the automated seller demo
-  useEffect(() => {
-    const demo = AutomatedSellerDemo({})
-    setSellerDemo(demo)
-  }, [])
+  
+  // Use the automated seller demo hook
+  const sellerDemo = useAutomatedSellerDemo({})
 
   // Secret key combination (Ctrl+Shift+I) to activate investor mode
   useEffect(() => {
@@ -56,20 +52,19 @@ export default function DemoControls() {
           {/* Automated Seller Demo Button */}
           <button
             onClick={() => {
-              if (sellerDemo?.isRunning) {
-                sellerDemo?.stopDemo()
+              if (sellerDemo.isRunning) {
+                sellerDemo.stopDemo()
               } else {
-                sellerDemo?.startDemo()
+                sellerDemo.startDemo()
               }
             }}
             className={`${
-              sellerDemo?.isRunning 
+              sellerDemo.isRunning 
                 ? 'bg-red-600 hover:bg-red-700' 
                 : 'bg-purple-600 hover:bg-purple-700'
             } text-white px-4 py-2 rounded-lg shadow-lg transition-colors flex items-center gap-2 w-full`}
-            disabled={!sellerDemo}
           >
-            {sellerDemo?.isRunning ? (
+            {sellerDemo.isRunning ? (
               <>
                 <Square className="w-4 h-4" />
                 Stop Seller Demo
@@ -83,7 +78,7 @@ export default function DemoControls() {
           </button>
           
           {/* Demo Progress Indicator */}
-          {sellerDemo?.isRunning && (
+          {sellerDemo.isRunning && (
             <div className="bg-black/80 text-white px-3 py-2 rounded text-xs">
               Step {sellerDemo.currentStep + 1} of {sellerDemo.totalSteps}
             </div>

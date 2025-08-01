@@ -9,7 +9,7 @@ interface AutomatedSellerDemoProps {
   onComplete?: () => void
 }
 
-export default function AutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps) {
+export function useAutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps = {}) {
   const { setCurrentPage } = useApp()
   const { toast } = useToast()
   const router = useRouter()
@@ -257,4 +257,9 @@ export default function AutomatedSellerDemo({ onComplete }: AutomatedSellerDemoP
     currentStep,
     totalSteps: DEMO_STEPS.length
   }
+}
+
+// Default export for backward compatibility
+export default function AutomatedSellerDemo(props: AutomatedSellerDemoProps) {
+  return useAutomatedSellerDemo(props)
 }
