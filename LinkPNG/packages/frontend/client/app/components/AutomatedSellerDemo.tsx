@@ -28,7 +28,24 @@ export function useAutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps 
     shopDescription: "Authentic handwoven bilum bags from the Western Highlands, passed down through generations. Each piece tells a story of PNG's rich cultural heritage.",
     province: "Western Highlands",
     payoutMethod: "micash",
-    accountNumber: "70123456"
+    accountNumber: "70123456",
+    
+    // Onboarding Step 4 - Shop Setup
+    businessName: "Maria's Traditional Bilums",
+    shopLongDescription: "Authentic handwoven bilum bags from the Western Highlands, passed down through generations. Each piece tells a story of PNG's rich cultural heritage. Made with natural fibers and traditional techniques.",
+    
+    // Onboarding Step 5 - First Product
+    productName: "Traditional Highland Bilum - Large",
+    productDescription: "Beautiful handwoven bilum bag made from natural plant fibers using traditional Highland techniques. Perfect for carrying vegetables from market or as a unique fashion accessory. Each bilum is unique and represents hours of skilled craftsmanship.",
+    productPrice: "150",
+    productCategory: "Traditional Crafts",
+    
+    // Onboarding Step 6 - Configuration
+    bankName: "Bank South Pacific",
+    configAccountNumber: "70123456789",
+    shippingRate: "15",
+    returnPolicy: "Returns accepted within 7 days if item is unused and in original condition. Buyer pays return shipping.",
+    termsOfService: "All items are handmade and may have slight variations. Please allow 1-2 days for processing before shipping."
   }
 
   // Automated demo steps
@@ -181,26 +198,115 @@ export function useAutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps 
       }
     },
     {
-      name: "Show Success and Transition",
+      name: "Complete Registration & Start Onboarding",
       action: () => {
         toast({
           title: "🎉 Registration Complete!",
-          description: "Seller account approved and ready for business!"
+          description: "Proceeding to shop setup..."
         })
         
-        // Simulate approval process
+        // Simulate brief delay then transition to onboarding
         setTimeout(() => {
-          toast({
-            title: "✅ Account Verified",
-            description: "Welcome to LinkPNG Seller Dashboard!"
-          })
+          router.push("/seller-onboarding-success")
         }, 2000)
         
-        setTimeout(() => {
-          router.push("/seller")
-        }, 4000)
+        return 3000
+      }
+    },
+    {
+      name: "Fill Shop Setup (Step 4)",
+      action: async () => {
+        // Wait for onboarding page to load
+        setTimeout(async () => {
+          await fillFieldSlowly("input[data-testid='shop-name-input']", DEMO_DATA.businessName)
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          await fillFieldSlowly("textarea[data-testid='shop-description-input']", DEMO_DATA.shopLongDescription)
+        }, 1000)
         
         return 5000
+      }
+    },
+    {
+      name: "Continue to Product Upload (Step 5)",
+      action: () => {
+        const buttons = Array.from(document.querySelectorAll('button'))
+        const continueButton = buttons.find(btn => btn.textContent?.includes('Continue'))
+        if (continueButton) {
+          continueButton.click()
+        }
+        return 2000
+      }
+    },
+    {
+      name: "Fill First Product Details",
+      action: async () => {
+        setTimeout(async () => {
+          await fillFieldSlowly("input[data-testid='product-name-input']", DEMO_DATA.productName)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("input[data-testid='product-price-input']", DEMO_DATA.productPrice)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          
+          // Select category
+          const categorySelect = document.querySelector('[data-testid="product-category-select"]') as HTMLElement
+          if (categorySelect) {
+            categorySelect.click()
+            setTimeout(() => {
+              const option = document.querySelector(`[data-value="${DEMO_DATA.productCategory}"]`) as HTMLElement
+              if (option) option.click()
+            }, 500)
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          await fillFieldSlowly("textarea[data-testid='product-description-input']", DEMO_DATA.productDescription)
+        }, 1000)
+        
+        return 7000
+      }
+    },
+    {
+      name: "Continue to Configuration (Step 6)",
+      action: () => {
+        const buttons = Array.from(document.querySelectorAll('button'))
+        const continueButton = buttons.find(btn => btn.textContent?.includes('Continue'))
+        if (continueButton) {
+          continueButton.click()
+        }
+        return 2000
+      }
+    },
+    {
+      name: "Fill Configuration Details",
+      action: async () => {
+        setTimeout(async () => {
+          await fillFieldSlowly("input[data-testid='bank-name-input']", DEMO_DATA.bankName)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("input[data-testid='account-number-input']", DEMO_DATA.configAccountNumber)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("input[data-testid='shipping-rate-input']", DEMO_DATA.shippingRate)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("textarea[data-testid='return-policy-input']", DEMO_DATA.returnPolicy)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("textarea[data-testid='terms-service-input']", DEMO_DATA.termsOfService)
+        }, 1000)
+        
+        return 8000
+      }
+    },
+    {
+      name: "Complete Setup & Go to Dashboard",
+      action: () => {
+        const buttons = Array.from(document.querySelectorAll('button'))
+        const completeButton = buttons.find(btn => btn.textContent?.includes('Complete Setup'))
+        if (completeButton) {
+          completeButton.click()
+        }
+        
+        toast({
+          title: "🎊 Demo Complete!",
+          description: "Full seller onboarding flow demonstrated successfully!"
+        })
+        
+        return 4000
       }
     }
   ]

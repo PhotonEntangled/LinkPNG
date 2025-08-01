@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/components/ui/use-toast"
 import { useApp } from "../hooks/useApp"
+import { useRouter } from "next/navigation"
 import Header from "../components/Header"
 
 const STEPS = [
@@ -29,6 +30,7 @@ const PNG_PROVINCES = [
 export default function SellerRegistrationPage() {
   const { setCurrentPage } = useApp()
   const { toast } = useToast()
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     sellerType: "",
@@ -109,10 +111,14 @@ export default function SellerRegistrationPage() {
     
     toast({
       title: "Registration Submitted!",
-      description: "Your seller account is being reviewed. You'll hear from us within 24 hours.",
+      description: "Proceeding to shop setup...",
     })
     console.log("Seller registration data:", formData)
-    setCurrentPage("seller-onboarding-success")
+    
+    // Redirect to the new onboarding wizard
+    setTimeout(() => {
+      router.push("/seller-onboarding-success")
+    }, 1500)
   }
 
   const updateFormData = (updates: any) => {
