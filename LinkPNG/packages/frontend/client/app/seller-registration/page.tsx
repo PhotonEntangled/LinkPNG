@@ -20,10 +20,10 @@ const STEPS = [
 ]
 
 const PNG_PROVINCES = [
-  "Western Highlands", "Southern Highlands", "Enga", "Hela",
-  "Western Province", "Gulf", "Central", "National Capital District",
-  "Morobe", "Eastern Highlands", "Madang", "East Sepik", "West Sepik",
-  "Manus", "East New Britain", "West New Britain", "New Ireland", "Bougainville"
+  "Central", "Chimbu", "Eastern Highlands", "East New Britain", "East Sepik",
+  "Enga", "Gulf", "Hela", "Jiwaka", "Madang", "Manus", "Milne Bay", "Morobe",
+  "National Capital District", "New Ireland", "Northern", "Southern Highlands",
+  "Western", "Western Highlands", "West New Britain", "West Sepik"
 ]
 
 export default function SellerRegistrationPage() {
@@ -33,118 +33,37 @@ export default function SellerRegistrationPage() {
   const [formData, setFormData] = useState({
     sellerType: "",
     fullName: "",
-    businessName: "",
     email: "",
     phone: "",
+    businessName: "",
     emailCode: "",
-    phoneCode: "",
     emailVerified: false,
+    phoneCode: "",
     phoneVerified: false,
-    idNumber: "",
-    province: "",
     shopName: "",
     shopDescription: "",
+    province: "",
     payoutMethod: "",
-    accountNumber: ""
+    accountNumber: "",
   })
 
-  const progress = (currentStep / STEPS.length) * 100
-
-  // Mock verification codes
-  const MOCK_EMAIL_CODE = "123456"
-  const MOCK_PHONE_CODE = "789012"
-
-  const handleNext = () => {
-    if (validateCurrentStep()) {
-      if (currentStep < STEPS.length) {
-        setCurrentStep(currentStep + 1)
-      } else {
-        handleSubmit()
-      }
-    }
-  }
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-    }
-  }
-
-  const sendEmailCode = () => {
-    toast({
-      title: "Verification Code Sent!",
-      description: `Code sent to ${formData.email}. Use: ${MOCK_EMAIL_CODE}`,
-    })
-  }
-
-  const sendPhoneCode = () => {
-    toast({
-      title: "SMS Code Sent!",
-      description: `Code sent to ${formData.phone}. Use: ${MOCK_PHONE_CODE}`,
-    })
-  }
-
-  const verifyEmailCode = () => {
-    if (formData.emailCode === MOCK_EMAIL_CODE) {
-      setFormData(prev => ({ ...prev, emailVerified: true }))
-      toast({
-        title: "Email Verified!",
-        description: "Your email has been successfully verified.",
-      })
-    } else {
-      toast({
-        title: "Invalid Code",
-        description: "Please enter the correct verification code.",
-        variant: "destructive"
-      })
-    }
-  }
-
-  const verifyPhoneCode = () => {
-    if (formData.phoneCode === MOCK_PHONE_CODE) {
-      setFormData(prev => ({ ...prev, phoneVerified: true }))
-      toast({
-        title: "Phone Verified!",
-        description: "Your phone number has been successfully verified.",
-      })
-    } else {
-      toast({
-        title: "Invalid Code",
-        description: "Please enter the correct verification code.",
-        variant: "destructive"
-      })
-    }
-  }
-
-  const validateCurrentStep = () => {
+  const canProceed = () => {
     switch (currentStep) {
       case 1:
         if (!formData.sellerType || !formData.fullName || !formData.email || !formData.phone) {
-          toast({
-            title: "Missing Information",
-            description: "Please fill in all required fields.",
-            variant: "destructive"
-          })
+          return false
+        }
+        if (formData.sellerType === "business" && !formData.businessName) {
           return false
         }
         break
       case 2:
         if (!formData.emailVerified || !formData.phoneVerified) {
-          toast({
-            title: "Verification Required",
-            description: "Please verify both your email and phone number.",
-            variant: "destructive"
-          })
           return false
         }
         break
       case 3:
         if (!formData.shopName || !formData.shopDescription || !formData.payoutMethod) {
-          toast({
-            title: "Shop Setup Required",
-            description: "Please complete your shop setup.",
-            variant: "destructive"
-          })
           return false
         }
         break
@@ -152,10 +71,45 @@ export default function SellerRegistrationPage() {
     return true
   }
 
+  const handleNext = () => {
+    if (!canProceed()) {
+      switch (currentStep) {
+        case 1:
+          toast({
+            title: "Information Required",
+            description: "Please complete all required fields.",
+            variant: "destructive"
+          })
+          return false
+        case 2:
+          toast({
+            title: "Verification Required",
+            description: "Please verify both your email and phone number.",
+            variant: "destructive"
+          })
+          return false
+        case 3:
+          toast({
+            title: "Shop Setup Required",
+            description: "Please complete your shop setup.",
+            variant: "destructive"
+          })
+          return false
+      }
+      return false
+    }
+    
+    if (currentStep < STEPS.length) {
+      setCurrentStep(prev => prev + 1)
+    }
+  }
+
   const handleSubmit = () => {
+    if (!canProceed()) return
+    
     toast({
       title: "Registration Submitted!",
-      description: "Your seller application is being reviewed. You'll receive confirmation within 24-48 hours.",
+      description: "Your seller account is being reviewed. You'll hear from us within 24 hours.",
     })
     console.log("Seller registration data:", formData)
     setCurrentPage("seller-onboarding-success")
@@ -163,6 +117,52 @@ export default function SellerRegistrationPage() {
 
   const updateFormData = (updates: any) => {
     setFormData(prev => ({ ...prev, ...updates }))
+  }
+
+  const verifyEmailCode = () => {
+    if (formData.emailCode === "123456") {
+      updateFormData({ emailVerified: true })
+      toast({
+        title: "Email Verified!",
+        description: "Your email has been successfully verified.",
+      })
+    } else {
+      toast({
+        title: "Invalid Code",
+        description: "Please check your code and try again.",
+        variant: "destructive"
+      })
+    }
+  }
+
+  const verifyPhoneCode = () => {
+    if (formData.phoneCode === "789012") {
+      updateFormData({ phoneVerified: true })
+      toast({
+        title: "Phone Verified!",
+        description: "Your phone number has been successfully verified.",
+      })
+    } else {
+      toast({
+        title: "Invalid Code",
+        description: "Please check your code and try again.",
+        variant: "destructive"
+      })
+    }
+  }
+
+  const sendEmailCode = () => {
+    toast({
+      title: "Code Sent!",
+      description: "Verification code sent to your email.",
+    })
+  }
+
+  const sendPhoneCode = () => {
+    toast({
+      title: "Code Sent!",
+      description: "Verification code sent to your phone.",
+    })
   }
 
   const renderStepContent = () => {
@@ -203,7 +203,7 @@ export default function SellerRegistrationPage() {
                   id="fullName"
                   value={formData.fullName}
                   onChange={(e) => updateFormData({ fullName: e.target.value })}
-                  placeholder="Enter your full legal name"
+                  placeholder="Your legal full name"
                 />
               </div>
               <div>
@@ -213,7 +213,7 @@ export default function SellerRegistrationPage() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => updateFormData({ email: e.target.value })}
-                  placeholder="your.email@gmail.com"
+                  placeholder="your@email.com"
                 />
               </div>
             </div>
@@ -225,9 +225,10 @@ export default function SellerRegistrationPage() {
                   id="phone"
                   value={formData.phone}
                   onChange={(e) => updateFormData({ phone: e.target.value })}
-                  placeholder="+675 7xxx xxxx"
+                  placeholder="+675 7123 4567"
                 />
               </div>
+              
               {formData.sellerType === "business" && (
                 <div>
                   <Label htmlFor="businessName">Registered Business Name *</Label>
@@ -242,7 +243,7 @@ export default function SellerRegistrationPage() {
             </div>
           </div>
         )
-
+        
       case 2:
         return (
           <div className="space-y-6">
@@ -259,15 +260,11 @@ export default function SellerRegistrationPage() {
                   <Input
                     value={formData.email}
                     disabled
-                    className="flex-1"
+                    className="bg-gray-50"
                   />
-                  <Button 
-                    onClick={sendEmailCode}
-                    variant="outline"
-                    disabled={!formData.email}
-                  >
+                  <Button onClick={sendEmailCode} disabled={formData.emailVerified}>
                     <Mail className="w-4 h-4 mr-2" />
-                    Send Code
+                    {formData.emailVerified ? "Sent" : "Send Code"}
                   </Button>
                 </div>
                 <div className="flex gap-2 mt-2">
@@ -293,15 +290,11 @@ export default function SellerRegistrationPage() {
                   <Input
                     value={formData.phone}
                     disabled
-                    className="flex-1"
+                    className="bg-gray-50"
                   />
-                  <Button 
-                    onClick={sendPhoneCode}
-                    variant="outline"
-                    disabled={!formData.phone}
-                  >
+                  <Button onClick={sendPhoneCode} disabled={formData.phoneVerified}>
                     <Smartphone className="w-4 h-4 mr-2" />
-                    Send SMS
+                    {formData.phoneVerified ? "Sent" : "Send Code"}
                   </Button>
                 </div>
                 <div className="flex gap-2 mt-2">
@@ -323,7 +316,6 @@ export default function SellerRegistrationPage() {
             </div>
           </div>
         )
-        break
 
       case 3:
         return (
@@ -339,7 +331,7 @@ export default function SellerRegistrationPage() {
                 />
               </div>
               <div>
-                <Label>Province *</Label>
+                <Label htmlFor="province">Province *</Label>
                 <Select value={formData.province} onValueChange={(value) => updateFormData({ province: value })}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select your province" />
@@ -359,14 +351,14 @@ export default function SellerRegistrationPage() {
                 id="shopDescription"
                 value={formData.shopDescription}
                 onChange={(e) => updateFormData({ shopDescription: e.target.value })}
-                placeholder="Tell customers about your business..."
-                rows={4}
+                placeholder="Tell customers about your products and story..."
+                rows={3}
               />
             </div>
 
             <div>
-              <Label>Payment Method *</Label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+              <Label className="text-base font-medium">Preferred Payout Method *</Label>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
                 {[
                   { id: "bank", name: "Bank Transfer", desc: "BSP, ANZ, Westpac" },
                   { id: "micash", name: "MiCash", desc: "Digicel mobile money" },
@@ -419,12 +411,13 @@ export default function SellerRegistrationPage() {
           <div className="mb-8">
             <div className="flex justify-between mb-2">
               <span className="text-sm font-medium">Step {currentStep} of {STEPS.length}</span>
-              <span className="text-sm text-gray-600">{Math.round(progress)}% complete</span>
+              <span className="text-sm text-gray-500">{Math.round((currentStep / STEPS.length) * 100)}% Complete</span>
             </div>
-            <Progress value={progress} className="h-2" />
+            <Progress value={(currentStep / STEPS.length) * 100} className="h-2" />
           </div>
 
-          <div className="flex justify-between mb-8 overflow-x-auto">
+          {/* Step Indicators */}
+          <div className="flex justify-between mb-8">
             {STEPS.map((step) => {
               const isActive = step.id === currentStep
               const isCompleted = step.id < currentStep
@@ -433,9 +426,9 @@ export default function SellerRegistrationPage() {
                 <div key={step.id} className="flex flex-col items-center min-w-0 flex-1">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
                     isCompleted
-                      ? "bg-green-500 text-white" 
-                      : isActive 
-                        ? "bg-blue-500 text-white" 
+                      ? "bg-green-600 text-white"
+                      : isActive
+                        ? "bg-blue-600 text-white"
                         : "bg-gray-200 text-gray-600"
                   }`}>
                     {isCompleted ? (
@@ -444,7 +437,9 @@ export default function SellerRegistrationPage() {
                       <step.icon className="w-5 h-5" />
                     )}
                   </div>
-                  <span className={`text-xs text-center ${isActive ? "font-medium" : "text-gray-600"}`}>
+                  <span className={`text-sm font-medium text-center ${
+                    isActive ? "text-blue-600" : isCompleted ? "text-green-600" : "text-gray-500"
+                  }`}>
                     {step.title}
                   </span>
                 </div>
@@ -452,29 +447,31 @@ export default function SellerRegistrationPage() {
             })}
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <STEPS[currentStep - 1].icon className="w-5 h-5" />
-                {STEPS[currentStep - 1].title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {renderStepContent()}
-            </CardContent>
-          </Card>
+          {/* Step Content */}
+          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            {renderStepContent()}
+          </div>
 
-          <div className="flex justify-between mt-8">
-            <Button 
-              variant="outline" 
-              onClick={handleBack}
-              disabled={currentStep === 1}
+          {/* Navigation Buttons */}
+          <div className="flex justify-between">
+            <Button
+              variant="outline"
+              onClick={() => {
+                if (currentStep === 1) {
+                  setCurrentPage("become-seller")
+                } else {
+                  setCurrentStep(prev => prev - 1)
+                }
+              }}
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
+              {currentStep === 1 ? "Back to Info" : "Previous"}
             </Button>
             
-            <Button onClick={handleNext}>
+            <Button
+              onClick={currentStep === STEPS.length ? handleSubmit : handleNext}
+              disabled={!canProceed()}
+            >
               {currentStep === STEPS.length ? "Complete Registration" : "Continue"}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
