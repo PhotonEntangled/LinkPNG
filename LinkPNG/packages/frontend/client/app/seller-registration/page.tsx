@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, ArrowRight, CheckCircle, Upload, Building, User, CreditCard, Store, Package } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle, Upload, Building, User, CreditCard, Store } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -107,7 +107,7 @@ export default function SellerRegistrationPage() {
     setCurrentPage("seller-onboarding-success")
   }
 
-  const updateFormData = (updates: any) => {
+  const updateFormData = (updates) => {
     setFormData(prev => ({ ...prev, ...updates }))
   }
 
@@ -301,13 +301,11 @@ export default function SellerRegistrationPage() {
       
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2">Seller Registration</h1>
             <p className="text-gray-600">Join PNG's premier marketplace and start selling today</p>
           </div>
 
-          {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between mb-2">
               <span className="text-sm font-medium">Step {currentStep} of {STEPS.length}</span>
@@ -316,7 +314,6 @@ export default function SellerRegistrationPage() {
             <Progress value={progress} className="h-2" />
           </div>
 
-          {/* Steps */}
           <div className="flex justify-between mb-8 overflow-x-auto">
             {STEPS.map((step) => {
               const isActive = step.id === currentStep
@@ -345,7 +342,6 @@ export default function SellerRegistrationPage() {
             })}
           </div>
 
-          {/* Form Content */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -358,7 +354,6 @@ export default function SellerRegistrationPage() {
             </CardContent>
           </Card>
 
-          {/* Navigation */}
           <div className="flex justify-between mt-8">
             <Button 
               variant="outline" 
