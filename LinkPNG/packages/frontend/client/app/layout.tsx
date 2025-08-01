@@ -7,6 +7,7 @@ import { LanguageProvider } from "./context/LanguageContext"
 import { DemoModeProvider } from "./context/DemoModeContext"
 import DemoOverlay from "./components/DemoOverlay"
 import { Toaster } from "@/components/ui/toaster"
+import AutoFillDemo from "./components/AutoFillDemo"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             <AppProvider>{children}</AppProvider>
             <DemoOverlay />
             <Toaster />
+            <AutoFillDemo />
           </DemoModeProvider>
         </LanguageProvider>
       </body>
