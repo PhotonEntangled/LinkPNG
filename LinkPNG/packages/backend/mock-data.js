@@ -8,7 +8,7 @@ const products = [
     category: 'Traditional Crafts', 
     price: 85.00, 
     originalPrice: 120.00,
-    image: '/products/bilum-highlands.png',
+    image: '/images/products/bilum-highlands.svg',
     province: 'Western Highlands',
     description: 'Hand-woven bilum bag from the Western Highlands, featuring traditional geometric patterns in natural fiber',
     culturalNote: 'Made by women\'s cooperatives using traditional weaving techniques passed down through generations'
@@ -20,7 +20,7 @@ const products = [
     category: 'Traditional Crafts', 
     price: 450.00, 
     originalPrice: 600.00,
-    image: '/products/sepik-carving.png',
+    image: '/images/products/sepik-carving.webp',
     province: 'East Sepik',
     description: 'Authentic Sepik River wood carving representing the crocodile spirit, carved from traditional kwila wood',
     culturalNote: 'Each carving tells ancestral stories and represents spiritual connections to the Sepik River'
@@ -31,7 +31,7 @@ const products = [
     nameKey: 'manusShellJewelry',
     category: 'Traditional Crafts', 
     price: 180.00, 
-    image: '/products/manus-shells.png',
+    image: '/images/products/manus-shells.webp',
     province: 'Manus',
     description: 'Beautiful shell jewelry set from Manus Province, featuring traditional Pacific pearl arrangements',
     culturalNote: 'Crafted by master artisans using shells from pristine Manus waters'
@@ -42,7 +42,7 @@ const products = [
     nameKey: 'oroTapaCloth',
     category: 'Traditional Crafts', 
     price: 320.00, 
-    image: '/products/oro-tapa.png',
+    image: '/images/products/oro-tapa.webp',
     province: 'Oro (Northern)',
     description: 'Traditional tapa cloth featuring intricate Oro Province patterns, made from mulberry bark',
     culturalNote: 'Ancient art form representing tribal identity and ceremonial significance'
@@ -56,7 +56,7 @@ const products = [
     category: 'PNG Coffee', 
     price: 42.00, 
     originalPrice: 55.00,
-    image: '/products/highlands-coffee.png',
+    image: '/images/products/highlands-coffee.svg',
     province: 'Western Highlands',
     description: 'Premium single-origin arabica coffee from the Western Highlands, known for its rich flavor and mountain-grown quality',
     culturalNote: 'Grown by smallholder farmers in the highlands, supporting local communities'
@@ -67,7 +67,7 @@ const products = [
     nameKey: 'sigriEstateCoffee',
     category: 'PNG Coffee', 
     price: 65.00, 
-    image: '/products/sigri-coffee.png',
+    image: '/images/products/sigri-coffee.webp',
     province: 'Western Highlands',
     description: 'World-famous Sigri Estate coffee, consistently rated among the world\'s best coffees',
     culturalNote: 'Estate established in 1950s, combining traditional methods with modern processing'
@@ -78,7 +78,7 @@ const products = [
     nameKey: 'easternHighlandsCoffee',
     category: 'PNG Coffee', 
     price: 38.00, 
-    image: '/products/eastern-coffee.png',
+    image: '/images/products/eastern-coffee.webp',
     province: 'Eastern Highlands',
     description: 'Certified organic coffee from Eastern Highlands, shade-grown and bird-friendly',
     culturalNote: 'Supports sustainable farming practices and bird conservation'
@@ -91,7 +91,7 @@ const products = [
     nameKey: 'westernSagoFlour',
     category: 'Local Foods', 
     price: 25.00, 
-    image: '/products/sago-flour.png',
+    image: '/images/products/sago-flour.webp',
     province: 'Western Province',
     description: 'Pure sago flour from Western Province, a traditional staple food of PNG',
     culturalNote: 'Harvested from sago palms using traditional extraction methods'
@@ -102,7 +102,7 @@ const products = [
     nameKey: 'milneBayDriedFish',
     category: 'Local Foods', 
     price: 35.00, 
-    image: '/products/dried-fish.png',
+    image: '/images/products/dried-fish.webp',
     province: 'Milne Bay',
     description: 'Traditional dried fish from Milne Bay, prepared using ancestral smoking techniques',
     culturalNote: 'Sustainable fishing practices supporting coastal communities'
@@ -114,7 +114,7 @@ const products = [
     category: 'Local Foods', 
     price: 18.00, 
     originalPrice: 25.00,
-    image: '/products/taro-chips.png',
+    image: '/images/products/taro-chips.webp',
     province: 'Morobe',
     description: 'Crispy taro chips from Morobe Province, made from locally grown taro',
     culturalNote: 'Traditional root vegetable prepared with modern processing techniques'
@@ -125,7 +125,7 @@ const products = [
     nameKey: 'madangWildHoney',
     category: 'Local Foods', 
     price: 55.00, 
-    image: '/products/madang-honey.png',
+    image: '/images/products/madang-honey.webp',
     province: 'Madang',
     description: 'Pure wild honey from Madang rainforests, collected using traditional methods',
     culturalNote: 'Supports forest conservation and traditional honey gathering practices'
@@ -139,7 +139,7 @@ const products = [
     category: 'PNG Fashion', 
     price: 28.00, 
     originalPrice: 35.00,
-    image: '/products/png-flag-shirt.png',
+    image: '/images/products/png-flag-shirt.webp',
     description: 'High-quality PNG flag t-shirt made from premium cotton, perfect for showing national pride',
     culturalNote: 'Features the Bird of Paradise and Southern Cross constellation'
   },
@@ -149,7 +149,7 @@ const products = [
     nameKey: 'traditionalPatternsLaptop',
     category: 'PNG Fashion', 
     price: 95.00, 
-    image: '/products/traditional-laptop-bag.png',
+    image: '/images/products/traditional-laptop-bag.webp',
     description: 'Modern laptop bag featuring traditional PNG patterns, perfect for urban professionals',
     culturalNote: 'Blends traditional motifs with contemporary design for the modern PNG professional'
   },
@@ -159,7 +159,7 @@ const products = [
     nameKey: 'kunduDrumMiniature',
     category: 'Traditional Crafts', 
     price: 125.00, 
-    image: '/products/kundu-drum.png',
+    image: '/images/products/kundu-drum.svg',
     description: 'Miniature kundu drum, perfect for decoration or cultural education',
     culturalNote: 'Traditional communication instrument used across many PNG cultures'
   },
@@ -171,7 +171,7 @@ const products = [
     nameKey: 'bougainvilleCoconutSoap',
     category: 'Personal Care', 
     price: 15.00, 
-    image: '/products/coconut-soap.png',
+    image: '/images/products/coconut-soap.webp',
     province: 'Bougainville',
     description: 'Natural coconut oil soap from Bougainville, made with traditional ingredients',
     culturalNote: 'Supporting Bougainville recovery through sustainable local production'
@@ -182,7 +182,7 @@ const products = [
     nameKey: 'gulfWovenMat',
     category: 'Traditional Crafts', 
     price: 75.00, 
-    image: '/products/grass-mat.png',
+    image: '/images/products/grass-mat.webp',
     province: 'Gulf',
     description: 'Traditional woven sleeping mat from Gulf Province, made from native grass',
     culturalNote: 'Traditional bedding still used in many rural PNG communities'
@@ -193,7 +193,7 @@ const products = [
     nameKey: 'pngSpicesMix',
     category: 'Local Foods', 
     price: 22.00, 
-    image: '/products/png-spices.png',
+    image: '/images/products/png-spices.webp',
     description: 'Traditional PNG spice mix featuring local herbs and seasonings',
     culturalNote: 'Secret family recipes passed down through generations'
   },
@@ -203,7 +203,7 @@ const products = [
     nameKey: 'birdOfParadiseArt',
     category: 'Modern PNG', 
     price: 45.00, 
-    image: '/products/bird-paradise-art.png',
+    image: '/images/products/bird-paradise-art.webp',
     description: 'Beautiful Bird of Paradise artwork, perfect for home or office decoration',
     culturalNote: 'PNG national bird representing the spirit of independence'
   },
@@ -213,7 +213,7 @@ const products = [
     nameKey: 'traditionalClayPot',
     category: 'Traditional Crafts', 
     price: 65.00, 
-    image: '/products/clay-pot.png',
+    image: '/images/products/clay-pot.webp',
     description: 'Handmade clay pot from traditional pottery villages, perfect for cooking or decoration',
     culturalNote: 'Ancient pottery techniques still practiced in remote villages'
   },
@@ -223,7 +223,7 @@ const products = [
     nameKey: 'pngIndependenceTshirt',
     category: 'PNG Fashion', 
     price: 32.00, 
-    image: '/products/independence-shirt.png',
+    image: '/images/products/independence-shirt.webp',
     description: 'Commemorative PNG Independence t-shirt featuring cultural symbols and national colors',
     culturalNote: 'Celebrating PNG independence and cultural heritage'
   },

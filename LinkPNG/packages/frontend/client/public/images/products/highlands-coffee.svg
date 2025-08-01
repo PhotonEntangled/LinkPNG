@@ -1,0 +1,33 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coffeeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7"/>
+      <stop offset="50%" style="stop-color:#fde68a"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#coffeeBg)"/>
+  
+  <!-- Border -->
+  <rect x="4" y="4" width="392" height="392" fill="none" stroke="#d97706" stroke-width="8"/>
+  
+  <!-- PNG Flag Colors -->
+  <rect x="50" y="50" width="300" height="20" fill="#CE1126"/>
+  <rect x="50" y="80" width="300" height="15" fill="#FFCD00"/>
+  <rect x="50" y="305" width="300" height="15" fill="#FFCD00"/>
+  <rect x="50" y="330" width="300" height="20" fill="#CE1126"/>
+  
+  <!-- Coffee Bean Icon -->
+  <ellipse cx="200" cy="150" rx="30" ry="45" fill="#8b4513" transform="rotate(-15 200 150)"/>
+  <ellipse cx="200" cy="150" rx="25" ry="40" fill="#a0522d" transform="rotate(-15 200 150)"/>
+  <path d="M 185 130 Q 200 140 215 130" stroke="#654321" stroke-width="3" fill="none"/>
+  
+  <!-- Product Name -->
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#1e293b">PNG Arabica</text>
+  <text x="200" y="240" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#1e293b">Coffee</text>
+  
+  <!-- Subtitle -->
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#92400e">HIGHLANDS GROWN</text>
+</svg>

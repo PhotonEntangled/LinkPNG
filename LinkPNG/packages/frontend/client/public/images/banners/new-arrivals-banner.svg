@@ -1,0 +1,58 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="arrivalsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#059669"/>
+      <stop offset="50%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+    <radialGradient id="sunGradient" cx="50%" cy="30%">
+      <stop offset="0%" style="stop-color:#FFCD00"/>
+      <stop offset="100%" style="stop-color:rgba(255,205,0,0.3)"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#arrivalsBg)"/>
+  
+  <!-- Tropical sun -->
+  <circle cx="650" cy="60" r="40" fill="url(#sunGradient)" opacity="0.7"/>
+  
+  <!-- PNG Flag accent -->
+  <rect x="0" y="0" width="800" height="8" fill="#CE1126"/>
+  <rect x="0" y="8" width="800" height="6" fill="#FFCD00"/>
+  <rect x="0" y="186" width="800" height="6" fill="#FFCD00"/>
+  <rect x="0" y="192" width="800" height="8" fill="#CE1126"/>
+  
+  <!-- Mountain silhouettes (PNG highlands) -->
+  <path d="M 0 120 L 100 80 L 200 100 L 300 70 L 400 90 L 500 60 L 600 85 L 700 55 L 800 75 L 800 200 L 0 200 Z" fill="rgba(0,0,0,0.2)"/>
+  
+  <!-- Main Text -->
+  <text x="400" y="80" font-family="Arial Black, sans-serif" font-size="42" font-weight="900" text-anchor="middle" fill="white">NEW ARRIVALS</text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="115" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#FFCD00">Fresh PNG Cultural Treasures</text>
+  <text x="400" y="140" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">Authentic crafts • Traditional foods • Modern designs</text>
+  
+  <!-- Decorative traditional pattern -->
+  <g transform="translate(80, 70)" opacity="0.6">
+    <!-- Simple traditional pattern -->
+    <path d="M 0 0 L 20 10 L 0 20 L -20 10 Z" fill="#FFCD00"/>
+    <circle cx="0" cy="10" r="3" fill="white"/>
+  </g>
+  
+  <g transform="translate(120, 110)" opacity="0.6">
+    <path d="M 0 0 L 15 8 L 0 16 L -15 8 Z" fill="#FFCD00"/>
+    <circle cx="0" cy="8" r="2" fill="white"/>
+  </g>
+  
+  <g transform="translate(680, 120)" opacity="0.6">
+    <path d="M 0 0 L 18 9 L 0 18 L -18 9 Z" fill="#FFCD00"/>
+    <circle cx="0" cy="9" r="3" fill="white"/>
+  </g>
+  
+  <!-- "NEW" badge -->
+  <g transform="translate(50, 30)">
+    <rect x="0" y="0" width="60" height="25" rx="12" fill="#CE1126"/>
+    <text x="30" y="17" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" text-anchor="middle" fill="white">NEW</text>
+  </g>
+</svg>

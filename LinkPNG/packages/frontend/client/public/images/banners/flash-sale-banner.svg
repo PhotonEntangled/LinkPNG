@@ -1,0 +1,37 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="flashBg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#CE1126"/>
+      <stop offset="50%" style="stop-color:#DC2626"/>
+      <stop offset="100%" style="stop-color:#EF4444"/>
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFCD00"/>
+      <stop offset="100%" style="stop-color:#FDE047"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#flashBg)"/>
+  
+  <!-- Gold accent stripes -->
+  <rect x="0" y="0" width="800" height="10" fill="url(#goldAccent)"/>
+  <rect x="0" y="190" width="800" height="10" fill="url(#goldAccent)"/>
+  
+  <!-- Main Text -->
+  <text x="400" y="80" font-family="Arial Black, sans-serif" font-size="48" font-weight="900" text-anchor="middle" fill="white">FLASH SALE</text>
+  
+  <!-- Percentage -->
+  <text x="400" y="130" font-family="Arial Black, sans-serif" font-size="36" font-weight="900" text-anchor="middle" fill="#FFCD00">50% OFF</text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="155" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">Limited Time - PNG Cultural Products</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="25" fill="none" stroke="#FFCD00" stroke-width="3" opacity="0.7"/>
+  <circle cx="700" cy="100" r="25" fill="none" stroke="#FFCD00" stroke-width="3" opacity="0.7"/>
+  
+  <!-- Bird of Paradise silhouette -->
+  <path d="M 50 50 Q 70 30 90 50 Q 70 70 50 50" fill="#FFCD00" opacity="0.6"/>
+  <path d="M 710 50 Q 730 30 750 50 Q 730 70 710 50" fill="#FFCD00" opacity="0.6"/>
+</svg>

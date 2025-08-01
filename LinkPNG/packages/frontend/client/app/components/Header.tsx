@@ -163,10 +163,32 @@ export default function Header() {
               )}
             </button>
 
-            {/* User Account */}
-            <button className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red">
+            {/* Admin Access */}
+            <button 
+              className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.location.href = '/admin'
+                }
+              }}
+              title="Admin Dashboard"
+            >
               <User className="w-6 h-6" />
-              <span className="hidden md:block text-sm">{t("myAccount")}</span>
+              <span className="hidden md:block text-sm">Admin</span>
+            </button>
+
+            {/* Seller Access */}
+            <button 
+              className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.location.href = '/seller'
+                }
+              }}
+              title="Seller Dashboard"
+            >
+              <User className="w-6 h-6" />
+              <span className="hidden md:block text-sm">Seller</span>
             </button>
           </div>
         </div>

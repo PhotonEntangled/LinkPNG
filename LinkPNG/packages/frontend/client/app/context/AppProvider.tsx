@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react"
 import { AppContext } from "./AppContext"
 import DemoOverlay from "../components/DemoOverlay"
 import DemoControls from "../components/DemoControls"
+import { toast } from "@/components/ui/use-toast"
 
 export interface Product {
   id: number;
@@ -66,8 +67,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
           item.id === product.id ? { ...item, quantity: (item.quantity || 0) + 1 } : item
         )
       )
+      toast({
+        title: "Item Updated",
+        description: `${product.name} quantity increased in your cart`,
+        variant: "default",
+      })
     } else {
       setCartItems([...cartItems, { ...product, quantity: 1, seller: "LinkPNG Seller" }])
+      toast({
+        title: "Added to Cart",
+        description: `${product.name} has been added to your cart`,
+        variant: "default",
+      })
     }
   }
 

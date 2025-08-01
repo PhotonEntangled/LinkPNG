@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate PNG Product Placeholders</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400" style="display: none;"></canvas>
+    <div id="status">Generating PNG cultural product placeholders...</div>
+    
+    <script>
+        const products = [
+            { name: 'bilum-highlands', label: 'Traditional\nBilum Bag' },
+            { name: 'sepik-carving', label: 'Sepik River\nWood Carving' },
+            { name: 'manus-shells', label: 'Manus Shell\nJewelry Set' },
+            { name: 'oro-tapa', label: 'Oro Tapa\nCloth Hanging' },
+            { name: 'highlands-coffee', label: 'PNG Arabica\nCoffee' },
+            { name: 'sigri-coffee', label: 'Sigri Estate\nCoffee' },
+            { name: 'eastern-coffee', label: 'Eastern Highlands\nOrganic Coffee' },
+            { name: 'sago-flour', label: 'Traditional\nSago Flour' },
+            { name: 'taro-chips', label: 'Crispy\nTaro Chips' },
+            { name: 'dried-fish', label: 'Coastal\nDried Fish' },
+            { name: 'png-spices', label: 'PNG Spice\nBlend Collection' },
+            { name: 'madang-honey', label: 'Madang\nWildflower Honey' },
+            { name: 'kundu-drum', label: 'Traditional\nKundu Drum' },
+            { name: 'png-flag-shirt', label: 'PNG Flag\nCultural T-Shirt' },
+            { name: 'independence-shirt', label: 'Independence Day\nCommemorative Shirt' },
+            { name: 'traditional-laptop-bag', label: 'Modern PNG\nLaptop Bag' },
+            { name: 'bird-paradise-art', label: 'Bird of Paradise\nCanvas Print' },
+            { name: 'coconut-soap', label: 'Natural\nCoconut Soap' },
+            { name: 'clay-pot', label: 'Traditional\nClay Pot' },
+            { name: 'grass-mat', label: 'Woven\nGrass Mat' }
+        ];
+
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let currentIndex = 0;
+
+        function generatePlaceholder(product) {
+            // Clear canvas
+            ctx.fillStyle = '#f0f9ff';
+            ctx.fillRect(0, 0, 400, 400);
+            
+            // Add border
+            ctx.strokeStyle = '#0ea5e9';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(4, 4, 392, 392);
+            
+            // Add gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, '#f0f9ff');
+            gradient.addColorStop(0.5, '#e0f2fe');
+            gradient.addColorStop(1, '#bae6fd');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(8, 8, 384, 384);
+            
+            // Add PNG pattern (simple geometric design)
+            ctx.fillStyle = '#CE1126';
+            ctx.fillRect(50, 50, 300, 20);
+            ctx.fillRect(50, 330, 300, 20);
+            ctx.fillStyle = '#FFCD00';
+            ctx.fillRect(50, 80, 300, 15);
+            ctx.fillRect(50, 305, 300, 15);
+            
+            // Add product name
+            ctx.fillStyle = '#1e293b';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            
+            const lines = product.label.split('\\n');
+            lines.forEach((line, index) => {
+                ctx.fillText(line, 200, 180 + (index * 35));
+            });
+            
+            // Add "PNG CULTURAL PRODUCT" text
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#64748b';
+            ctx.fillText('PNG CULTURAL PRODUCT', 200, 280);
+            
+            // Convert to WebP and download
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = product.name + '.webp';
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                // Process next product
+                currentIndex++;
+                if (currentIndex < products.length) {
+                    setTimeout(() => generatePlaceholder(products[currentIndex]), 500);
+                } else {
+                    document.getElementById('status').textContent = 'All ' + products.length + ' PNG cultural product placeholders generated!';
+                }
+            }, 'image/webp', 0.8);
+        }
+
+        // Start generating placeholders
+        generatePlaceholder(products[0]);
+    </script>
+</body>
+</html>

@@ -38,19 +38,19 @@ export default function HomePage() {
   const carouselImages = [
     {
       id: 1,
-      image: "/placeholder.svg?height=200&width=800&text=Flash+Sale+50%+OFF",
+      image: "/images/banners/flash-sale-banner.svg",
       title: t('flashSaleBanner'),
       subtitle: t('flashSaleBannerSubtitle'),
     },
     {
       id: 2,
-      image: "/placeholder.svg?height=200&width=800&text=Free+Shipping+PNG",
+      image: "/images/banners/free-shipping-banner.svg",
       title: t('freeShippingBanner'),
       subtitle: t('freeShippingBannerSubtitle'),
     },
     {
       id: 3,
-      image: "/placeholder.svg?height=200&width=800&text=New+Arrivals",
+      image: "/images/banners/new-arrivals-banner.svg",
       title: t('newArrivalsBanner'),
       subtitle: t('newArrivalsBannerSubtitle'),
     },
