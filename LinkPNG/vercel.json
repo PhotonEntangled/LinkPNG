@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd packages/frontend/client && npm run build",
+  "devCommand": "cd packages/frontend/client && npm run dev",
+  "installCommand": "npm install && cd packages/frontend/client && npm install",
+  "outputDirectory": "packages/frontend/client/.next",
+  "framework": "nextjs",
+  "rootDirectory": "packages/frontend/client"
+}
