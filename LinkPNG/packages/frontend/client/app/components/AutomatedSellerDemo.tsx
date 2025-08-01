@@ -55,69 +55,96 @@ export function useAutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps 
     },
     {
       name: "Fill Registration Form Step 1",
-      action: () => {
-        // Simulate typing in form fields with delays
-        setTimeout(() => fillFieldSlowly("input[id='fullName']", DEMO_DATA.fullName), 500)
-        setTimeout(() => fillFieldSlowly("input[id='email']", DEMO_DATA.email), 1500)
-        setTimeout(() => fillFieldSlowly("input[id='phone']", DEMO_DATA.phone), 2500)
+      action: async () => {
+        // Select individual seller type first
         setTimeout(() => {
-          // Select individual seller type
           const individualCard = document.querySelector('[data-seller-type="individual"]') as HTMLElement
           if (individualCard) individualCard.click()
-        }, 3500)
-        return 5000
+        }, 500)
+        
+        // Simulate typing in form fields with proper delays
+        setTimeout(async () => {
+          await fillFieldSlowly("input[id='fullName']", DEMO_DATA.fullName)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("input[id='email']", DEMO_DATA.email)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          await fillFieldSlowly("input[id='phone']", DEMO_DATA.phone)
+        }, 1000)
+        return 6000
       }
     },
     {
       name: "Proceed to Step 2",
       action: () => {
-        const nextButton = document.querySelector('button:contains("Continue")') as HTMLButtonElement
-        if (nextButton) {
-          nextButton.click()
+        // Find the Continue button by its text content
+        const buttons = Array.from(document.querySelectorAll('button'))
+        const continueButton = buttons.find(btn => btn.textContent?.includes('Continue'))
+        if (continueButton) {
+          continueButton.click()
         }
         return 2000
       }
     },
     {
       name: "Auto-fill Verification Codes",
-      action: () => {
-        setTimeout(() => {
-          // Fill email verification code
-          fillFieldSlowly("input[placeholder*='6-digit code']:first-of-type", DEMO_DATA.emailCode)
+      action: async () => {
+        // Fill email verification code
+        setTimeout(async () => {
+          await fillFieldSlowly("input[placeholder='Enter 6-digit code']", DEMO_DATA.emailCode)
           setTimeout(() => {
-            const emailVerifyBtn = document.querySelector('button:contains("Verify"):first-of-type') as HTMLButtonElement
+            const buttons = Array.from(document.querySelectorAll('button'))
+            const emailVerifyBtn = buttons.find(btn => 
+              btn.textContent?.includes('Verify') && !btn.disabled
+            )
             if (emailVerifyBtn) emailVerifyBtn.click()
-          }, 1000)
+          }, 800)
         }, 1000)
 
-        setTimeout(() => {
-          // Fill phone verification code  
-          fillFieldSlowly("input[placeholder*='6-digit code']:last-of-type", DEMO_DATA.phoneCode)
-          setTimeout(() => {
-            const phoneVerifyBtn = document.querySelector('button:contains("Verify"):last-of-type') as HTMLButtonElement
-            if (phoneVerifyBtn) phoneVerifyBtn.click()
-          }, 1000)
-        }, 3000)
-        return 6000
+        // Fill phone verification code after email is verified
+        setTimeout(async () => {
+          // Find the second verification input (phone)
+          const inputs = Array.from(document.querySelectorAll("input[placeholder='Enter 6-digit code']"))
+          const phoneInput = inputs[1] as HTMLInputElement
+          if (phoneInput) {
+            await simulateTyping(phoneInput, DEMO_DATA.phoneCode)
+            setTimeout(() => {
+              const buttons = Array.from(document.querySelectorAll('button'))
+              const phoneVerifyBtn = buttons.find(btn => 
+                btn.textContent?.includes('Verify') && !btn.disabled
+              )
+              if (phoneVerifyBtn) phoneVerifyBtn.click()
+            }, 800)
+          }
+        }, 4000)
+        return 7000
       }
     },
     {
       name: "Proceed to Step 3",
       action: () => {
-        const nextButton = document.querySelector('button:contains("Continue")') as HTMLButtonElement
-        if (nextButton) {
-          nextButton.click()
+        const buttons = Array.from(document.querySelectorAll('button'))
+        const continueButton = buttons.find(btn => btn.textContent?.includes('Continue'))
+        if (continueButton) {
+          continueButton.click()
         }
         return 2000
       }
     },
     {
       name: "Fill Shop Setup Details",
-      action: () => {
-        setTimeout(() => fillFieldSlowly("input[id='shopName']", DEMO_DATA.shopName), 500)
-        setTimeout(() => fillFieldSlowly("textarea[id='shopDescription']", DEMO_DATA.shopDescription), 2000)
+      action: async () => {
+        // Fill shop name
+        setTimeout(async () => {
+          await fillFieldSlowly("input[id='shopName']", DEMO_DATA.shopName)
+        }, 500)
+        
+        // Fill shop description
+        setTimeout(async () => {
+          await fillFieldSlowly("textarea[id='shopDescription']", DEMO_DATA.shopDescription)
+        }, 2500)
+        
+        // Select province
         setTimeout(() => {
-          // Select province
           const provinceSelect = document.querySelector('[role="combobox"]') as HTMLElement
           if (provinceSelect) {
             provinceSelect.click()
@@ -126,20 +153,27 @@ export function useAutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps 
               if (option) option.click()
             }, 500)
           }
-        }, 4000)
+        }, 5000)
+        
+        // Select payout method
         setTimeout(() => {
-          // Select payout method
           const micashCard = document.querySelector('[data-payout-method="micash"]') as HTMLElement
           if (micashCard) micashCard.click()
-        }, 5500)
-        setTimeout(() => fillFieldSlowly("input[id='accountNumber']", DEMO_DATA.accountNumber), 6500)
-        return 8000
+        }, 6500)
+        
+        // Fill account number
+        setTimeout(async () => {
+          await fillFieldSlowly("input[id='accountNumber']", DEMO_DATA.accountNumber)
+        }, 7500)
+        
+        return 9000
       }
     },
     {
       name: "Complete Registration",
       action: () => {
-        const completeButton = document.querySelector('button:contains("Complete Registration")') as HTMLButtonElement
+        const buttons = Array.from(document.querySelectorAll('button'))
+        const completeButton = buttons.find(btn => btn.textContent?.includes('Complete Registration'))
         if (completeButton) {
           completeButton.click()
         }
@@ -171,27 +205,40 @@ export function useAutomatedSellerDemo({ onComplete }: AutomatedSellerDemoProps 
     }
   ]
 
-  // Helper function to simulate typing
-  const fillFieldSlowly = (selector: string, value: string) => {
-    const element = document.querySelector(selector) as HTMLInputElement | HTMLTextAreaElement
-    if (!element) return
-
-    element.focus()
-    element.value = ""
-    
-    // Simulate typing character by character
-    let index = 0
-    const typeInterval = setInterval(() => {
-      if (index < value.length) {
-        element.value += value[index]
-        // Trigger input event for React
-        element.dispatchEvent(new Event('input', { bubbles: true }))
-        index++
-      } else {
-        clearInterval(typeInterval)
-        element.blur()
+  // Helper function to simulate realistic typing
+  const simulateTyping = (element: HTMLInputElement | HTMLTextAreaElement, text: string): Promise<void> => {
+    return new Promise((resolve) => {
+      if (!element) {
+        resolve()
+        return
       }
-    }, 50) // 50ms between characters for realistic typing speed
+
+      element.focus()
+      element.value = ""
+      
+      let index = 0
+      const typeInterval = setInterval(() => {
+        if (index < text.length) {
+          element.value += text[index]
+          // Trigger both input and change events for React
+          element.dispatchEvent(new Event('input', { bubbles: true }))
+          element.dispatchEvent(new Event('change', { bubbles: true }))
+          index++
+        } else {
+          clearInterval(typeInterval)
+          element.blur()
+          resolve()
+        }
+      }, Math.random() * 100 + 50) // Random delay between 50-150ms for human-like typing
+    })
+  }
+
+  // Helper to fill a field with typing simulation
+  const fillFieldSlowly = async (selector: string, value: string) => {
+    const element = document.querySelector(selector) as HTMLInputElement | HTMLTextAreaElement
+    if (element) {
+      await simulateTyping(element, value)
+    }
   }
 
   // Execute demo steps sequentially
