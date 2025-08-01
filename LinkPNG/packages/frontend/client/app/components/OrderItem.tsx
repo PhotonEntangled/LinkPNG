@@ -19,7 +19,7 @@ export default function OrderItem({ item }: OrderItemProps) {
   return (
     <div className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
       <Image 
-        src={item.image || "/placeholder.svg"} 
+        src={item.image || "/images/products/highlands-coffee.svg"} 
         alt={item.name} 
         width={64}
         height={64}

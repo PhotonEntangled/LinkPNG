@@ -17,7 +17,15 @@ export default function AppRouter() {
 
   // Scroll to top whenever page changes
   useEffect(() => {
+    // Immediate scroll to top
     window.scrollTo(0, 0)
+    
+    // Also scroll after a short delay to handle content loading
+    const timeoutId = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }, 100)
+    
+    return () => clearTimeout(timeoutId)
   }, [currentPage])
 
   switch (currentPage) {

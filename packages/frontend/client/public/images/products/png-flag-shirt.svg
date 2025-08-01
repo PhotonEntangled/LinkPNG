@@ -1,0 +1,13 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="8" fill="#F3F4F6"/>
+  <path d="M35 20C35 18.9 35.9 18 37 18H63C64.1 18 65 18.9 65 20V25H35V20Z" fill="#EF4444"/>
+  <path d="M25 25L35 30V80H25C23.9 80 23 79.1 23 78V27C23 25.9 23.9 25 25 25Z" fill="#DC2626"/>
+  <path d="M75 25L65 30V80H75C76.1 80 77 79.1 77 78V27C77 25.9 76.1 25 75 25Z" fill="#DC2626"/>
+  <rect x="35" y="30" width="30" height="50" fill="#EF4444"/>
+  <rect x="35" y="30" width="30" height="17" fill="#000000"/>
+  <rect x="35" y="47" width="30" height="16" fill="#FBBF24"/>
+  <rect x="35" y="63" width="30" height="17" fill="#EF4444"/>
+  <polygon points="40,35 45,40 55,30 60,35 55,45 45,50 40,45 45,35" fill="#FBBF24"/>
+  <circle cx="50" cy="40" r="3" fill="#EF4444"/>
+  <path d="M47 38L53 42M53 38L47 42" stroke="#000000" stroke-width="1"/>
+</svg>

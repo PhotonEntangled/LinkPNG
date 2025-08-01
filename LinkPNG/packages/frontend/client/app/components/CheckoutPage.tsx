@@ -192,7 +192,7 @@ export default function CheckoutPage() {
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex gap-3">
                     <Image
-                      src={item.image || "/placeholder.svg"}
+                      src={item.image || "/images/products/bilum-highlands.svg"}
                       alt={item.name}
                       width={48}
                       height={48}
