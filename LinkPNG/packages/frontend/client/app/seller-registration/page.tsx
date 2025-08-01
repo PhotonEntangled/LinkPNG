@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { ArrowLeft, ArrowRight, CheckCircle, Mail, Smartphone, Building, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -161,7 +161,7 @@ export default function SellerRegistrationPage() {
     setCurrentPage("seller-onboarding-success")
   }
 
-  const updateFormData = (updates) => {
+  const updateFormData = (updates: any) => {
     setFormData(prev => ({ ...prev, ...updates }))
   }
 
@@ -323,6 +323,7 @@ export default function SellerRegistrationPage() {
             </div>
           </div>
         )
+        break
 
       case 3:
         return (
