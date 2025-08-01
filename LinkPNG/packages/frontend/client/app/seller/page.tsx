@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Plus, TrendingUp, Package, Star, Eye, Edit, Trash2, BarChart3, DollarSign } from "lucide-react"
+import { Plus, TrendingUp, Package, Star, Eye, Edit, Trash2, BarChart3, DollarSign, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -11,6 +11,7 @@ import Image from "next/image"
 import AddProductModal from "@/app/components/AddProductModal"
 import ProductActions from "@/app/components/ProductActions"
 import { useToast } from "@/components/ui/use-toast"
+import { useApp } from "../hooks/useApp"
 
 // Mock seller data
 const sellerData = {
@@ -122,6 +123,7 @@ export default function SellerDashboard() {
   const [showAddProductModal, setShowAddProductModal] = useState(false)
   const [sellerListings, setSellerListings] = useState(listings)
   const { toast } = useToast()
+  const { setCurrentPage } = useApp()
 
   const handleAddProduct = (productData: any) => {
     // Create new product with proper ID and default values
@@ -168,6 +170,15 @@ export default function SellerDashboard() {
       {/* Header */}
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-4 mb-4">
+            <button 
+              onClick={() => setCurrentPage("home")}
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span className="text-sm">Back to Home</span>
+            </button>
+          </div>
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold">Seller Dashboard</h1>

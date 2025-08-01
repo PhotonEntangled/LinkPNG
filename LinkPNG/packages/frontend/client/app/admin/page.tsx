@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Users, AlertTriangle, TrendingUp, Eye, Check, X, MessageSquare, BarChart3 } from "lucide-react"
+import { Users, AlertTriangle, TrendingUp, Eye, Check, X, MessageSquare, BarChart3, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import AdminModerationActions from "../components/AdminModerationActions"
+import { useApp } from "../hooks/useApp"
 
 // Mock admin data
 const adminStats = {
@@ -115,6 +116,7 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
   const [moderatedItems, setModeratedItems] = useState(flaggedItems)
   const { toast } = useToast()
+  const { setCurrentPage } = useApp()
 
   const handleApprove = (id: number, comment: string) => {
     setModeratedItems(prev => prev.filter(item => item.id !== id))
@@ -131,6 +133,15 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-4 mb-4">
+            <button 
+              onClick={() => setCurrentPage("home")}
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span className="text-sm">Back to Home</span>
+            </button>
+          </div>
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold">Admin Dashboard</h1>
