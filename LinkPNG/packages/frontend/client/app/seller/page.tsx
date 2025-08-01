@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
 import Image from "next/image"
+import AddProductModal from "@/app/components/AddProductModal"
+import ProductActions from "@/app/components/ProductActions"
+import { useToast } from "@/components/ui/use-toast"
 
 // Mock seller data
 const sellerData = {
@@ -116,6 +119,49 @@ function TrustScoreDisplay({ score }: { score: number }) {
 
 export default function SellerDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
+  const [showAddProductModal, setShowAddProductModal] = useState(false)
+  const [sellerListings, setSellerListings] = useState(listings)
+  const { toast } = useToast()
+
+  const handleAddProduct = (productData: any) => {
+    // Create new product with proper ID and default values
+    const newProduct = {
+      id: Math.max(...sellerListings.map(p => p.id)) + 1,
+      name: productData.name,
+      price: parseFloat(productData.price),
+      image: "/images/products/bilum-highlands.svg", // Default image for now
+      status: "pending" as const,
+      views: 0,
+      sales: 0,
+      trustScore: 75, // Default trust score for new products
+      stock: parseInt(productData.inventory) || 0,
+    }
+
+    setSellerListings(prev => [newProduct, ...prev])
+    setShowAddProductModal(false)
+    
+    toast({
+      title: "Product Created Successfully!",
+      description: `${productData.name} has been added to your listings and is pending review.`,
+    })
+  }
+
+  const handleEditProduct = (product: any) => {
+    // TODO: Open edit modal with pre-filled data
+    console.log("Edit product:", product)
+  }
+
+  const handleDeleteProduct = (productId: number) => {
+    setSellerListings(prev => prev.filter(p => p.id !== productId))
+  }
+
+  const handleToggleProductStatus = (productId: number) => {
+    setSellerListings(prev => prev.map(p => 
+      p.id === productId 
+        ? { ...p, status: p.status === "active" ? "inactive" : "active" as const }
+        : p
+    ))
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -127,7 +173,10 @@ export default function SellerDashboard() {
               <h1 className="text-2xl font-bold">Seller Dashboard</h1>
               <p className="text-gray-600">Welcome back, {sellerData.name}</p>
             </div>
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button 
+              className="bg-blue-600 hover:bg-blue-700"
+              onClick={() => setShowAddProductModal(true)}
+            >
               <Plus className="w-4 h-4 mr-2" />
               Add New Product
             </Button>
@@ -277,7 +326,7 @@ export default function SellerDashboard() {
                   <option>Inactive</option>
                   <option>Pending</option>
                 </select>
-                <Button>
+                <Button onClick={() => setShowAddProductModal(true)}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Product
                 </Button>
@@ -285,7 +334,7 @@ export default function SellerDashboard() {
             </div>
 
             <div className="grid gap-4">
-              {listings.map((listing) => (
+              {sellerListings.map((listing) => (
                 <Card key={listing.id}>
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4">
@@ -326,17 +375,12 @@ export default function SellerDashboard() {
                         <div className="text-sm text-gray-600">Sales</div>
                         <div className="font-bold">{listing.sales}</div>
                       </div>
-                      <div className="flex gap-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
+                      <ProductActions
+                        product={listing}
+                        onEdit={handleEditProduct}
+                        onDelete={handleDeleteProduct}
+                        onToggleStatus={handleToggleProductStatus}
+                      />
                     </div>
                   </CardContent>
                 </Card>
@@ -385,6 +429,13 @@ export default function SellerDashboard() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Add Product Modal */}
+      <AddProductModal
+        isOpen={showAddProductModal}
+        onClose={() => setShowAddProductModal(false)}
+        onSubmit={handleAddProduct}
+      />
     </div>
   )
 }

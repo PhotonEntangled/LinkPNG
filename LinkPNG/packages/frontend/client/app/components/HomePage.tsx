@@ -7,7 +7,7 @@ import FlashSale from "./FlashSale"
 import ProductCard from "./ProductCard"
 import Footer from "./Footer"
 import FloatingGameButton from "./FloatingGameButton"
-import { Zap, CreditCard, Utensils, Gift, Video, Shirt, Smartphone, Globe } from "lucide-react"
+import { Zap, CreditCard, Utensils, Gift, Video, Shirt, Smartphone, Globe, Store } from "lucide-react"
 import Image from "next/image"
 
 interface Product {
@@ -63,7 +63,7 @@ export default function HomePage() {
       nameKey: "bilumBagHighlands",
       price: 85.00,
       originalPrice: 120.00,
-      image: "/placeholder.svg?height=150&width=150&text=Bilum+Bag",
+      image: "/images/products/bilum-highlands.svg",
       discount: 29,
       sold: 234,
       stock: 45,
@@ -75,7 +75,7 @@ export default function HomePage() {
       nameKey: "westernHighlandsCoffee",
       price: 42.00,
       originalPrice: 55.00,
-      image: "/placeholder.svg?height=150&width=150&text=PNG+Coffee",
+      image: "/images/products/highlands-coffee.svg",
       discount: 24,
       sold: 156,
       stock: 88,
@@ -87,7 +87,7 @@ export default function HomePage() {
       nameKey: "morobeTaroChips",
       price: 18.00,
       originalPrice: 25.00,
-      image: "/placeholder.svg?height=150&width=150&text=Taro+Chips",
+      image: "/images/products/taro-chips.svg",
       discount: 28,
       sold: 89,
       stock: 120,
@@ -99,7 +99,7 @@ export default function HomePage() {
       nameKey: "pngFlagTshirt",
       price: 28.00,
       originalPrice: 35.00,
-      image: "/placeholder.svg?height=150&width=150&text=PNG+Shirt",
+      image: "/images/products/png-flag-shirt.svg",
       discount: 20,
       sold: 67,
       stock: 95
@@ -112,7 +112,7 @@ export default function HomePage() {
       name: "Sigri Estate Coffee - Wahgi Valley",
       nameKey: "sigriEstateCoffee",
       price: 65.00,
-      image: "/placeholder.svg?height=200&width=200&text=Sigri+Coffee",
+      image: "/images/products/sigri-coffee.svg",
       sold: 145,
       rating: 4.9,
       province: "Western Highlands"
@@ -122,7 +122,7 @@ export default function HomePage() {
       name: "Wild Honey - Madang Forest",
       nameKey: "madangWildHoney",
       price: 55.00,
-      image: "/placeholder.svg?height=200&width=200&text=Wild+Honey",
+      image: "/images/products/madang-honey.svg",
       sold: 89,
       rating: 4.8,
       province: "Madang"
@@ -133,7 +133,7 @@ export default function HomePage() {
       nameKey: "sepikWoodCarving",
       price: 450.00,
       originalPrice: 600.00,
-      image: "/placeholder.svg?height=200&width=200&text=Sepik+Carving",
+      image: "/images/products/sepik-carving.svg",
       discount: 25,
       sold: 34,
       rating: 4.9,
@@ -144,7 +144,7 @@ export default function HomePage() {
       name: "Traditional Shell Jewelry Set - Manus",
       nameKey: "manusShellJewelry",
       price: 180.00,
-      image: "/placeholder.svg?height=200&width=200&text=Shell+Jewelry",
+      image: "/images/products/manus-shells.svg",
       sold: 67,
       rating: 4.7,
       province: "Manus"
@@ -154,7 +154,7 @@ export default function HomePage() {
       name: "Traditional Sago Flour - Western Province",
       nameKey: "westernSagoFlour",
       price: 25.00,
-      image: "/placeholder.svg?height=200&width=200&text=Sago+Flour",
+      image: "/images/products/sago-flour.svg",
       sold: 123,
       rating: 4.6,
       province: "Western Province"
@@ -164,7 +164,7 @@ export default function HomePage() {
       name: "Coconut Oil Soap - Bougainville Natural",
       nameKey: "bougainvilleCoconutSoap",
       price: 15.00,
-      image: "/placeholder.svg?height=200&width=200&text=Coconut+Soap",
+      image: "/images/products/coconut-soap.svg",
       sold: 198,
       rating: 4.5,
       province: "Bougainville"
@@ -187,37 +187,37 @@ export default function HomePage() {
 
   const categories = [
     {
-      image: "/placeholder.svg?height=150&width=150&text=Traditional+Crafts",
+      image: "/images/categories/traditional-crafts.webp",
       name: t("traditionalCrafts"),
       color: "bg-amber-100",
       icon: "🏺"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=PNG+Coffee", 
+      image: "/images/categories/png-coffee.webp", 
       name: t("pngCoffee"),
       color: "bg-amber-900 text-white",
       icon: "☕"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=Local+Foods",
+      image: "/images/categories/local-foods.webp",
       name: t("localFoods"),
       color: "bg-green-100",
       icon: "🥥"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=PNG+Fashion",
+      image: "/images/categories/png-fashion.webp",
       name: t("pngFashion"),
       color: "bg-red-100",
       icon: "👕"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=Personal+Care",
+      image: "/images/categories/personal-care.webp",
       name: t("personalCare"),
       color: "bg-blue-100",
       icon: "🧴"
     },
     {
-      image: "/placeholder.svg?height=150&width=150&text=Modern+PNG",
+      image: "/images/categories/modern-png.webp",
       name: t("modernPng"),
       color: "bg-purple-100",
       icon: "🎨"
@@ -246,6 +246,25 @@ export default function HomePage() {
 
       {/* Hero Carousel */}
       <HeroCarousel images={carouselImages} />
+
+      {/* Seller CTA Banner */}
+      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-8 mb-6">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="text-center md:text-left mb-4 md:mb-0">
+              <h2 className="text-2xl font-bold mb-2">Sell Your PNG Products Nationwide</h2>
+              <p className="text-green-100">Join thousands of PNG entrepreneurs growing their business on LinkPNG</p>
+            </div>
+            <button 
+              onClick={() => setCurrentPage("become-seller")}
+              className="bg-white text-green-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors flex items-center gap-2"
+            >
+              <Store className="w-5 h-5" />
+              Start Selling Today
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Quick Actions Grid */}
       <section className="bg-white py-4">

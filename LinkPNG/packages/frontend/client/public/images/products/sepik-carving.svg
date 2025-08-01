@@ -1,0 +1,72 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="woodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="200" fill="#F5E6D3"/>
+  
+  <!-- Crocodile spirit carving base -->
+  <ellipse cx="100" cy="170" rx="80" ry="20" fill="#8B4513" opacity="0.3"/>
+  
+  <!-- Main crocodile body -->
+  <ellipse cx="100" cy="100" rx="70" ry="25" fill="url(#woodGradient)"/>
+  
+  <!-- Crocodile head -->
+  <ellipse cx="100" cy="60" rx="30" ry="20" fill="url(#woodGradient)"/>
+  
+  <!-- Snout -->
+  <ellipse cx="100" cy="45" rx="15" ry="8" fill="url(#woodGradient)"/>
+  
+  <!-- Eyes -->
+  <circle cx="90" cy="55" r="3" fill="#000"/>
+  <circle cx="110" cy="55" r="3" fill="#000"/>
+  <circle cx="91" cy="54" r="1" fill="#FFF"/>
+  <circle cx="111" cy="54" r="1" fill="#FFF"/>
+  
+  <!-- Nostrils -->
+  <ellipse cx="97" cy="40" rx="1.5" ry="1" fill="#000"/>
+  <ellipse cx="103" cy="40" rx="1.5" ry="1" fill="#000"/>
+  
+  <!-- Back spikes -->
+  <polygon points="70,85 75,75 80,85" fill="url(#woodGradient)"/>
+  <polygon points="85,82 90,72 95,82" fill="url(#woodGradient)"/>
+  <polygon points="105,82 110,72 115,82" fill="url(#woodGradient)"/>
+  <polygon points="120,85 125,75 130,85" fill="url(#woodGradient)"/>
+  
+  <!-- Legs -->
+  <ellipse cx="70" cy="120" rx="8" ry="15" fill="url(#woodGradient)"/>
+  <ellipse cx="130" cy="120" rx="8" ry="15" fill="url(#woodGradient)"/>
+  <ellipse cx="75" cy="140" rx="8" ry="15" fill="url(#woodGradient)"/>
+  <ellipse cx="125" cy="140" rx="8" ry="15" fill="url(#woodGradient)"/>
+  
+  <!-- Tail -->
+  <ellipse cx="100" cy="135" rx="50" ry="15" fill="url(#woodGradient)"/>
+  <ellipse cx="90" cy="150" rx="35" ry="10" fill="url(#woodGradient)"/>
+  
+  <!-- Traditional patterns -->
+  <g stroke="#654321" stroke-width="2" fill="none">
+    <path d="M 80 90 Q 90 95 100 90 Q 110 95 120 90"/>
+    <path d="M 75 105 Q 85 110 100 105 Q 115 110 125 105"/>
+    <circle cx="100" cy="100" r="5"/>
+  </g>
+  
+  <!-- Sepik river waves -->
+  <g transform="translate(0, 180)" stroke="#4682B4" stroke-width="2" fill="none">
+    <path d="M 0 0 Q 25 -5 50 0 Q 75 5 100 0 Q 125 -5 150 0 Q 175 5 200 0"/>
+  </g>
+  
+  <!-- Wood grain lines -->
+  <g stroke="#654321" stroke-width="1" fill="none" opacity="0.3">
+    <path d="M 60 70 Q 100 75 140 70"/>
+    <path d="M 65 110 Q 100 115 135 110"/>
+    <path d="M 70 130 Q 100 135 130 130"/>
+  </g>
+  
+  <!-- Label -->
+  <text x="100" y="195" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#654321">SEPIK CROCODILE SPIRIT</text>
+</svg>

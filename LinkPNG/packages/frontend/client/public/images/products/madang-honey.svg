@@ -1,0 +1,63 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="honeyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="jarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8F8FF;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#E6E6FA;stop-opacity:0.3" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="200" fill="#F0F8E8"/>
+  
+  <!-- Honey jar -->
+  <rect x="60" y="70" width="80" height="100" rx="8" fill="url(#jarGradient)" stroke="#DDD" stroke-width="2"/>
+  
+  <!-- Honey inside jar -->
+  <rect x="65" y="80" width="70" height="85" rx="6" fill="url(#honeyGradient)"/>
+  
+  <!-- Jar lid -->
+  <ellipse cx="100" cy="70" rx="45" ry="15" fill="#8B4513"/>
+  <ellipse cx="100" cy="65" rx="40" ry="12" fill="#CD853F"/>
+  
+  <!-- Lid pattern -->
+  <circle cx="85" cy="65" r="2" fill="#654321"/>
+  <circle cx="100" cy="60" r="2" fill="#654321"/>
+  <circle cx="115" cy="65" r="2" fill="#654321"/>
+  
+  <!-- Honeycomb pattern inside honey -->
+  <g transform="translate(75, 90)" opacity="0.3">
+    <polygon points="0,0 8,5 8,15 0,20 -8,15 -8,5" fill="#FF6347"/>
+    <polygon points="16,0 24,5 24,15 16,20 8,15 8,5" fill="#FF6347"/>
+    <polygon points="8,20 16,25 16,35 8,40 0,35 0,25" fill="#FF6347"/>
+    <polygon points="24,20 32,25 32,35 24,40 16,35 16,25" fill="#FF6347"/>
+  </g>
+  
+  <!-- Bees around jar -->
+  <g transform="translate(30, 50)">
+    <ellipse cx="0" cy="0" rx="6" ry="3" fill="#FFD700"/>
+    <ellipse cx="0" cy="0" rx="6" ry="3" fill="#000" opacity="0.3"/>
+    <circle cx="-2" cy="-1" r="1" fill="#000"/>
+    <path d="M -8 -2 Q -12 -5 -8 -8 M -8 2 Q -12 5 -8 8" stroke="#000" stroke-width="0.5" fill="none"/>
+  </g>
+  
+  <g transform="translate(170, 110)">
+    <ellipse cx="0" cy="0" rx="5" ry="2.5" fill="#FFD700"/>
+    <ellipse cx="0" cy="0" rx="5" ry="2.5" fill="#000" opacity="0.3"/>
+    <circle cx="-1.5" cy="-0.5" r="0.8" fill="#000"/>
+    <path d="M -6 -1.5 Q -9 -3.5 -6 -5.5 M -6 1.5 Q -9 3.5 -6 5.5" stroke="#000" stroke-width="0.4" fill="none"/>
+  </g>
+  
+  <!-- Forest leaves -->
+  <g transform="translate(20, 30)">
+    <path d="M 0 0 Q 10 -5 20 0 Q 15 10 10 15 Q 5 10 0 0" fill="#228B22"/>
+    <path d="M 15 5 Q 25 0 35 5 Q 30 15 25 20 Q 20 15 15 5" fill="#32CD32"/>
+  </g>
+  
+  <!-- Label -->
+  <text x="100" y="185" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#8B4513">MADANG WILD HONEY</text>
+</svg>

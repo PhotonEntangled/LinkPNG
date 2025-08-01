@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
 import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/components/ui/use-toast"
+import AdminModerationActions from "../components/AdminModerationActions"
 
 // Mock admin data
 const adminStats = {
@@ -61,10 +63,11 @@ const trustAnalytics = [
   { category: "Books", avgScore: 94, trend: "+0%" },
 ]
 
-function ModerationItem({ item }: { item: (typeof flaggedItems)[0] }) {
-  const [comment, setComment] = useState("")
-  const [showComment, setShowComment] = useState(false)
-
+function ModerationItem({ item, onApprove, onReject }: { 
+  item: (typeof flaggedItems)[0], 
+  onApprove: (id: number, comment: string) => void,
+  onReject: (id: number, comment: string) => void
+}) {
   return (
     <Card className="mb-4">
       <CardContent className="p-4">
@@ -95,37 +98,14 @@ function ModerationItem({ item }: { item: (typeof flaggedItems)[0] }) {
               </div>
             </div>
           </div>
-          <div className="flex gap-2 ml-4">
-            <Button variant="outline" size="sm" onClick={() => setShowComment(!showComment)}>
-              <MessageSquare className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm">
-              <Eye className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm" className="text-green-600">
-              <Check className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm" className="text-red-600">
-              <X className="w-4 h-4" />
-            </Button>
+          <div className="relative">
+            <AdminModerationActions 
+              item={item} 
+              onApprove={onApprove}
+              onReject={onReject}
+            />
           </div>
         </div>
-        {showComment && (
-          <div className="mt-4 pt-4 border-t">
-            <Textarea
-              placeholder="Add moderation comment..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              className="mb-2"
-            />
-            <div className="flex gap-2">
-              <Button size="sm">Save Comment</Button>
-              <Button variant="outline" size="sm" onClick={() => setShowComment(false)}>
-                Cancel
-              </Button>
-            </div>
-          </div>
-        )}
       </CardContent>
     </Card>
   )
@@ -133,6 +113,18 @@ function ModerationItem({ item }: { item: (typeof flaggedItems)[0] }) {
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
+  const [moderatedItems, setModeratedItems] = useState(flaggedItems)
+  const { toast } = useToast()
+
+  const handleApprove = (id: number, comment: string) => {
+    setModeratedItems(prev => prev.filter(item => item.id !== id))
+    console.log(`Approved item ${id} with comment: ${comment}`)
+  }
+
+  const handleReject = (id: number, comment: string) => {
+    setModeratedItems(prev => prev.filter(item => item.id !== id))
+    console.log(`Rejected item ${id} with comment: ${comment}`)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -299,8 +291,13 @@ export default function AdminDashboard() {
             </div>
 
             <div>
-              {flaggedItems.map((item) => (
-                <ModerationItem key={item.id} item={item} />
+              {moderatedItems.map((item) => (
+                <ModerationItem 
+                  key={item.id} 
+                  item={item} 
+                  onApprove={handleApprove}
+                  onReject={handleReject}
+                />
               ))}
             </div>
           </TabsContent>

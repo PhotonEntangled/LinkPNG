@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ArrowLeft, Star, ShoppingCart, Minus, Plus, Truck, Shield, RotateCcw } from "lucide-react"
 import { useApp } from "../hooks/useApp"
 import { useLanguage } from "../context/LanguageContext"
+import { useToast } from "@/components/ui/use-toast"
 import Header from "./Header"
 import Footer from "./Footer"
 import Image from "next/image"
@@ -51,11 +52,16 @@ export default function ProductDetailPage() {
     },
   }
 
+  const { toast } = useToast()
+
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addToCart(selectedProduct)
     }
-    alert(`Added ${quantity} ${selectedProduct.name} to cart!`)
+    toast({
+      title: "Added to Cart!",
+      description: `${quantity} ${selectedProduct.name} added to your cart.`,
+    })
   }
 
   const handleBuyNow = () => {

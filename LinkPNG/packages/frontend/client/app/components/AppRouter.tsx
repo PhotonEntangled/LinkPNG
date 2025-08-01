@@ -7,6 +7,9 @@ import CartPage from "./CartPage"
 import CheckoutPage from "./CheckoutPage"
 import ConfirmationPage from "./ConfirmationPage"
 import TrackingPage from "./TrackingPage"
+import BecomeSellerPage from "../become-seller/page"
+import SellerRegistrationPage from "../seller-registration/page"
+import SellerOnboardingSuccessPage from "../seller-onboarding-success/page"
 
 export default function AppRouter() {
   const { currentPage } = useApp()
@@ -24,6 +27,12 @@ export default function AppRouter() {
       return <ConfirmationPage />
     case "tracking":
       return <TrackingPage />
+    case "become-seller":
+      return <BecomeSellerPage />
+    case "seller-registration":
+      return <SellerRegistrationPage />
+    case "seller-onboarding-success":
+      return <SellerOnboardingSuccessPage />
     default:
       return <HomePage />
   }
