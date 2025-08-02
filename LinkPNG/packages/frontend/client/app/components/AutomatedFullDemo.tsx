@@ -11,7 +11,7 @@ import { useDemoMode } from '../context/DemoModeContext';
 import { useDemoPlayback } from '../context/DemoPlaybackContext';
 import { useApp } from '../hooks/useApp';
 import { DemoCaption } from './DemoCaption';
-import { delay, clickElement, findAndClickByText } from '@/lib/demo-utils';
+import { delay, clickElement, findAndClickByText, scrollToSection, scrollDown } from '@/lib/demo-utils';
 
 const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning: (isRunning: boolean) => void }) => {
   const [isDemoRunning, setIsDemoRunning] = useState(false);
@@ -30,16 +30,26 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
   const runActI = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act I - Customer Journey');
     
+    setCaption("Showcasing LinkPNG's vibrant marketplace with authentic PNG products.");
+    console.log('🎬 [DEMO] Starting on home page, scrolling to show product variety');
+    setCurrentPage('home');
+    setSearchTerm(''); // Clear any search terms first
+    await delay(2000);
+    
+    // Show the homepage sections
+    await scrollDown(400); // Show categories and quick actions
+    await delay(1500);
+    await scrollDown(400); // Show products section
+    await delay(1500);
+    
     setCaption("A customer searches for a traditional handwoven bag using voice search.");
     console.log('🎬 [DEMO] Setting search term to: bilum');
     setSearchTerm('bilum');
-    console.log('🎬 [DEMO] Ensuring we are on home page to show search results');
-    setCurrentPage('home');
     await delay(3000);
     
     setCaption("They find a high-quality product and add it to their cart.");
-    console.log('🎬 [DEMO] Looking for product: Traditional Highland Bilum - Large');
-    await findAndClickByText('h3', 'Traditional Highland Bilum - Large');
+    console.log('🎬 [DEMO] Looking for product: Traditional Bilum Bag - Highlands Style');
+    await findAndClickByText('h3', 'Traditional Bilum Bag - Highlands Style');
     await delay(2000);
     console.log('🎬 [DEMO] Clicking Add to Cart button');
     await findAndClickByText('button', 'Add to Cart');
@@ -49,9 +59,18 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     console.log('🎬 [DEMO] Navigating to cart');
     setCurrentPage('cart');
     await delay(2000);
+    
+    // Show cart contents
+    await scrollDown(300);
+    await delay(1500);
+    
     console.log('🎬 [DEMO] Proceeding to checkout');
     setCurrentPage('checkout');
     await delay(2000);
+    
+    // Scroll to show payment options
+    await scrollDown(400);
+    await delay(1500);
     console.log('🎬 [DEMO] Selecting mobile payment option');
     const miCashRadio = document.querySelector('input[value="mobile"]') as HTMLInputElement;
     if (miCashRadio) miCashRadio.click(); else throw new Error('Mobile payment option not found');
@@ -63,17 +82,31 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     setCaption("Real-time order tracking provides transparency and builds trust.");
     console.log('🎬 [DEMO] Navigating to tracking page');
     setCurrentPage('tracking');
-    await delay(4000);
+    await delay(2000);
+    
+    // Show the tracking timeline
+    await scrollDown(300);
+    await delay(2000);
+    await scrollDown(300);
+    await delay(2000);
     console.log('🎬 [DEMO] Act I completed successfully');
   }, [setCurrentPage, setSearchTerm]);
 
   const runActII = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act II - Seller Empowerment');
     
-    setCaption("Our platform empowers sellers with streamlined onboarding. Watch our automated seller registration.");
+    setCaption("Our platform empowers sellers with streamlined onboarding.");
     console.log('🎬 [DEMO] Navigating to become-seller page');
     setCurrentPage('become-seller');
-    await delay(3000);
+    await delay(2000);
+    
+    // Show the seller benefits section
+    await scrollDown(400);
+    await delay(2000);
+    await scrollDown(400);
+    await delay(2000);
+    
+    setCaption("Watch our automated seller registration process.");
     console.log('🎬 [DEMO] Starting automated seller demo');
     await startSellerDemo();
     console.log('🎬 [DEMO] Act II completed successfully');
@@ -103,7 +136,13 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     setCaption("Comprehensive analytics dashboard provides real-time business intelligence.");
     console.log('🎬 [DEMO] Switching to Analytics tab');
     await findAndClickByText('button', 'Analytics');
-    await delay(4000);
+    await delay(2000);
+    
+    // Show analytics charts and data
+    await scrollDown(400);
+    await delay(2000);
+    await scrollDown(400);
+    await delay(2000);
     
     setCaption("Export functionality ensures transparency and investor-ready reporting.");
     console.log('🎬 [DEMO] Exporting data to CSV');

@@ -4,6 +4,25 @@
 export const delay = (ms: number): Promise<void> => 
   new Promise(resolve => setTimeout(resolve, ms));
 
+export const scrollToSection = async (sectionId: string, behavior: 'smooth' | 'auto' = 'smooth'): Promise<void> => {
+  console.log(`🎬 [DEMO-UTILS] Scrolling to section: ${sectionId}`);
+  const element = document.getElementById(sectionId) || document.querySelector(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior, block: 'center' });
+    console.log(`🎬 [DEMO-UTILS] Successfully scrolled to: ${sectionId}`);
+  } else {
+    console.warn(`🎬 [DEMO-UTILS] Section not found, scrolling down: ${sectionId}`);
+    window.scrollBy({ top: 600, behavior });
+  }
+  await delay(1000); // Wait for scroll to complete
+};
+
+export const scrollDown = async (pixels: number = 600): Promise<void> => {
+  console.log(`🎬 [DEMO-UTILS] Scrolling down ${pixels}px`);
+  window.scrollBy({ top: pixels, behavior: 'smooth' });
+  await delay(1000);
+};
+
 export const clickElement = async (selector: string): Promise<void> => {
   console.log(`🎬 [DEMO-UTILS] Attempting to click element: ${selector}`);
   const element = document.querySelector(selector) as HTMLElement;
