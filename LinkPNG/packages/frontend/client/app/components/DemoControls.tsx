@@ -9,6 +9,13 @@ export default function DemoControls() {
   const { isDemoMode, enableDemoMode } = useDemoMode();
   const { isPlaybackActive } = useDemoPlayback();
   const [isDemoRunning, setIsDemoRunning] = useState(false);
+  const [showDemoButton, setShowDemoButton] = useState(false);
+
+  // Check for demo preview parameter on client side only
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setShowDemoButton(urlParams.get('demo') === 'preview');
+  }, []);
 
   // Secret key combination (Ctrl+Shift+I) to activate investor mode
   useEffect(() => {
@@ -22,10 +29,6 @@ export default function DemoControls() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [enableDemoMode])
-
-  // Show demo button if URL has ?demo=preview
-  const showDemoButton = typeof window !== 'undefined' && 
-    new URLSearchParams(window.location.search).get('demo') === 'preview'
 
   // Do not render anything if demo mode is not active OR if the full demo is running OR during playback
   if ((!showDemoButton && !isDemoMode) || isDemoRunning || isPlaybackActive) return null
