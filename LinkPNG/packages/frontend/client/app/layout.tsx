@@ -5,8 +5,8 @@ import { metadata } from "./metadata"
 import { AppProvider } from "./context/AppProvider"
 import { LanguageProvider } from "./context/LanguageContext"
 import { DemoModeProvider } from "./context/DemoModeContext"
+import { DemoPlaybackProvider } from "./context/DemoPlaybackContext"
 import { Toaster } from "@/components/ui/toaster"
-import AutoFillDemo from "./components/AutoFillDemo"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,9 +22,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <LanguageProvider>
           <DemoModeProvider>
-            <AppProvider>{children}</AppProvider>
-            <Toaster />
-            <AutoFillDemo />
+            <DemoPlaybackProvider>
+              <AppProvider>{children}</AppProvider>
+              <Toaster />
+            </DemoPlaybackProvider>
           </DemoModeProvider>
         </LanguageProvider>
       </body>

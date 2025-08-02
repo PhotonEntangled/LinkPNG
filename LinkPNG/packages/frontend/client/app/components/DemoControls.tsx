@@ -1,11 +1,13 @@
 "use client"
 import { useDemoMode } from "../context/DemoModeContext"
+import { useDemoPlayback } from "../context/DemoPlaybackContext"
 import { useEffect, useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
 import { AutomatedFullDemo } from "./AutomatedFullDemo"
 
 export default function DemoControls() {
   const { isDemoMode, enableDemoMode } = useDemoMode();
+  const { isPlaybackActive } = useDemoPlayback();
   const [isDemoRunning, setIsDemoRunning] = useState(false);
 
   // Secret key combination (Ctrl+Shift+I) to activate investor mode
@@ -25,8 +27,8 @@ export default function DemoControls() {
   const showDemoButton = typeof window !== 'undefined' && 
     new URLSearchParams(window.location.search).get('demo') === 'preview'
 
-  // Do not render anything if demo mode is not active OR if the full demo is running
-  if ((!showDemoButton && !isDemoMode) || isDemoRunning) return null
+  // Do not render anything if demo mode is not active OR if the full demo is running OR during playback
+  if ((!showDemoButton && !isDemoMode) || isDemoRunning || isPlaybackActive) return null
 
   return (
     <div className="fixed top-4 left-4 z-50">

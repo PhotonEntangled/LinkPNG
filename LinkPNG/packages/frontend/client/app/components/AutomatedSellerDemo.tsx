@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
+import { delay, findAndClickByText, simulateTyping } from '@/lib/demo-utils';
 
 // A more robust helper to find an element and then type into it.
 const typeInto = async (selector: string, text: string) => {
@@ -13,27 +14,6 @@ const typeInto = async (selector: string, text: string) => {
     await simulateTyping(element, text);
 };
 
-// Reusable typing simulation with more robust event dispatching
-const simulateTyping = (element: HTMLInputElement | HTMLTextAreaElement, text: string): Promise<void> => {
-    return new Promise((resolve) => {
-        element.focus();
-        let currentText = "";
-        const typeInterval = setInterval(() => {
-            if (currentText.length < text.length) {
-                currentText = text.slice(0, currentText.length + 1);
-                const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set;
-                nativeInputValueSetter?.call(element, currentText);
-                element.dispatchEvent(new Event('input', { bubbles: true }));
-                element.dispatchEvent(new Event('change', { bubbles: true }));
-            } else {
-                clearInterval(typeInterval);
-                element.blur();
-                resolve();
-            }
-        }, 50 + Math.random() * 50);
-    });
-};
-
 const findAndClick = async (selector: string) => {
     const element = document.querySelector(selector) as HTMLElement;
     if (!element) {
@@ -42,23 +22,29 @@ const findAndClick = async (selector: string) => {
     element.click();
 };
 
-const findAndClickByText = async (selector: string, text: string) => {
-    const elements = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
-    const element = elements.find(btn => btn.textContent?.trim().includes(text));
-    if (!element) {
-        throw new Error(`Could not find element '${selector}' with text '${text}'`);
-    }
-    element.click();
-};
-
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
 export function useAutomatedSellerDemo({ onComplete }: { onComplete?: () => void } = {}) {
     const { toast } = useToast();
     const router = useRouter();
     const [isRunning, setIsRunning] = useState(false);
 
-    const DEMO_DATA = { /* ... Demo data is unchanged ... */ };
+    const DEMO_DATA = {
+        fullName: "Sarah Johnson",
+        email: "sarah.j.handmade@gmail.com",
+        phone: "+6757123456",
+        emailCode: "123456",
+        phoneCode: "654321",
+        businessName: "Handmade Creations Co",
+        shopLongDescription: "Quality handwoven bags and traditional crafts made with sustainable materials and modern techniques.",
+        productName: "Premium Handwoven Bag - Large",
+        productPrice: "89",
+        productCategory: "traditional-crafts",
+        productDescription: "Durable handwoven bag perfect for daily use. Made with sustainable materials using traditional techniques.",
+        bankName: "PNG Bank",
+        configAccountNumber: "1234567890",
+        shippingRate: "15",
+        returnPolicy: "30-day returns accepted for unused items in original condition.",
+        termsOfService: "Standard marketplace terms apply. Quality guaranteed on all handmade products."
+    };
 
     const runFullSequence = useCallback(async () => {
         try {
@@ -124,7 +110,7 @@ export function useAutomatedSellerDemo({ onComplete }: { onComplete?: () => void
         }
     }, [router, toast, onComplete, DEMO_DATA]);
 
-    const startDemo = () => {
+  const startDemo = () => {
         if (isRunning) return;
         setIsRunning(true);
         toast({ title: "🎬 Starting Seller Demo..." });
