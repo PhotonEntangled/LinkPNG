@@ -1,15 +1,12 @@
 "use client"
 import { useDemoMode } from "../context/DemoModeContext"
-import { useEffect } from "react"
-import { Play, Eye, EyeOff, UserCheck, Square } from "lucide-react"
-import { useAutomatedSellerDemo } from "./AutomatedSellerDemo"
-import { AutomatedFullDemo } from "./AutomatedFullDemo" // Import the new component
+import { useEffect, useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
+import { AutomatedFullDemo } from "./AutomatedFullDemo"
 
 export default function DemoControls() {
-  const { isDemoMode, enableDemoMode, playDemo } = useDemoMode()
-  
-  // Use the automated seller demo hook
-  const sellerDemo = useAutomatedSellerDemo({})
+  const { isDemoMode, enableDemoMode } = useDemoMode();
+  const [isDemoRunning, setIsDemoRunning] = useState(false);
 
   // Secret key combination (Ctrl+Shift+I) to activate investor mode
   useEffect(() => {
@@ -28,16 +25,14 @@ export default function DemoControls() {
   const showDemoButton = typeof window !== 'undefined' && 
     new URLSearchParams(window.location.search).get('demo') === 'preview'
 
-  if (!showDemoButton && !isDemoMode) return null
+  // Do not render anything if demo mode is not active OR if the full demo is running
+  if ((!showDemoButton && !isDemoMode) || isDemoRunning) return null
 
   return (
     <div className="fixed top-4 left-4 z-50">
       {!isDemoMode ? (
         <button
-          onClick={() => {
-            enableDemoMode()
-            setTimeout(() => playDemo(), 500) // Start demo after enabling
-          }}
+          onClick={enableDemoMode}
           className="bg-png-red text-white px-4 py-2 rounded-lg shadow-lg hover:bg-png-red/90 transition-all flex items-center gap-2"
         >
           <Eye className="w-4 h-4" />
@@ -50,43 +45,8 @@ export default function DemoControls() {
             <span className="text-sm font-medium">Demo Mode Active</span>
           </div>
           
-          {/* Automated Full Demo Button */}
-          <AutomatedFullDemo />
-
-          {/* Automated Seller Demo Button */}
-          <button
-            onClick={() => {
-              if (sellerDemo.isRunning) {
-                sellerDemo.stopDemo()
-              } else {
-                sellerDemo.startDemo()
-              }
-            }}
-            className={`${
-              sellerDemo.isRunning 
-                ? 'bg-gray-600 hover:bg-gray-700' 
-                : 'bg-purple-600 hover:bg-purple-700'
-            } text-white px-4 py-2 rounded-lg shadow-lg transition-colors flex items-center gap-2 w-full`}
-          >
-            {sellerDemo.isRunning ? (
-              <>
-                <Square className="w-4 h-4" />
-                Stop Seller Demo
-              </>
-            ) : (
-              <>
-                <UserCheck className="w-4 h-4" />
-                Auto Seller Demo (Legacy)
-              </>
-            )}
-          </button>
-          
-          {/* Demo Progress Indicator */}
-          {sellerDemo.isRunning && (
-            <div className="bg-black/80 text-white px-3 py-2 rounded text-xs">
-              Step {sellerDemo.currentStep + 1} of {sellerDemo.totalSteps}
-            </div>
-          )}
+          {/* Pass the setIsDemoRunning setter to the main demo component */}
+          <AutomatedFullDemo setMasterDemoRunning={setIsDemoRunning} />
         </div>
       )}
     </div>
