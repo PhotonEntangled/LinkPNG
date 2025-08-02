@@ -63,7 +63,7 @@ export default function HomePage() {
       nameKey: "bilumBagHighlands",
       price: 85.00,
       originalPrice: 120.00,
-      image: "https://images.unsplash.com/photo-1594736797933-d0d6d7a46c13?w=400&h=400&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=400&h=400&fit=crop&crop=center",
       discount: 29,
       sold: 234,
       stock: 45,
@@ -164,7 +164,7 @@ export default function HomePage() {
       name: "Coconut Oil Soap - Bougainville Natural",
       nameKey: "bougainvilleCoconutSoap",
       price: 15.00,
-      image: "https://images.unsplash.com/photo-1615947191830-d7e067b5c045?w=400&h=400&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1585838447058-a62d7a214f50?w=400&h=400&fit=crop&crop=center",
       sold: 198,
       rating: 4.5,
       province: "Bougainville"

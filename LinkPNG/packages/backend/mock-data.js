@@ -8,7 +8,7 @@ const products = [
     category: 'Traditional Crafts', 
     price: 85.00, 
     originalPrice: 120.00,
-    image: 'https://images.unsplash.com/photo-1594736797933-d0d6d7a46c13?w=400&h=400&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=400&h=400&fit=crop&crop=center',
     province: 'Western Highlands',
     description: 'Hand-woven bilum bag from the Western Highlands, featuring traditional geometric patterns in natural fiber',
     culturalNote: 'Made by women\'s cooperatives using traditional weaving techniques passed down through generations'
