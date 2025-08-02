@@ -9,7 +9,7 @@ import { useDemoMode } from "../context/DemoModeContext"
 export default function Header() {
   const { cartItems, setCurrentPage, searchTerm, setSearchTerm } = useApp()
   const { language, setLanguage, t } = useLanguage()
-  const { isDemoMode, enableDemoMode, playDemo } = useDemoMode()
+  const { isDemoMode, enableDemoMode } = useDemoMode()
   const [isListening, setIsListening] = useState(false)
   const [voiceSupported, setVoiceSupported] = useState(false)
   const recognitionRef = useRef<any>(null)
@@ -57,6 +57,16 @@ export default function Header() {
   }
 
   const cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
+  const [isCartAnimating, setIsCartAnimating] = useState(false)
+  
+  // Trigger animation when cart count changes
+  useEffect(() => {
+    if (cartCount > 0) {
+      setIsCartAnimating(true)
+      const timer = setTimeout(() => setIsCartAnimating(false), 600)
+      return () => clearTimeout(timer)
+    }
+  }, [cartCount])
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? "tok" : "en")
@@ -132,7 +142,7 @@ export default function Header() {
               <button 
                 onClick={() => {
                   enableDemoMode()
-                  setTimeout(() => playDemo(), 500)
+                  // Auto-demo removed - using manual navigation only
                 }}
                 className="flex items-center gap-2 px-3 py-2 bg-png-red text-white rounded-lg hover:bg-png-red/90 transition-all text-sm font-medium"
                 title="Start interactive demo"
@@ -157,7 +167,9 @@ export default function Header() {
             >
               <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-png-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className={`absolute -top-1 -right-1 bg-png-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center transition-all duration-300 ${
+                  isCartAnimating ? 'scale-125 animate-pulse' : 'scale-100'
+                }`}>
                   {cartCount}
                 </span>
               )}
