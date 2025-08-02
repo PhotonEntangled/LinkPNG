@@ -23,8 +23,71 @@ export const scrollDown = async (pixels: number = 600): Promise<void> => {
   await delay(1000);
 };
 
+// Cursor indicator for demo
+export const showCursor = async (selector: string): Promise<void> => {
+  console.log(`🎬 [DEMO-UTILS] Showing cursor at: ${selector}`);
+  
+  // Remove any existing cursor indicators
+  const existingCursors = document.querySelectorAll('.demo-cursor');
+  existingCursors.forEach(cursor => cursor.remove());
+  
+  const element = document.querySelector(selector) as HTMLElement;
+  if (!element) {
+    console.warn(`🎬 [DEMO-UTILS] Element not found for cursor: ${selector}`);
+    return;
+  }
+  
+  // Create cursor indicator
+  const cursor = document.createElement('div');
+  cursor.className = 'demo-cursor';
+  cursor.innerHTML = '👆';
+  cursor.style.cssText = `
+    position: absolute;
+    z-index: 9999;
+    font-size: 24px;
+    pointer-events: none;
+    animation: bounce 0.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  `;
+  
+  // Add bounce animation
+  if (!document.getElementById('demo-cursor-styles')) {
+    const style = document.createElement('style');
+    style.id = 'demo-cursor-styles';
+    style.textContent = `
+      @keyframes bounce {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(-10px); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Position cursor above element
+  const rect = element.getBoundingClientRect();
+  cursor.style.left = (rect.left + rect.width / 2 - 12) + 'px';
+  cursor.style.top = (rect.top - 40 + window.scrollY) + 'px';
+  
+  document.body.appendChild(cursor);
+  
+  // Auto-remove after 2 seconds
+  setTimeout(() => {
+    if (cursor.parentNode) {
+      cursor.remove();
+    }
+  }, 2000);
+};
+
+export const hideCursor = (): void => {
+  const cursors = document.querySelectorAll('.demo-cursor');
+  cursors.forEach(cursor => cursor.remove());
+};
+
 export const clickElement = async (selector: string): Promise<void> => {
   console.log(`🎬 [DEMO-UTILS] Attempting to click element: ${selector}`);
+  await showCursor(selector);
+  await delay(1500); // Show cursor before clicking
+  
   const element = document.querySelector(selector) as HTMLElement;
   if (!element) {
     console.error(`🎬 [DEMO-UTILS] Element not found: ${selector}`);
@@ -49,9 +112,61 @@ export const findAndClickByText = async (selector: string, text: string): Promis
     console.error(`🎬 [DEMO-UTILS] Element not found: ${selector} with text "${text}"`);
     throw new Error(`Could not find element '${selector}' with text '${text}'`);
   }
+  
+  // Show cursor before clicking
+  await showCursorOnElement(element);
+  await delay(1500);
+  
   console.log(`🎬 [DEMO-UTILS] Found matching element, clicking: ${selector} with text "${text}"`);
   element.click();
   console.log(`🎬 [DEMO-UTILS] Successfully clicked: ${selector} with text "${text}"`);
+};
+
+// Helper function to show cursor on a specific element
+export const showCursorOnElement = async (element: HTMLElement): Promise<void> => {
+  // Remove any existing cursor indicators
+  const existingCursors = document.querySelectorAll('.demo-cursor');
+  existingCursors.forEach(cursor => cursor.remove());
+  
+  // Create cursor indicator
+  const cursor = document.createElement('div');
+  cursor.className = 'demo-cursor';
+  cursor.innerHTML = '👆';
+  cursor.style.cssText = `
+    position: absolute;
+    z-index: 9999;
+    font-size: 24px;
+    pointer-events: none;
+    animation: bounce 0.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  `;
+  
+  // Add bounce animation
+  if (!document.getElementById('demo-cursor-styles')) {
+    const style = document.createElement('style');
+    style.id = 'demo-cursor-styles';
+    style.textContent = `
+      @keyframes bounce {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(-10px); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Position cursor above element
+  const rect = element.getBoundingClientRect();
+  cursor.style.left = (rect.left + rect.width / 2 - 12) + 'px';
+  cursor.style.top = (rect.top - 40 + window.scrollY) + 'px';
+  
+  document.body.appendChild(cursor);
+  
+  // Auto-remove after 3 seconds
+  setTimeout(() => {
+    if (cursor.parentNode) {
+      cursor.remove();
+    }
+  }, 3000);
 };
 
 export const typeText = async (selector: string, text: string): Promise<void> => {

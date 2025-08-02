@@ -11,7 +11,7 @@ import { useDemoMode } from '../context/DemoModeContext';
 import { useDemoPlayback } from '../context/DemoPlaybackContext';
 import { useApp } from '../hooks/useApp';
 import { DemoCaption } from './DemoCaption';
-import { delay, clickElement, findAndClickByText, scrollToSection, scrollDown } from '@/lib/demo-utils';
+import { delay, clickElement, findAndClickByText, scrollToSection, scrollDown, showCursor, hideCursor } from '@/lib/demo-utils';
 
 const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning: (isRunning: boolean) => void }) => {
   const [isDemoRunning, setIsDemoRunning] = useState(false);
@@ -36,26 +36,31 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     setSearchTerm(''); // Clear any search terms first
     await delay(2000);
     
-    // Show the homepage sections
-    await scrollDown(400); // Show categories and quick actions
-    await delay(1500);
-    await scrollDown(400); // Show products section
-    await delay(1500);
+    // Show the homepage sections - scroll more to show all content
+    await scrollDown(600); // Show categories and quick actions
+    await delay(2000);
+    await scrollDown(600); // Show products section
+    await delay(2000);
+    await scrollDown(600); // Show more products and flash sales
+    await delay(2000);
     
-    setCaption("A customer searches for a traditional handwoven bag using voice search.");
+    setCaption("🔍 Customer searches for a traditional handwoven bag using voice search");
     console.log('🎬 [DEMO] Setting search term to: bilum');
+    await showCursor('input[type="text"]'); // Show cursor on search bar
     setSearchTerm('bilum');
     await delay(3000);
     
-    setCaption("They find a high-quality product and add it to their cart.");
+    setCaption("✨ They discover high-quality PNG products and select their favorite");
     console.log('🎬 [DEMO] Looking for product: Traditional Bilum Bag - Highlands Style');
     await findAndClickByText('h3', 'Traditional Bilum Bag - Highlands Style');
     await delay(2000);
+    
+    setCaption("🛒 Product details revealed - customer chooses to add item to cart");
     console.log('🎬 [DEMO] Clicking Add to Cart button');
     await findAndClickByText('button', 'Add to Cart');
-    await delay(2000);
+    await delay(3000);
 
-    setCaption("Checkout is seamless with local mobile payment integration.");
+    setCaption("🛍️ Customer reviews their cart and proceeds to secure checkout");
     console.log('🎬 [DEMO] Navigating to cart');
     setCurrentPage('cart');
     await delay(2000);
@@ -64,30 +69,37 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await scrollDown(300);
     await delay(1500);
     
+    setCaption("🏪 Seamless checkout process begins");
     console.log('🎬 [DEMO] Proceeding to checkout');
     setCurrentPage('checkout');
     await delay(2000);
     
     // Scroll to show payment options
     await scrollDown(400);
-    await delay(1500);
+    setCaption("💳 Local payment integration - PNG mobile money and cards supported");
+    await delay(2000);
     console.log('🎬 [DEMO] Selecting mobile payment option');
+    await showCursor('input[value="mobile"]');
     const miCashRadio = document.querySelector('input[value="mobile"]') as HTMLInputElement;
     if (miCashRadio) miCashRadio.click(); else throw new Error('Mobile payment option not found');
-    await delay(1000);
+    await delay(2000);
+    
+    setCaption("✅ Payment confirmed - order processing begins");
     console.log('🎬 [DEMO] Confirming payment');
     await findAndClickByText('button', 'Confirm and Pay');
     await delay(3000);
     
-    setCaption("Real-time order tracking provides transparency and builds trust.");
+    setCaption("📦 Real-time tracking shows order journey across PNG");
     console.log('🎬 [DEMO] Navigating to tracking page');
     setCurrentPage('tracking');
     await delay(2000);
     
+    setCaption("🗺️ Visual timeline shows package progress from seller to customer");
     // Show the tracking timeline
-    await scrollDown(300);
+    await scrollDown(400);
     await delay(2000);
-    await scrollDown(300);
+    await scrollDown(400);
+    setCaption("🚚 Transparent logistics build trust and confidence");
     await delay(2000);
     console.log('🎬 [DEMO] Act I completed successfully');
   }, [setCurrentPage, setSearchTerm]);
@@ -95,18 +107,19 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
   const runActII = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act II - Seller Empowerment');
     
-    setCaption("Our platform empowers sellers with streamlined onboarding.");
+    setCaption("🏪 Empowering PNG entrepreneurs to sell nationwide");
     console.log('🎬 [DEMO] Navigating to become-seller page');
     setCurrentPage('become-seller');
     await delay(2000);
     
+    setCaption("💰 See success stories and earning potential");
     // Show the seller benefits section
-    await scrollDown(400);
+    await scrollDown(500);
     await delay(2000);
-    await scrollDown(400);
+    await scrollDown(500);
     await delay(2000);
     
-    setCaption("Watch our automated seller registration process.");
+    setCaption("⚡ Watch our one-click automated seller registration");
     console.log('🎬 [DEMO] Starting automated seller demo');
     await startSellerDemo();
     console.log('🎬 [DEMO] Act II completed successfully');
@@ -199,6 +212,7 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
       setIsDemoRunning(false);
       setPlaybackActive(false);
       setCaption(null);
+      hideCursor(); // Clean up cursor indicators
       console.log('🎬 [DEMO] Demo session ended');
     }
   };
