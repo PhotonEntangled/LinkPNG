@@ -3,6 +3,7 @@ import { useDemoMode } from "../context/DemoModeContext"
 import { useEffect } from "react"
 import { Play, Eye, EyeOff, UserCheck, Square } from "lucide-react"
 import { useAutomatedSellerDemo } from "./AutomatedSellerDemo"
+import { AutomatedFullDemo } from "./AutomatedFullDemo" // Import the new component
 
 export default function DemoControls() {
   const { isDemoMode, enableDemoMode, playDemo } = useDemoMode()
@@ -43,12 +44,15 @@ export default function DemoControls() {
           Start Demo
         </button>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col items-start">
           <div className="bg-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2">
             <EyeOff className="w-4 h-4 text-png-red" />
             <span className="text-sm font-medium">Demo Mode Active</span>
           </div>
           
+          {/* Automated Full Demo Button */}
+          <AutomatedFullDemo />
+
           {/* Automated Seller Demo Button */}
           <button
             onClick={() => {
@@ -60,7 +64,7 @@ export default function DemoControls() {
             }}
             className={`${
               sellerDemo.isRunning 
-                ? 'bg-red-600 hover:bg-red-700' 
+                ? 'bg-gray-600 hover:bg-gray-700' 
                 : 'bg-purple-600 hover:bg-purple-700'
             } text-white px-4 py-2 rounded-lg shadow-lg transition-colors flex items-center gap-2 w-full`}
           >
@@ -72,7 +76,7 @@ export default function DemoControls() {
             ) : (
               <>
                 <UserCheck className="w-4 h-4" />
-                Auto Seller Demo
+                Auto Seller Demo (Legacy)
               </>
             )}
           </button>
@@ -87,4 +91,4 @@ export default function DemoControls() {
       )}
     </div>
   )
-} 
+}
