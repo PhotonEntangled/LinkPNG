@@ -5,20 +5,34 @@ export const delay = (ms: number): Promise<void> =>
   new Promise(resolve => setTimeout(resolve, ms));
 
 export const clickElement = async (selector: string): Promise<void> => {
+  console.log(`🎬 [DEMO-UTILS] Attempting to click element: ${selector}`);
   const element = document.querySelector(selector) as HTMLElement;
   if (!element) {
+    console.error(`🎬 [DEMO-UTILS] Element not found: ${selector}`);
     throw new Error(`Could not find element: ${selector}`);
   }
+  console.log(`🎬 [DEMO-UTILS] Found element, clicking: ${selector}`);
   element.click();
+  console.log(`🎬 [DEMO-UTILS] Successfully clicked: ${selector}`);
 };
 
 export const findAndClickByText = async (selector: string, text: string): Promise<void> => {
+  console.log(`🎬 [DEMO-UTILS] Looking for element: ${selector} with text: "${text}"`);
   const elements = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
+  console.log(`🎬 [DEMO-UTILS] Found ${elements.length} elements matching selector: ${selector}`);
+  
+  if (elements.length > 0) {
+    console.log(`🎬 [DEMO-UTILS] Available texts:`, elements.map(el => `"${el.textContent?.trim()}"`));
+  }
+  
   const element = elements.find(el => el.textContent?.trim().includes(text));
   if (!element) {
+    console.error(`🎬 [DEMO-UTILS] Element not found: ${selector} with text "${text}"`);
     throw new Error(`Could not find element '${selector}' with text '${text}'`);
   }
+  console.log(`🎬 [DEMO-UTILS] Found matching element, clicking: ${selector} with text "${text}"`);
   element.click();
+  console.log(`🎬 [DEMO-UTILS] Successfully clicked: ${selector} with text "${text}"`);
 };
 
 export const typeText = async (selector: string, text: string): Promise<void> => {
