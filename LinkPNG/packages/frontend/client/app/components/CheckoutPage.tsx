@@ -192,7 +192,7 @@ export default function CheckoutPage() {
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex gap-3">
                     <Image
-                      src={item.image || "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=400&h=400&fit=crop&crop=center"}
+                      src={item.image || "/images/products/bilum-bag.avif"}
                       alt={item.name}
                       width={48}
                       height={48}

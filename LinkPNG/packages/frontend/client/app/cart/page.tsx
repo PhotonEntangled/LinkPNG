@@ -21,7 +21,7 @@ const initialCartItems = [
     id: 2,
     name: "Traditional Bilum Bag",
     price: 45.99,
-    image: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=400&h=400&fit=crop&crop=center",
+    image: "/images/products/bilum-bag.avif",
     quantity: 1,
     seller: "Local Crafts PNG",
   },
