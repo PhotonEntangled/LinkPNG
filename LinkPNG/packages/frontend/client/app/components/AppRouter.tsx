@@ -8,6 +8,7 @@ import CartPage from "./CartPage"
 import CheckoutPage from "./CheckoutPage"
 import ConfirmationPage from "./ConfirmationPage"
 import TrackingPage from "./TrackingPage"
+import SearchPage from "./SearchPage"
 import BecomeSellerPage from "../become-seller/page"
 import SellerRegistrationPage from "../seller-registration/page"
 import SellerOnboardingSuccessPage from "../seller-onboarding-success/page"
@@ -41,6 +42,8 @@ export default function AppRouter() {
       return <ConfirmationPage />
     case "tracking":
       return <TrackingPage />
+    case "search":
+      return <SearchPage />
     case "become-seller":
       return <BecomeSellerPage />
     case "seller-registration":

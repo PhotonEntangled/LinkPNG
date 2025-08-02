@@ -56,6 +56,18 @@ export default function Header() {
     }
   }
 
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      setCurrentPage("search")
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
+
   const cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
   const [isCartAnimating, setIsCartAnimating] = useState(false)
   
@@ -111,6 +123,7 @@ export default function Header() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
                 placeholder={t("search")}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-png-red pr-20"
               />
@@ -129,7 +142,11 @@ export default function Header() {
                 </button>
               )}
               {/* Search Button */}
-              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-png-red">
+              <button 
+                onClick={handleSearch}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-png-red transition-colors"
+                title={t("search")}
+              >
                 <Search className="w-5 h-5" />
               </button>
             </div>
