@@ -30,11 +30,11 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
   const runActI = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act I - Customer Journey');
     
-    setCaption("Showcasing LinkPNG's vibrant marketplace with authentic PNG products.");
+    setCaption("In emerging markets worldwide, connecting local producers with customers has always been a challenge. This is LinkPNG. We are building the next generation of digital marketplace solutions.");
     console.log('🎬 [DEMO] Starting on home page, scrolling to show product variety');
     setCurrentPage('home');
     setSearchTerm(''); // Clear any search terms first
-    await delay(2000);
+    await delay(4000);
     
     // Show the homepage sections - scroll more to show all content
     await scrollDown(600); // Show categories and quick actions
@@ -44,84 +44,87 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await scrollDown(600); // Show more products and flash sales
     await delay(2000);
     
-    setCaption("🔍 Customer searches for a traditional handwoven bag using voice search");
+    // Scroll back up to search area for proper cursor alignment
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    await delay(2000);
+    
+    setCaption("We started by tackling accessibility. Our platform is built for everyone. With a simple voice command, our platform understands user intent, instantly connecting them to quality products from local artisans.");
     console.log('🎬 [DEMO] Setting search term to: bilum');
     await showCursor('input[type="text"]'); // Show cursor on search bar
     setSearchTerm('bilum');
-    await delay(3000);
+    await delay(4000);
     
-    setCaption("✨ They discover high-quality PNG products and select their favorite");
+    setCaption("This isn't just a transaction. It's a connection to quality craftsmanship. Here, customers can explore high-quality products, learn about the makers behind them, and purchase with confidence.");
     console.log('🎬 [DEMO] Looking for product: Traditional Bilum Bag - Highlands Style');
     await findAndClickByText('h3', 'Traditional Bilum Bag - Highlands Style');
-    await delay(2000);
+    await delay(3000);
     
-    setCaption("🛒 Product details revealed - customer chooses to add item to cart");
+    setCaption("We've obsessed over creating a frictionless experience. From adding to the cart...");
     console.log('🎬 [DEMO] Clicking Add to Cart button');
     await findAndClickByText('button', 'Add to Cart');
     await delay(3000);
 
-    setCaption("🛍️ Customer reviews their cart and proceeds to secure checkout");
+    setCaption("...to a checkout process that embraces how people actually pay in emerging markets.");
     console.log('🎬 [DEMO] Navigating to cart');
     setCurrentPage('cart');
-    await delay(2000);
+    await delay(3000);
     
     // Show cart contents
     await scrollDown(300);
     await delay(1500);
     
-    setCaption("🏪 Seamless checkout process begins");
     console.log('🎬 [DEMO] Proceeding to checkout');
     setCurrentPage('checkout');
     await delay(2000);
     
     // Scroll to show payment options
     await scrollDown(400);
-    setCaption("💳 Local payment integration - PNG mobile money and cards supported");
-    await delay(2000);
-    console.log('🎬 [DEMO] Selecting mobile payment option');
-    await showCursor('input[value="mobile"]');
-    const miCashRadio = document.querySelector('input[value="mobile"]') as HTMLInputElement;
-    if (miCashRadio) miCashRadio.click(); else throw new Error('Mobile payment option not found');
-    await delay(2000);
-    
-    setCaption("✅ Payment confirmed - order processing begins");
-    console.log('🎬 [DEMO] Confirming payment');
-    await findAndClickByText('button', 'Confirm and Pay');
+    setCaption("By integrating local mobile money services, we eliminate barriers, making e-commerce accessible to broader populations.");
     await delay(3000);
     
-    setCaption("📦 Real-time tracking shows order journey across PNG");
+    // Mobile payment is already selected by default, no need to click
+    console.log('🎬 [DEMO] Mobile payment already selected by default');
+    
+    setCaption("Confirming the order...");
+    console.log('🎬 [DEMO] Placing order');
+    await findAndClickByText('button', 'Place Order');
+    await delay(3000);
+    
+    setCaption("And that trust is maintained even after the sale. Our detailed tracking system gives customers peace of mind, showing them every step of their product's journey.");
     console.log('🎬 [DEMO] Navigating to tracking page');
     setCurrentPage('tracking');
-    await delay(2000);
+    await delay(3000);
     
-    setCaption("🗺️ Visual timeline shows package progress from seller to customer");
     // Show the tracking timeline
     await scrollDown(400);
     await delay(2000);
     await scrollDown(400);
-    setCaption("🚚 Transparent logistics build trust and confidence");
-    await delay(2000);
+    await delay(3000);
+    
+    setCaption("We've solved the buyer's side of the equation. But to truly build the digital bridge, we had to empower the other side.");
     console.log('🎬 [DEMO] Act I completed successfully');
   }, [setCurrentPage, setSearchTerm]);
 
   const runActII = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act II - Seller Empowerment');
     
-    setCaption("🏪 Empowering PNG entrepreneurs to sell nationwide");
+    setCaption("For many artisans and small business owners, technology adoption can be challenging. We believe getting your business online shouldn't be.");
     console.log('🎬 [DEMO] Navigating to become-seller page');
     setCurrentPage('become-seller');
-    await delay(2000);
+    await delay(3000);
     
-    setCaption("💰 See success stories and earning potential");
     // Show the seller benefits section
     await scrollDown(500);
     await delay(2000);
     await scrollDown(500);
     await delay(2000);
     
-    setCaption("⚡ Watch our one-click automated seller registration");
+    setCaption("So, we streamlined it. You are about to see our entire seller onboarding... automated for efficiency.");
     console.log('🎬 [DEMO] Starting automated seller demo');
     await startSellerDemo();
+    await delay(2000);
+    
+    setCaption("And just like that, we've created a digital entrepreneur. This is their command center. We haven't just provided a listing; we've delivered a complete business solution.");
     console.log('🎬 [DEMO] Act II completed successfully');
   }, [setCurrentPage, startSellerDemo]);
 
