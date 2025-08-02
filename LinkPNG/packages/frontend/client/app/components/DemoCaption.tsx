@@ -13,10 +13,12 @@ export const DemoCaption: React.FC<DemoCaptionProps> = ({ text }) => {
   }
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[1000] w-full max-w-4xl px-4">
-      <p className="text-center text-lg md:text-xl font-semibold text-white bg-black/50 rounded-lg px-4 py-2 shadow-lg backdrop-blur-sm">
-        {text}
-      </p>
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-6xl px-4 pointer-events-none">
+      <div className="bg-black/90 text-white px-6 py-4 rounded-lg shadow-2xl border border-white/20">
+        <p className="text-center text-base md:text-lg font-medium leading-relaxed">
+          {text}
+        </p>
+      </div>
     </div>
   );
 };

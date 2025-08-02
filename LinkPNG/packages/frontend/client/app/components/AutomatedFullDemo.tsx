@@ -44,8 +44,9 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await scrollDown(600); // Show more products and flash sales
     await delay(2000);
     
-    // Scroll back up to search area for proper cursor alignment
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to Flash Sale section where bilum bag is located 
+    console.log('🎬 [DEMO] Scrolling to Flash Sale section where bilum bag is');
+    window.scrollTo({ top: 400, behavior: 'smooth' }); // Scroll to Flash Sale section position
     await delay(2000);
     
     setCaption("We started by tackling accessibility. Our platform is built for everyone. With a simple voice command, our platform understands user intent, instantly connecting them to quality products from local artisans.");

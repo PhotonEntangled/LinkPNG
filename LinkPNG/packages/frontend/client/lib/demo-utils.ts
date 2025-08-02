@@ -18,7 +18,7 @@ export const scrollToSection = async (sectionId: string, behavior: 'smooth' | 'a
 };
 
 export const scrollDown = async (pixels: number = 600): Promise<void> => {
-  console.log(`🎬 [DEMO-UTILS] Scrolling down ${pixels}px`);
+  console.log(`🎬 [DEMO-UTILS] Scrolling ${pixels > 0 ? 'down' : 'up'} ${Math.abs(pixels)}px`);
   window.scrollBy({ top: pixels, behavior: 'smooth' });
   await delay(1000);
 };
