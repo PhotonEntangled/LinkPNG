@@ -5,7 +5,6 @@ import { metadata } from "./metadata"
 import { AppProvider } from "./context/AppProvider"
 import { LanguageProvider } from "./context/LanguageContext"
 import { DemoModeProvider } from "./context/DemoModeContext"
-import DemoOverlay from "./components/DemoOverlay"
 import { Toaster } from "@/components/ui/toaster"
 import AutoFillDemo from "./components/AutoFillDemo"
 
@@ -24,7 +23,6 @@ export default function RootLayout({
         <LanguageProvider>
           <DemoModeProvider>
             <AppProvider>{children}</AppProvider>
-            <DemoOverlay />
             <Toaster />
             <AutoFillDemo />
           </DemoModeProvider>
