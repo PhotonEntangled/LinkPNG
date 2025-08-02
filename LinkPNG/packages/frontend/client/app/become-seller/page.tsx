@@ -39,7 +39,7 @@ export default function BecomeSellerPage() {
       name: "Maria from Western Highlands",
       business: "Traditional Bilum Bags",
       story: "Increased sales by 300% selling authentic Highland bilums nationwide",
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center"
+      image: "https://images.unsplash.com/photo-1594736797933-d0d6d7a46c13?w=400&h=400&fit=crop&crop=center"
     },
     {
       name: "John from Morobe",

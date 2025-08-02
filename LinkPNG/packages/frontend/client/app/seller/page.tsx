@@ -133,7 +133,7 @@ export default function SellerDashboard() {
       id: Math.max(...sellerListings.map(p => p.id)) + 1,
       name: productData.name,
       price: parseFloat(productData.price),
-              image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center", // Real bilum bag image
+              image: "https://images.unsplash.com/photo-1594736797933-d0d6d7a46c13?w=400&h=400&fit=crop&crop=center", // Real bilum bag image
       status: "pending" as const,
       views: 0,
       sales: 0,
@@ -455,7 +455,7 @@ export default function SellerDashboard() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Image
-                        src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center"
+                        src="https://images.unsplash.com/photo-1594736797933-d0d6d7a46c13?w=400&h=400&fit=crop&crop=center"
                         alt="Traditional Bilum"
                         width={40}
                         height={40}
