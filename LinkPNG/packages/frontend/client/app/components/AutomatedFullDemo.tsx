@@ -30,141 +30,152 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
   const runActI = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act I - Customer Journey');
     
-    setCaption("In emerging markets worldwide, connecting local producers with customers has always been a challenge.");
-    console.log('🎬 [DEMO] Starting on home page, scrolling to show product variety');
+    // Scene 1.1: The Digital Marketplace (0:00 - 0:10)
+    console.log('🎬 [DEMO] Scene 1.1: The Digital Marketplace');
     setCurrentPage('home');
     setSearchTerm(''); // Clear any search terms first
-    await delay(3000);
-
-    setCaption("Digital infrastructure is rapidly evolving, creating unprecedented opportunities for e-commerce growth.");
-    await delay(3000);
-
-    setCaption("This is LinkPNG. We are building the next generation of digital marketplace solutions.");
     
-    // Show the homepage sections - scroll more to show all content
-    await scrollDown(600); // Show categories and quick actions
-    await delay(2000);
-    await scrollDown(600); // Show products section
-    await delay(2000);
-    await scrollDown(600); // Show more products and flash sales
-    await delay(2000);
+    setCaption("In emerging markets worldwide, connecting local producers with customers has always been a challenge.");
+    await delay(3500);
     
-    // Scroll to Flash Sale section where bilum bag is located 
-    console.log('🎬 [DEMO] Scrolling to Flash Sale section where bilum bag is');
-    window.scrollTo({ top: 400, behavior: 'smooth' }); // Scroll to Flash Sale section position
-    await delay(2000);
-    
-    setCaption("We started by tackling accessibility. Our platform is built for everyone.");
-    await delay(2000);
-    
-    setCaption("Watch.");
+    // Pause for 1s as per script
+    setCaption(null);
     await delay(1000);
     
-    setCaption("With a simple voice command, our platform understands user intent, instantly connecting them to quality products from local artisans.");
-    console.log('🎬 [DEMO] Setting search term to: bilum');
+    setCaption("Digital infrastructure is rapidly evolving, creating unprecedented opportunities for e-commerce growth.");
+    await delay(3500);
+    
+    setCaption("This is LinkPNG. We are building the next generation of digital marketplace solutions.");
+    await delay(3000);
+    
+    // Scene 1.2: Voice-Powered Discovery (0:11 - 0:18)
+    console.log('🎬 [DEMO] Scene 1.2: Voice-Powered Discovery');
+    setCaption("We started by tackling accessibility. Our platform is built for everyone.");
+    await delay(3000);
+    
+    // Slight pause as per script
+    setCaption(null);
+    await delay(500);
+    
+    setCaption("Watch.");
+    await delay(1500);
+    
+    // Show voice search in action
+    console.log('🎬 [DEMO] Demonstrating voice search with "bilum"');
     await showCursorOnElement(document.querySelector('input[type="text"]') as HTMLElement);
+    setCaption("With a simple voice command, our platform understands user intent, instantly connecting them to quality products from local artisans.");
     setSearchTerm('bilum');
     await delay(4000);
     
+    // Scene 1.3: Exploring the Marketplace (0:19 - 0:28)
+    console.log('🎬 [DEMO] Scene 1.3: Exploring the Marketplace');
     setCaption("This isn't just a transaction. It's a connection to quality craftsmanship.");
-    await delay(2000);
+    await delay(3000);
     
     setCaption("Here, customers can explore high-quality products, learn about the makers behind them, and purchase with confidence. We build trust through transparency.");
     console.log('🎬 [DEMO] Looking for product: Traditional Bilum Bag - Highlands Style');
     await findAndClickByText('h3', 'Traditional Bilum Bag - Highlands Style');
-    await delay(3000);
+    await delay(6000);
     
-    setCaption("We've obsessed over creating a frictionless experience. From adding to the cart...");
+    // Scene 1.4 & 1.5: Frictionless Checkout (0:29 - 0:41)
+    console.log('🎬 [DEMO] Scene 1.4 & 1.5: Frictionless Checkout');
+    setCaption("We've obsessed over creating a frictionless experience. From adding to the cart... to a checkout process that embraces how people actually pay in emerging markets.");
     console.log('🎬 [DEMO] Clicking Add to Cart button');
     await findAndClickByText('button', 'Add to Cart');
-    await delay(3000);
-
-    setCaption("...to a checkout process that embraces how people actually pay in emerging markets.");
+    await delay(2000);
+    
     console.log('🎬 [DEMO] Navigating to cart');
     setCurrentPage('cart');
-    await delay(3000);
-    
-    // Show cart contents
-    await scrollDown(300);
-    await delay(1500);
+    await delay(2000);
     
     console.log('🎬 [DEMO] Proceeding to checkout');
     setCurrentPage('checkout');
     await delay(2000);
     
-    // Scroll to show payment options
-    await scrollDown(400);
+    // Pause as mobile payment is selected - as per script
+    setCaption(null);
+    await delay(1000);
+    
     setCaption("By integrating local mobile money services, we eliminate barriers, making e-commerce accessible to broader populations.");
-    await delay(3000);
+    await delay(4000);
     
-    // Mobile payment is already selected by default, no need to click
-    console.log('🎬 [DEMO] Mobile payment already selected by default');
-    
-    setCaption("Confirming the order...");
     console.log('🎬 [DEMO] Placing order');
     await findAndClickByText('button', 'Place Order');
-    await delay(3000);
+    await delay(2000);
     
+    // Scene 1.6: Transparency and Trust (0:42 - 0:52)
+    console.log('🎬 [DEMO] Scene 1.6: Transparency and Trust');
     setCaption("And that trust is maintained even after the sale. Our detailed tracking system gives customers peace of mind, showing them every step of their product's journey.");
     console.log('🎬 [DEMO] Navigating to tracking page');
     setCurrentPage('tracking');
-    await delay(3000);
+    await delay(5000);
     
     // Show the tracking timeline
     await scrollDown(400);
     await delay(2000);
-    await scrollDown(400);
-    await delay(3000);
     
     setCaption("We've solved the buyer's side of the equation. But to truly build the digital bridge, we had to empower the other side.");
+    await delay(4000);
+    
     console.log('🎬 [DEMO] Act I completed successfully');
   }, [setCurrentPage, setSearchTerm]);
 
   const runActII = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act II - Seller Empowerment');
     
+    // Scene 2.1: The Empowerment Engine (0:53 - 1:01)
+    console.log('🎬 [DEMO] Scene 2.1: The Empowerment Engine');
     setCaption("For many artisans and small business owners, technology adoption can be challenging. We believe getting your business online shouldn't be.");
     console.log('🎬 [DEMO] Navigating to become-seller page');
     setCurrentPage('become-seller');
-    await delay(3000);
-    
-    // Show the seller benefits section
-    await scrollDown(500);
-    await delay(2000);
-    await scrollDown(500);
-    await delay(2000);
+    await delay(4000);
     
     setCaption("So, we streamlined it. You are about to see our entire seller onboarding... automated for efficiency.");
-    console.log('🎬 [DEMO] Starting automated seller demo');
-    await delay(2000);
+    await delay(4000);
     
+    // Scene 2.2 & 2.3: Guided, Automated Onboarding (1:02 - 1:20)
+    console.log('🎬 [DEMO] Scene 2.2 & 2.3: Guided, Automated Onboarding');
+    console.log('🎬 [DEMO] Starting automated seller demo');
+    
+    // Start the seller demo and show rapid onboarding narration
+    const sellerDemoPromise = startSellerDemo();
+    
+    // Narration during the automated process
     setCaption("Our system guides new sellers through every step. From basic registration... to shop setup... to listing their very first product... and configuring payments.");
-    await startSellerDemo();
-    await delay(3000);
+    await delay(6000);
     
     setCaption("We've turned a process that could take hours of confusion into a simple, guided journey.");
-    await delay(2000);
     
+    // Wait for seller demo to complete
+    await sellerDemoPromise;
+    await delay(3000);
+    
+    // Scene 2.4 & 2.5: The Seller's New Reality (1:21 - 1:30)
+    console.log('🎬 [DEMO] Scene 2.4 & 2.5: The Seller\'s New Reality');
     setCaption("And just like that, we've created a digital entrepreneur.");
-    await delay(2000);
+    await delay(3000);
     
     setCaption("This is their command center. From here, they have complete control. We haven't just provided a listing; we've delivered a complete business solution. This is the engine of our platform. And this is how we scale.");
+    await delay(6000);
+    
     console.log('🎬 [DEMO] Act II completed successfully');
   }, [setCurrentPage, startSellerDemo]);
 
   const runActIII = useCallback(async () => {
     console.log('🎬 [DEMO] Starting Act III - Platform Intelligence');
     
+    // Scene 3.1 & 3.2: Quality Control and Oversight (1:31 - 1:40)
+    console.log('🎬 [DEMO] Scene 3.1 & 3.2: Quality Control and Oversight');
     setCaption("But a marketplace is only as strong as its quality. Now, let's look from an investor's perspective.");
     console.log('🎬 [DEMO] Logging out current user');
     logout();
     await delay(2000);
     console.log('🎬 [DEMO] Logging in as admin');
     login({ name: 'Admin User', role: 'admin' });
-    await delay(1500);
+    await delay(2000);
     
     setCaption("This is the LinkPNG Admin Dashboard. Our mission control. Here, we ensure every seller meets our standards, maintaining the integrity of our platform.");
-    console.log('🎬 [DEMO] Navigating to admin dashboard - using Next.js routing');
+    console.log('🎬 [DEMO] Navigating to admin dashboard');
     router.push('/admin');
     await delay(3000);
     
@@ -172,24 +183,31 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await showCursorOnElement(document.querySelector('button') as HTMLElement);
     await findAndClickByText('button', 'Moderation');
     await delay(1500);
+    
     console.log('🎬 [DEMO] Approving seller application');
     await showCursorOnElement(document.querySelector('button') as HTMLElement);
     await findAndClickByText('button', 'Approve');
-    await delay(2000);
+    await delay(2500);
 
-    setCaption("More importantly, this is where we turn data into intelligence. We have a real-time, bird's-eye view of our entire operation.");
+    // Scene 3.3: Data-Driven Insights (1:41 - 1:55)
+    console.log('🎬 [DEMO] Scene 3.3: Data-Driven Insights');
+    setCaption("More importantly, this is where we turn data into intelligence. We have a real-time, bird's-eye view of our entire operation. We track sales trends, identify popular categories, and visualize our market penetration across every province. This isn't just a platform; it's a data-driven enterprise.");
     console.log('🎬 [DEMO] Switching to Analytics tab');
     await showCursorOnElement(document.querySelector('button') as HTMLElement);
     await findAndClickByText('button', 'Analytics');
     await delay(2000);
     
-    setCaption("We track sales trends, identify popular categories, and visualize our market penetration across every province. This isn't just a platform; it's a data-driven enterprise.");
     // Show analytics charts and data
     await scrollDown(400);
-    await delay(2000);
+    await delay(3000);
     await scrollDown(400);
     await delay(3000);
     
+    // Wait for the full narration to complete
+    await delay(6000);
+    
+    // Scene 3.4 & 3.5: Investment-Ready Vision (1:56 - 2:15)
+    console.log('🎬 [DEMO] Scene 3.4 & 3.5: Investment-Ready Vision');
     setCaption("We are built for growth and accountability, with key data always ready for investor review.");
     console.log('🎬 [DEMO] Exporting data to CSV');
     await showCursorOnElement(document.querySelector('button') as HTMLElement);
@@ -197,13 +215,17 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await delay(3000);
     
     setCaption("We have successfully built the core ecosystem: a product customers love, a platform sellers need, and an operation that is intelligent and scalable.");
-    await delay(4000);
+    await delay(5000);
     
     setCaption("With your investment, we will expand this bridge... launching a dedicated driver network... and integrating AI-powered features to create the definitive Super-App for the region.");
-    await delay(4000);
+    await delay(6000);
     
     setCaption("Join us, in building the future of commerce for Papua New Guinea.");
-    await delay(3000);
+    await delay(4000);
+    
+    // Music swells to finish - final pause
+    setCaption(null);
+    await delay(2000);
     
     console.log('🎬 [DEMO] Act III completed successfully');
   }, [logout, login, router]);
@@ -240,7 +262,7 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
       console.log('🎬 [DEMO] Starting Act III...');
       await runActIII();
 
-      setCaption("The full demo is complete!");
+      setCaption(null); // Clear caption at end
       console.log('🎬 [DEMO] =========================');
       console.log('🎬 [DEMO] DEMO COMPLETED SUCCESS!');
       console.log('🎬 [DEMO] =========================');
