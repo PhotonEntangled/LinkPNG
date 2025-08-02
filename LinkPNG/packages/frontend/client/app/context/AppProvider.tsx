@@ -2,7 +2,6 @@
 
 import { useState, type ReactNode } from "react"
 import { AppContext } from "./AppContext"
-import DemoOverlay from "../components/DemoOverlay"
 import DemoControls from "../components/DemoControls"
 import { toast } from "@/components/ui/use-toast"
 
@@ -99,7 +98,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-      <DemoOverlay />
       <DemoControls />
     </AppContext.Provider>
   )
