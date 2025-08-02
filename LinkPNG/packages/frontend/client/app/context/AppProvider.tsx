@@ -37,25 +37,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [currentPage, setCurrentPage] = useState("home")
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [searchTerm, setSearchTerm] = useState("") // Add search term state
-  const [cartItems, setCartItems] = useState<Product[]>([
-    {
-      id: 1,
-      name: "Premium Coffee Beans 1kg",
-      price: 25.99,
-      originalPrice: 35.99,
-      image: "/images/products/highlands-coffee.svg",
-      quantity: 2,
-      seller: "PNG Coffee Co.",
-    },
-    {
-      id: 2,
-      name: "Traditional Bilum Bag",
-      price: 45.99,
-      image: "/images/products/bilum-highlands.svg",
-      quantity: 1,
-      seller: "Local Crafts PNG",
-    },
-  ])
+  const [cartItems, setCartItems] = useState<Product[]>([])
   const [selectedOrderId, setSelectedOrderId] = useState<string>()
 
   const addToCart = (product: Product) => {

@@ -20,7 +20,7 @@ const orderItems = [
     name: "Traditional Bilum Bag",
     price: 45.99,
     quantity: 1,
-    image: "/placeholder.svg?height=60&width=60&text=Bilum",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center",
   },
 ]
 

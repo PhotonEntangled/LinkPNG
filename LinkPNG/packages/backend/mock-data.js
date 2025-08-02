@@ -8,7 +8,7 @@ const products = [
     category: 'Traditional Crafts', 
     price: 85.00, 
     originalPrice: 120.00,
-    image: '/images/products/bilum-highlands.svg',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center',
     province: 'Western Highlands',
     description: 'Hand-woven bilum bag from the Western Highlands, featuring traditional geometric patterns in natural fiber',
     culturalNote: 'Made by women\'s cooperatives using traditional weaving techniques passed down through generations'
@@ -125,7 +125,7 @@ const products = [
     nameKey: 'madangWildHoney',
     category: 'Local Foods', 
     price: 55.00, 
-    image: '/images/products/madang-honey.webp',
+    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop&crop=center',
     province: 'Madang',
     description: 'Pure wild honey from Madang rainforests, collected using traditional methods',
     culturalNote: 'Supports forest conservation and traditional honey gathering practices'

@@ -41,7 +41,7 @@ const mockOrderData = {
       name: "Traditional Bilum Bag",
       price: 45.99,
       quantity: 1,
-      image: "/images/products/bilum-highlands.svg",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center",
       seller: "Local Crafts PNG",
     },
   ],
