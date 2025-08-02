@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Wand2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -34,8 +35,12 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     console.log('🎬 [DEMO] Scene 1.1: The Digital Marketplace');
     setCurrentPage('home');
     setSearchTerm(''); // Clear any search terms first
+    await delay(500); // Let page load
     
     setCaption("In emerging markets worldwide, connecting local producers with customers has always been a challenge.");
+    
+    // Show the full homepage by scrolling
+    await scrollDown(400); // Show categories
     await delay(3500);
     
     // Pause for 1s as per script
@@ -43,13 +48,20 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await delay(1000);
     
     setCaption("Digital infrastructure is rapidly evolving, creating unprecedented opportunities for e-commerce growth.");
+    await scrollDown(400); // Show products
     await delay(3500);
     
     setCaption("This is LinkPNG. We are building the next generation of digital marketplace solutions.");
+    await scrollDown(400); // Show more products
     await delay(3000);
     
     // Scene 1.2: Voice-Powered Discovery (0:11 - 0:18)
     console.log('🎬 [DEMO] Scene 1.2: Voice-Powered Discovery');
+    
+    // Scroll back to top for search
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    await delay(1000);
+    
     setCaption("We started by tackling accessibility. Our platform is built for everyone.");
     await delay(3000);
     
@@ -62,10 +74,15 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     
     // Show voice search in action
     console.log('🎬 [DEMO] Demonstrating voice search with "bilum"');
-    await showCursorOnElement(document.querySelector('input[type="text"]') as HTMLElement);
+    const searchInput = document.querySelector('input[type="text"]') as HTMLElement;
+    if (searchInput) {
+      await showCursorOnElement(searchInput);
+      await delay(500);
+    }
     setCaption("With a simple voice command, our platform understands user intent, instantly connecting them to quality products from local artisans.");
     setSearchTerm('bilum');
     await delay(4000);
+    hideCursor(); // Hide cursor after search
     
     // Scene 1.3: Exploring the Marketplace (0:19 - 0:28)
     console.log('🎬 [DEMO] Scene 1.3: Exploring the Marketplace');
@@ -74,14 +91,37 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     
     setCaption("Here, customers can explore high-quality products, learn about the makers behind them, and purchase with confidence. We build trust through transparency.");
     console.log('🎬 [DEMO] Looking for product: Traditional Bilum Bag - Highlands Style');
-    await findAndClickByText('h3', 'Traditional Bilum Bag - Highlands Style');
+    
+    // Find and show cursor on the product before clicking
+    const productElement = Array.from(document.querySelectorAll('h3')).find(el => 
+      el.textContent?.includes('Traditional Bilum Bag - Highlands Style')
+    ) as HTMLElement;
+    
+    if (productElement) {
+      await showCursorOnElement(productElement);
+      await delay(500);
+      productElement.click();
+      hideCursor();
+    } else {
+      console.error('🎬 [DEMO] Could not find bilum bag product');
+    }
     await delay(6000);
     
     // Scene 1.4 & 1.5: Frictionless Checkout (0:29 - 0:41)
     console.log('🎬 [DEMO] Scene 1.4 & 1.5: Frictionless Checkout');
     setCaption("We've obsessed over creating a frictionless experience. From adding to the cart... to a checkout process that embraces how people actually pay in emerging markets.");
     console.log('🎬 [DEMO] Clicking Add to Cart button');
-    await findAndClickByText('button', 'Add to Cart');
+    
+    const addToCartBtn = Array.from(document.querySelectorAll('button')).find(btn => 
+      btn.textContent?.includes('Add to Cart')
+    ) as HTMLElement;
+    
+    if (addToCartBtn) {
+      await showCursorOnElement(addToCartBtn);
+      await delay(500);
+      addToCartBtn.click();
+      hideCursor();
+    }
     await delay(2000);
     
     console.log('🎬 [DEMO] Navigating to cart');
@@ -100,7 +140,18 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await delay(4000);
     
     console.log('🎬 [DEMO] Placing order');
-    await findAndClickByText('button', 'Place Order');
+    const placeOrderBtn = Array.from(document.querySelectorAll('button')).find(btn => 
+      btn.textContent?.includes('Place Order')
+    ) as HTMLElement;
+    
+    if (placeOrderBtn) {
+      await showCursorOnElement(placeOrderBtn);
+      await delay(500);
+      placeOrderBtn.click();
+      hideCursor();
+    } else {
+      console.error('🎬 [DEMO] Could not find Place Order button');
+    }
     await delay(2000);
     
     // Scene 1.6: Transparency and Trust (0:42 - 0:52)
@@ -108,10 +159,12 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     setCaption("And that trust is maintained even after the sale. Our detailed tracking system gives customers peace of mind, showing them every step of their product's journey.");
     console.log('🎬 [DEMO] Navigating to tracking page');
     setCurrentPage('tracking');
-    await delay(5000);
+    await delay(2000);
     
-    // Show the tracking timeline
-    await scrollDown(400);
+    // Show the tracking timeline by scrolling down
+    await scrollDown(600); // Show full tracking visualization
+    await delay(3000);
+    await scrollDown(400); // Show delivery details
     await delay(2000);
     
     setCaption("We've solved the buyer's side of the equation. But to truly build the digital bridge, we had to empower the other side.");
@@ -180,21 +233,45 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     await delay(3000);
     
     console.log('🎬 [DEMO] Clicking Moderation tab');
-    await showCursorOnElement(document.querySelector('button') as HTMLElement);
-    await findAndClickByText('button', 'Moderation');
+    const moderationBtn = Array.from(document.querySelectorAll('button')).find(btn => 
+      btn.textContent?.includes('Moderation')
+    ) as HTMLElement;
+    
+    if (moderationBtn) {
+      await showCursorOnElement(moderationBtn);
+      await delay(500);
+      moderationBtn.click();
+      hideCursor();
+    }
     await delay(1500);
     
     console.log('🎬 [DEMO] Approving seller application');
-    await showCursorOnElement(document.querySelector('button') as HTMLElement);
-    await findAndClickByText('button', 'Approve');
+    const approveBtn = Array.from(document.querySelectorAll('button')).find(btn => 
+      btn.textContent?.includes('Approve')
+    ) as HTMLElement;
+    
+    if (approveBtn) {
+      await showCursorOnElement(approveBtn);
+      await delay(500);
+      approveBtn.click();
+      hideCursor();
+    }
     await delay(2500);
 
     // Scene 3.3: Data-Driven Insights (1:41 - 1:55)
     console.log('🎬 [DEMO] Scene 3.3: Data-Driven Insights');
     setCaption("More importantly, this is where we turn data into intelligence. We have a real-time, bird's-eye view of our entire operation. We track sales trends, identify popular categories, and visualize our market penetration across every province. This isn't just a platform; it's a data-driven enterprise.");
     console.log('🎬 [DEMO] Switching to Analytics tab');
-    await showCursorOnElement(document.querySelector('button') as HTMLElement);
-    await findAndClickByText('button', 'Analytics');
+    const analyticsBtn = Array.from(document.querySelectorAll('button')).find(btn => 
+      btn.textContent?.includes('Analytics')
+    ) as HTMLElement;
+    
+    if (analyticsBtn) {
+      await showCursorOnElement(analyticsBtn);
+      await delay(500);
+      analyticsBtn.click();
+      hideCursor();
+    }
     await delay(2000);
     
     // Show analytics charts and data
@@ -210,8 +287,16 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
     console.log('🎬 [DEMO] Scene 3.4 & 3.5: Investment-Ready Vision');
     setCaption("We are built for growth and accountability, with key data always ready for investor review.");
     console.log('🎬 [DEMO] Exporting data to CSV');
-    await showCursorOnElement(document.querySelector('button') as HTMLElement);
-    await findAndClickByText('button', 'Export to CSV');
+    const exportBtn = Array.from(document.querySelectorAll('button')).find(btn => 
+      btn.textContent?.includes('Export to CSV')
+    ) as HTMLElement;
+    
+    if (exportBtn) {
+      await showCursorOnElement(exportBtn);
+      await delay(500);
+      exportBtn.click();
+      hideCursor();
+    }
     await delay(3000);
     
     setCaption("We have successfully built the core ecosystem: a product customers love, a platform sellers need, and an operation that is intelligent and scalable.");
@@ -288,6 +373,12 @@ const useFullDemoAutomation = ({ setMasterDemoRunning }: { setMasterDemoRunning:
 
 export const AutomatedFullDemo = ({ setMasterDemoRunning }: { setMasterDemoRunning: (isRunning: boolean) => void; }) => {
     const { startFullDemo, isDemoRunning, caption } = useFullDemoAutomation({ setMasterDemoRunning });
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
 
     return (
         <>
@@ -295,7 +386,11 @@ export const AutomatedFullDemo = ({ setMasterDemoRunning }: { setMasterDemoRunni
                 <Wand2 size={16} />
                 {isDemoRunning ? 'Demo in Progress...' : 'Start Full E2E Demo'}
             </Button>
-            <DemoCaption text={caption} />
+            {/* Render caption as a portal to ensure it appears at the bottom of the viewport */}
+            {mounted && createPortal(
+                <DemoCaption text={caption} />,
+                document.body
+            )}
         </>
     );
 };
