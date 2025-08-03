@@ -45,13 +45,13 @@ export default function BecomeSellerPage() {
       name: "John from Morobe",
       business: "PNG Coffee Roaster", 
       story: "Now shipping premium PNG coffee to customers across the Pacific",
-      image: "/images/products/highlands-coffee.svg"
+      image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop&crop=face"
     },
     {
       name: "Sarah from East Sepik",
       business: "Traditional Wood Carvings",
       story: "Preserving PNG culture while building a sustainable business online",
-      image: "/images/products/sepik-carving.svg"
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b5c5?w=500&h=500&fit=crop&crop=face"
     }
   ]
 
@@ -143,11 +143,11 @@ export default function BecomeSellerPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {sellerStories.map((story, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-square bg-gray-100 flex items-center justify-center">
+                <div className="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img 
                     src={story.image} 
-                    alt={story.business}
-                    className="w-24 h-24 object-contain"
+                    alt={`${story.name} - ${story.business}`}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <CardContent className="p-6">
