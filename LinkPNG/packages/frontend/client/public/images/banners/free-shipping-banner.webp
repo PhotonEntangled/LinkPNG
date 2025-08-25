@@ -1,0 +1,49 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shippingBg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0066cc"/>
+      <stop offset="50%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.3)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.1)"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#shippingBg)"/>
+  
+  <!-- Wave pattern (representing ocean around PNG) -->
+  <path d="M 0 160 Q 200 140 400 160 T 800 160 L 800 200 L 0 200 Z" fill="url(#waveGradient)"/>
+  <path d="M 0 170 Q 150 150 300 170 T 600 170 T 800 170 L 800 200 L 0 200 Z" fill="rgba(255,255,255,0.2)"/>
+  
+  <!-- PNG Flag accent -->
+  <rect x="0" y="0" width="800" height="8" fill="#CE1126"/>
+  <rect x="0" y="8" width="800" height="6" fill="#FFCD00"/>
+  <rect x="0" y="186" width="800" height="6" fill="#FFCD00"/>
+  <rect x="0" y="192" width="800" height="8" fill="#CE1126"/>
+  
+  <!-- Main Text -->
+  <text x="400" y="70" font-family="Arial Black, sans-serif" font-size="42" font-weight="900" text-anchor="middle" fill="white">FREE SHIPPING</text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="110" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#FFCD00">Nationwide PNG</text>
+  <text x="400" y="135" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">All islands • All provinces • No minimum order</text>
+  
+  <!-- Shipping icons -->
+  <g transform="translate(100, 75)">
+    <!-- Simple truck icon -->
+    <rect x="0" y="0" width="40" height="20" fill="white" opacity="0.8"/>
+    <rect x="35" y="-5" width="15" height="10" fill="white" opacity="0.8"/>
+    <circle cx="10" cy="25" r="5" fill="white" opacity="0.8"/>
+    <circle cx="40" cy="25" r="5" fill="white" opacity="0.8"/>
+  </g>
+  
+  <g transform="translate(650, 75)">
+    <!-- Simple plane icon -->
+    <path d="M 0 10 L 30 5 L 40 0 L 45 5 L 35 10 L 45 15 L 40 20 L 30 15 L 0 10" fill="white" opacity="0.8"/>
+    <path d="M 10 10 L 10 0 L 15 5 L 10 10" fill="white" opacity="0.8"/>
+    <path d="M 10 10 L 10 20 L 15 15 L 10 10" fill="white" opacity="0.8"/>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#7C2D12"/>
+  
+  <!-- Pattern overlay -->
+  <defs>
+    <pattern id="pattern-sepik-carving" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#pattern-sepik-carving)"/>
+  
+  <!-- Central icon background -->
+  <circle cx="200" cy="200" r="120" fill="white" opacity="0.2"/>
+  <circle cx="200" cy="200" r="100" fill="white" opacity="0.2"/>
+  
+  <!-- Icon -->
+  <text x="200" y="220" font-family="Arial" font-size="80" text-anchor="middle" fill="white">🗿</text>
+  
+  <!-- Product name -->
+  <text x="200" y="320" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">Wood Carving</text>
+  
+  <!-- PNG flag colors accent -->
+  <rect x="0" y="380" width="133" height="20" fill="#CE1126"/>
+  <rect x="133" y="380" width="134" height="20" fill="#212121"/>
+  <rect x="267" y="380" width="133" height="20" fill="#FCD116"/>
+</svg>

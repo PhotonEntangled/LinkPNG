@@ -1,0 +1,36 @@
+<svg width="1920" height="400" viewBox="0 0 1920 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient background -->
+  <defs>
+    <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FCD116;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#CE1126;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#212121;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="400" fill="url(#hero-gradient)"/>
+  
+  <!-- Pattern overlay -->
+  <defs>
+    <pattern id="pattern-hero" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="2" fill="white" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="400" fill="url(#pattern-hero)"/>
+  
+  <!-- Content area -->
+  <rect x="0" y="0" width="1920" height="400" fill="black" opacity="0.3"/>
+  
+  <!-- Icons representing PNG provinces -->
+  <g opacity="0.2">
+    <text x="100" y="100" font-family="Arial" font-size="60" fill="white">🏔️</text>
+    <text x="300" y="150" font-family="Arial" font-size="60" fill="white">🌴</text>
+    <text x="500" y="80" font-family="Arial" font-size="60" fill="white">🏖️</text>
+    <text x="700" y="120" font-family="Arial" font-size="60" fill="white">🦜</text>
+    <text x="900" y="90" font-family="Arial" font-size="60" fill="white">☕</text>
+    <text x="1100" y="140" font-family="Arial" font-size="60" fill="white">🏺</text>
+    <text x="1300" y="100" font-family="Arial" font-size="60" fill="white">🥥</text>
+    <text x="1500" y="130" font-family="Arial" font-size="60" fill="white">🎨</text>
+    <text x="1700" y="110" font-family="Arial" font-size="60" fill="white">🥁</text>
+  </g>
+</svg>

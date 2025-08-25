@@ -1,0 +1,26 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Coffee background gradient -->
+  <defs>
+    <linearGradient id="coffee-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#451A03;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#78350F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="600" height="400" fill="url(#coffee-bg-gradient)"/>
+  
+  <!-- Coffee bean pattern -->
+  <g opacity="0.2">
+    <text x="50" y="80" font-family="Arial" font-size="50" fill="#92400E">☕</text>
+    <text x="180" y="120" font-family="Arial" font-size="60" fill="#92400E">☕</text>
+    <text x="320" y="90" font-family="Arial" font-size="55" fill="#92400E">☕</text>
+    <text x="450" y="140" font-family="Arial" font-size="52" fill="#92400E">☕</text>
+    <text x="100" y="200" font-family="Arial" font-size="58" fill="#92400E">☕</text>
+    <text x="250" y="250" font-family="Arial" font-size="50" fill="#92400E">☕</text>
+    <text x="400" y="280" font-family="Arial" font-size="56" fill="#92400E">☕</text>
+    <text x="150" y="320" font-family="Arial" font-size="54" fill="#92400E">☕</text>
+  </g>
+  
+  <!-- Overlay -->
+  <rect width="600" height="400" fill="black" opacity="0.5"/>
+</svg>
