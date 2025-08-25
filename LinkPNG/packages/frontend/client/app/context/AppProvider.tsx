@@ -2,7 +2,6 @@
 
 import { useState, type ReactNode } from "react"
 import { AppContext } from "./AppContext"
-import DemoControls from "../components/DemoControls"
 import { toast } from "@/components/ui/use-toast"
 
 export interface Product {
@@ -63,24 +62,23 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  const contextValue: AppContextType = {
+    currentPage,
+    setCurrentPage,
+    selectedProduct,
+    setSelectedProduct,
+    cartItems,
+    setCartItems,
+    addToCart,
+    selectedOrderId,
+    setSelectedOrderId,
+    searchTerm,
+    setSearchTerm,
+  }
+
   return (
-    <AppContext.Provider
-      value={{
-        currentPage,
-        setCurrentPage,
-        selectedProduct,
-        setSelectedProduct,
-        cartItems,
-        setCartItems,
-        addToCart,
-        selectedOrderId,
-        setSelectedOrderId,
-        searchTerm,
-        setSearchTerm,
-      }}
-    >
+    <AppContext.Provider value={contextValue}>
       {children}
-      <DemoControls />
     </AppContext.Provider>
   )
 }

@@ -1,12 +1,15 @@
 "use client"
 
-import { AppProvider } from "./context/AppContext"
 import AppRouter from "./components/AppRouter"
+import { AppProvider } from "./context/AppContext"
+import { LanguageProvider } from "./context/LanguageContext"
 
-export default function App() {
+export default function Page() {
   return (
-    <AppProvider>
-      <AppRouter />
-    </AppProvider>
+    <LanguageProvider>
+      <AppProvider>
+        <AppRouter />
+      </AppProvider>
+    </LanguageProvider>
   )
 }

@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useApp } from '../hooks/useApp';
 import { useToast } from '@/components/ui/use-toast';
-import Map, { Marker } from 'react-map-gl';
+import Map, { Marker } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 // A public Mapbox token
