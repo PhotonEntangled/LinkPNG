@@ -56,7 +56,7 @@ export default function HomePage() {
     },
   ]
 
-  const flashSaleProducts = [
+  const products = [
     {
       id: 1,
       name: "Traditional Bilum Bag - Highlands Style",
@@ -104,72 +104,242 @@ export default function HomePage() {
       sold: 67,
       stock: 95
     },
-  ]
-
-  const dailyDiscoverProducts = [
     {
-      id: 1,
-      name: "Sigri Estate Coffee - Wahgi Valley",
-      nameKey: "sigriEstateCoffee",
-      price: 65.00,
-      image: "https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=400&h=400&fit=crop&crop=center",
-      sold: 145,
-      rating: 4.9,
+      id: 5,
+      name: "Traditional Bilum Bag - Highlands Style",
+      nameKey: "bilumBagHighlands",
+      price: 85.00,
+      originalPrice: 120.00,
+      image: "/images/products/bilum-bag.avif",
+      discount: 29,
+      sold: 234,
+      stock: 45,
       province: "Western Highlands"
     },
     {
-      id: 2,
-      name: "Wild Honey - Madang Forest",
-      nameKey: "madangWildHoney",
-      price: 55.00,
-      image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=400&fit=crop&crop=center",
-      sold: 89,
-      rating: 4.8,
-      province: "Madang"
-    },
-    {
-      id: 3,
-      name: "Sepik River Wood Carving - Crocodile Spirit",
-      nameKey: "sepikWoodCarving",
-      price: 450.00,
-      originalPrice: 600.00,
-      image: "/images/products/sepik-river-crocodile.jpg",
-      discount: 25,
-      sold: 34,
-      rating: 4.9,
-      province: "East Sepik"
-    },
-    {
-      id: 4,
-      name: "Traditional Shell Jewelry Set - Manus",
-      nameKey: "manusShellJewelry",
-      price: 180.00,
-      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&crop=center",
-      sold: 67,
-      rating: 4.7,
-      province: "Manus"
-    },
-    {
-      id: 5,
-      name: "Traditional Sago Flour - Western Province",
-      nameKey: "westernSagoFlour",
-      price: 25.00,
-      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=400&fit=crop&crop=center",
-      sold: 123,
-      rating: 4.6,
-      province: "Western Province"
-    },
-    {
       id: 6,
-      name: "Coconut Oil Soap - Bougainville Natural",
-      nameKey: "bougainvilleCoconutSoap",
-      price: 15.00,
-      image: "/images/products/coconut-soap.webp",
-      sold: 198,
-      rating: 4.5,
-      province: "Bougainville"
+      name: "PNG Arabica Coffee - Western Highlands",
+      nameKey: "westernHighlandsCoffee",
+      price: 42.00,
+      originalPrice: 55.00,
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop&crop=center",
+      discount: 24,
+      sold: 156,
+      stock: 88,
+      province: "Western Highlands"
     },
-  ]
+    {
+      id: 7,
+      name: "Taro Chips - Morobe Style",
+      nameKey: "morobeTaroChips",
+      price: 18.00,
+      originalPrice: 25.00,
+      image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400&h=400&fit=crop&crop=center",
+      discount: 28,
+      sold: 89,
+      stock: 120,
+      province: "Morobe"
+    },
+    {
+      id: 8,
+      name: "PNG Flag T-Shirt - Premium Cotton",
+      nameKey: "pngFlagTshirt",
+      price: 28.00,
+      originalPrice: 35.00,
+      image: "/images/products/png-flag-shirt.jpg",
+      discount: 20,
+      sold: 67,
+      stock: 95
+    },
+    {
+      id: 9,
+      name: "Traditional Bilum Bag - Highlands Style",
+      nameKey: "bilumBagHighlands",
+      price: 85.00,
+      originalPrice: 120.00,
+      image: "/images/products/bilum-bag.avif",
+      discount: 29,
+      sold: 234,
+      stock: 45,
+      province: "Western Highlands"
+    },
+    {
+      id: 10,
+      name: "PNG Arabica Coffee - Western Highlands",
+      nameKey: "westernHighlandsCoffee",
+      price: 42.00,
+      originalPrice: 55.00,
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop&crop=center",
+      discount: 24,
+      sold: 156,
+      stock: 88,
+      province: "Western Highlands"
+    },
+    {
+      id: 11,
+      name: "Taro Chips - Morobe Style",
+      nameKey: "morobeTaroChips",
+      price: 18.00,
+      originalPrice: 25.00,
+      image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400&h=400&fit=crop&crop=center",
+      discount: 28,
+      sold: 89,
+      stock: 120,
+      province: "Morobe"
+    },
+    {
+      id: 12,
+      name: "PNG Flag T-Shirt - Premium Cotton",
+      nameKey: "pngFlagTshirt",
+      price: 28.00,
+      originalPrice: 35.00,
+      image: "/images/products/png-flag-shirt.jpg",
+      discount: 20,
+      sold: 67,
+      stock: 95
+    },
+    {
+      id: 13,
+      name: "Traditional Bilum Bag - Highlands Style",
+      nameKey: "bilumBagHighlands",
+      price: 85.00,
+      originalPrice: 120.00,
+      image: "/images/products/bilum-bag.avif",
+      discount: 29,
+      sold: 234,
+      stock: 45,
+      province: "Western Highlands"
+    },
+    {
+      id: 14,
+      name: "PNG Arabica Coffee - Western Highlands",
+      nameKey: "westernHighlandsCoffee",
+      price: 42.00,
+      originalPrice: 55.00,
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop&crop=center",
+      discount: 24,
+      sold: 156,
+      stock: 88,
+      province: "Western Highlands"
+    },
+    {
+      id: 15,
+      name: "Taro Chips - Morobe Style",
+      nameKey: "morobeTaroChips",
+      price: 18.00,
+      originalPrice: 25.00,
+      image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400&h=400&fit=crop&crop=center",
+      discount: 28,
+      sold: 89,
+      stock: 120,
+      province: "Morobe"
+    },
+    {
+      id: 16,
+      name: "PNG Flag T-Shirt - Premium Cotton",
+      nameKey: "pngFlagTshirt",
+      price: 28.00,
+      originalPrice: 35.00,
+      image: "/images/products/png-flag-shirt.jpg",
+      discount: 20,
+      sold: 67,
+      stock: 95
+    },
+    {
+      id: 17,
+      name: "Traditional Bilum Bag - Highlands Style",
+      nameKey: "bilumBagHighlands",
+      price: 85.00,
+      originalPrice: 120.00,
+      image: "/images/products/bilum-bag.avif",
+      discount: 29,
+      sold: 234,
+      stock: 45,
+      province: "Western Highlands"
+    },
+    {
+      id: 18,
+      name: "PNG Arabica Coffee - Western Highlands",
+      nameKey: "westernHighlandsCoffee",
+      price: 42.00,
+      originalPrice: 55.00,
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop&crop=center",
+      discount: 24,
+      sold: 156,
+      stock: 88,
+      province: "Western Highlands"
+    },
+    {
+      id: 19,
+      name: "Taro Chips - Morobe Style",
+      nameKey: "morobeTaroChips",
+      price: 18.00,
+      originalPrice: 25.00,
+      image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400&h=400&fit=crop&crop=center",
+      discount: 28,
+      sold: 89,
+      stock: 120,
+      province: "Morobe"
+    },
+    {
+      id: 20,
+      name: "PNG Flag T-Shirt - Premium Cotton",
+      nameKey: "pngFlagTshirt",
+      price: 28.00,
+      originalPrice: 35.00,
+      image: "/images/products/png-flag-shirt.jpg",
+      discount: 20,
+      sold: 67,
+      stock: 95
+    },
+    {
+      id: 21,
+      name: "Traditional Bilum Bag - Highlands Style",
+      nameKey: "bilumBagHighlands",
+      price: 85.00,
+      originalPrice: 120.00,
+      image: "/images/products/bilum-bag.avif",
+      discount: 29,
+      sold: 234,
+      stock: 45,
+      province: "Western Highlands"
+    },
+    {
+      id: 22,
+      name: "PNG Arabica Coffee - Western Highlands",
+      nameKey: "westernHighlandsCoffee",
+      price: 42.00,
+      originalPrice: 55.00,
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop&crop=center",
+      discount: 24,
+      sold: 156,
+      stock: 88,
+      province: "Western Highlands"
+    },
+    {
+      id: 23,
+      name: "Taro Chips - Morobe Style",
+      nameKey: "morobeTaroChips",
+      price: 18.00,
+      originalPrice: 25.00,
+      image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400&h=400&fit=crop&crop=center",
+      discount: 28,
+      sold: 89,
+      stock: 120,
+      province: "Morobe"
+    },
+    {
+      id: 24,
+      name: "PNG Flag T-Shirt - Premium Cotton",
+      nameKey: "pngFlagTshirt",
+      price: 28.00,
+      originalPrice: 35.00,
+      image: "/images/products/png-flag-shirt.jpg",
+      discount: 20,
+      sold: 67,
+      stock: 95
+    },
+  ];
 
   const { setCurrentPage, setSelectedProduct } = useApp()
 
@@ -232,12 +402,12 @@ export default function HomePage() {
   }
 
   // Create translated versions of products
-  const translatedFlashSaleProducts = flashSaleProducts.map(product => ({
+  const translatedFlashSaleProducts = products.slice(0, 6).map(product => ({
     ...product,
     name: getProductName(product)
   }))
 
-  const translatedDailyDiscoverProducts = dailyDiscoverProducts.map(product => ({
+  const translatedDailyDiscoverProducts = products.slice(0, 12).map(product => ({
     ...product,
     name: getProductName(product)
   }))
@@ -329,23 +499,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Daily Discover Product Grid */}
-      <section className="bg-white py-6 mt-2">
+      {/* Daily Discover Section */}
+      <section className="py-8">
         <div className="container mx-auto px-4">
-          <h2 className="text-lg font-bold mb-4 text-gray-800">{t("dailyDiscover")}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {translatedDailyDiscoverProducts.map((product) => (
-              <div key={product.id} onClick={() => handleProductClick(product)}>
-                <ProductCard product={product} />
-              </div>
-            ))}
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">{t('dailyDiscover')}</h2>
+            <a href="#" className="text-sm text-red-600 font-semibold hover:underline">{t('viewAll')}</a>
           </div>
-
-          {/* Load More Button */}
-          <div className="text-center mt-8">
-            <button className="bg-[#E50000] text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors">
-              {t("loadMore")}
-            </button>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {translatedDailyDiscoverProducts.map(product => (
+              <ProductCard 
+                key={product.id}
+                product={product}
+                onProductClick={() => handleProductClick(product)}
+              />
+            ))}
           </div>
         </div>
       </section>
