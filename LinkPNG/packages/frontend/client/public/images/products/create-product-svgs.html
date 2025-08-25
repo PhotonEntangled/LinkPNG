@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PNG Product SVG Generator</title>
+    <script>
+        const products = [
+            { name: 'bilum-highlands', bgColor: '#D97706', icon: '🎒', title: 'Bilum Bag' },
+            { name: 'highlands-coffee', bgColor: '#92400E', icon: '☕', title: 'PNG Coffee' },
+            { name: 'taro-chips', bgColor: '#059669', icon: '🥔', title: 'Taro Chips' },
+            { name: 'png-flag-shirt', bgColor: '#DC2626', icon: '👕', title: 'PNG Shirt' },
+            { name: 'sepik-carving', bgColor: '#7C2D12', icon: '🗿', title: 'Wood Carving' },
+            { name: 'coconut-soap', bgColor: '#0891B2', icon: '🧼', title: 'Coconut Soap' },
+            { name: 'kundu-drum', bgColor: '#B91C1C', icon: '🥁', title: 'Kundu Drum' },
+            { name: 'bird-paradise-art', bgColor: '#9333EA', icon: '🦜', title: 'Bird Art' },
+            { name: 'sago-flour', bgColor: '#CA8A04', icon: '🌾', title: 'Sago Flour' },
+            { name: 'independence-shirt', bgColor: '#1E40AF', icon: '🇵🇬', title: 'Independence' },
+            { name: 'clay-pot', bgColor: '#EA580C', icon: '🏺', title: 'Clay Pot' },
+            { name: 'madang-honey', bgColor: '#F59E0B', icon: '🍯', title: 'PNG Honey' },
+            { name: 'oro-tapa', bgColor: '#84CC16', icon: '🎨', title: 'Tapa Cloth' },
+            { name: 'png-spices', bgColor: '#EF4444', icon: '🌶️', title: 'PNG Spices' },
+            { name: 'traditional-laptop-bag', bgColor: '#6366F1', icon: '💼', title: 'Laptop Bag' },
+            { name: 'eastern-coffee', bgColor: '#78350F', icon: '☕', title: 'Eastern Coffee' },
+            { name: 'dried-fish', bgColor: '#0369A1', icon: '🐟', title: 'Dried Fish' },
+            { name: 'grass-mat', bgColor: '#166534', icon: '🟩', title: 'Grass Mat' },
+            { name: 'manus-shells', bgColor: '#7C3AED', icon: '🐚', title: 'Manus Shells' },
+            { name: 'sigri-coffee', bgColor: '#854D0E', icon: '☕', title: 'Sigri Coffee' }
+        ];
+
+        function generateSVG(product) {
+            return `<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="${product.bgColor}"/>
+  
+  <!-- Pattern overlay -->
+  <defs>
+    <pattern id="pattern-${product.name}" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#pattern-${product.name})"/>
+  
+  <!-- Central icon background -->
+  <circle cx="200" cy="200" r="120" fill="white" opacity="0.2"/>
+  <circle cx="200" cy="200" r="100" fill="white" opacity="0.2"/>
+  
+  <!-- Icon -->
+  <text x="200" y="220" font-family="Arial" font-size="80" text-anchor="middle" fill="white">${product.icon}</text>
+  
+  <!-- Product name -->
+  <text x="200" y="320" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">${product.title}</text>
+  
+  <!-- PNG flag colors accent -->
+  <rect x="0" y="380" width="133" height="20" fill="#CE1126"/>
+  <rect x="133" y="380" width="134" height="20" fill="#212121"/>
+  <rect x="267" y="380" width="133" height="20" fill="#FCD116"/>
+</svg>`;
+        }
+
+        function downloadSVG(svgContent, filename) {
+            const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function generateAllSVGs() {
+            products.forEach((product, index) => {
+                setTimeout(() => {
+                    const svg = generateSVG(product);
+                    downloadSVG(svg, `${product.name}.svg`);
+                }, index * 100);
+            });
+        }
+    </script>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+    <h1>PNG Product SVG Generator</h1>
+    <p>Click the button below to generate all product SVG files.</p>
+    <button onclick="generateAllSVGs()" style="padding: 10px 20px; font-size: 16px; background: #DC2626; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Generate All SVGs
+    </button>
+    <div id="preview" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px;"></div>
+    <script>
+        // Show previews
+        const previewDiv = document.getElementById('preview');
+        products.forEach(product => {
+            const div = document.createElement('div');
+            div.style.width = '100px';
+            div.style.height = '100px';
+            div.innerHTML = generateSVG(product);
+            div.title = product.name;
+            previewDiv.appendChild(div);
+        });
+    </script>
+</body>
+</html>

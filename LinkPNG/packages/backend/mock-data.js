@@ -227,6 +227,76 @@ const products = [
     description: 'Commemorative PNG Independence t-shirt featuring cultural symbols and national colors',
     culturalNote: 'Celebrating PNG independence and cultural heritage'
   },
+  // NEWLY ADDED PRODUCTS FOR DEMO
+  {
+    id: 21,
+    name: 'Fresh Betel Nut (Buai) Bundle',
+    nameKey: 'buaiBundle',
+    category: 'Local Foods',
+    price: 15.00,
+    originalPrice: 20.00,
+    image: '/images/products/buai.svg',
+    province: 'Central',
+    description: 'A bundle of fresh betel nut, a traditional stimulant chewed across PNG.',
+    culturalNote: 'An important part of social customs and ceremonies in Papua New Guinea.'
+  },
+  {
+    id: 22,
+    name: 'Organic PNG Cocoa Beans (1kg)',
+    nameKey: 'cocoaBeans',
+    category: 'Local Foods',
+    price: 75.00,
+    image: '/images/products/cocoa.svg',
+    province: 'East New Britain',
+    description: 'High-quality, sun-dried cocoa beans from the rich volcanic soils of East New Britain.',
+    culturalNote: 'PNG is renowned for its fine flavour cocoa, a key export and income source for local farmers.'
+  },
+  {
+    id: 23,
+    name: 'Mt. Hagen Ground Coffee (500g)',
+    nameKey: 'hagenGroundCoffee',
+    category: 'PNG Coffee',
+    price: 55.00,
+    originalPrice: 65.00,
+    image: '/images/products/highlands-coffee.svg',
+    province: 'Western Highlands',
+    description: 'A rich, aromatic ground coffee from the famous Mt. Hagen region, perfect for starting your day.',
+    culturalNote: 'Coffee is a cornerstone of the Highlands economy, supporting thousands of smallholder farms.'
+  },
+  {
+    id: 24,
+    name: 'Hand-Carved Kundu Drum',
+    nameKey: 'kunduDrumCarved',
+    category: 'Traditional Crafts',
+    price: 250.00,
+    image: '/images/products/kundu-drum.svg',
+    province: 'Morobe',
+    description: 'A beautifully hand-carved Kundu drum, crafted from local rosewood and lizard skin.',
+    culturalNote: 'The Kundu drum is central to PNG music, dance, and cultural ceremonies.'
+  },
+  {
+    id: 25,
+    name: 'Vanilla Beans from East Sepik',
+    nameKey: 'vanillaBeans',
+    category: 'Local Foods',
+    price: 45.00,
+    originalPrice: 55.00,
+    image: '/images/products/png-spices.webp',
+    province: 'East Sepik',
+    description: 'Aromatic and flavorful vanilla beans, grown in the lush conditions of the Sepik region.',
+    culturalNote: 'PNG vanilla is prized globally for its rich scent and is a key agricultural export.'
+  },
+  {
+    id: 26,
+    name: 'Woven Plate from Milne Bay',
+    nameKey: 'wovenPlate',
+    category: 'Traditional Crafts',
+    price: 35.00,
+    image: '/images/products/grass-mat.webp',
+    province: 'Milne Bay',
+    description: 'A decorative and functional woven plate, perfect for serving or as a wall hanging.',
+    culturalNote: 'Weaving is a vital cultural skill for women in Milne Bay, with patterns representing family lineage.'
+  }
 ];
 
 // Product categories for navigation

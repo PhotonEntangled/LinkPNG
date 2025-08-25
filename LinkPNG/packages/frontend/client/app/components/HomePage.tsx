@@ -1,12 +1,13 @@
 "use client"
 import { useApp } from "../hooks/useApp"
 import { useLanguage } from "../context/LanguageContext"
+import Header from "./Header"
 import Footer from "./Footer"
 import FloatingGameButton from "./FloatingGameButton"
 import { 
-  Search, ShoppingCart, Bell, User, MapPin, ChevronRight, 
+  MapPin, ChevronRight, 
   CreditCard, Car, Package, Landmark, Zap, Utensils,
-  Timer, TrendingUp, Globe
+  Timer, TrendingUp
 } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -44,7 +45,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "bilumBagHighlands",
       price: 85.00,
       originalPrice: 120.00,
-      image: "/images/products/bilum-highlands.webp",
+      image: "/images/products/bilum-bag.avif",
       discount: 29,
       sold: 234,
       stock: 45,
@@ -57,7 +58,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "westernHighlandsCoffee",
       price: 42.00,
       originalPrice: 55.00,
-      image: "/images/products/highlands-coffee.webp",
+      image: "/images/products/highlands-coffee.svg",
       discount: 24,
       sold: 356,
       stock: 88,
@@ -70,7 +71,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "morobeTaroChips",
       price: 18.00,
       originalPrice: 25.00,
-      image: "/images/products/taro-chips.webp",
+      image: "/images/products/taro-chips.svg",
       discount: 28,
       sold: 189,
       stock: 120,
@@ -83,7 +84,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "pngFlagTshirt",
       price: 28.00,
       originalPrice: 35.00,
-      image: "/images/products/png-flag-shirt.webp",
+      image: "/images/products/png-flag-shirt.jpg",
       discount: 20,
       sold: 267,
       stock: 95,
@@ -96,7 +97,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "sepikCarving",
       price: 150.00,
       originalPrice: 200.00,
-      image: "/images/products/sepik-carving.webp",
+      image: "/images/products/sepik-carving.svg",
       discount: 25,
       sold: 45,
       stock: 12,
@@ -122,7 +123,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "kunduDrum",
       price: 95.00,
       originalPrice: 120.00,
-      image: "/images/products/kundu-drum.webp",
+      image: "/images/products/kundu-drum.svg",
       discount: 21,
       sold: 67,
       stock: 23,
@@ -135,7 +136,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "birdParadiseArt",
       price: 35.00,
       originalPrice: 45.00,
-      image: "/images/products/bird-paradise-art.webp",
+      image: "/images/products/bird-paradise-art.svg",
       discount: 22,
       sold: 156,
       stock: 78,
@@ -148,7 +149,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "sagoFlour",
       price: 25.00,
       originalPrice: 30.00,
-      image: "/images/products/sago-flour.webp",
+      image: "/images/products/sago-flour.svg",
       discount: 17,
       sold: 289,
       stock: 150,
@@ -161,7 +162,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "independenceShirt",
       price: 32.00,
       originalPrice: 40.00,
-      image: "/images/products/independence-shirt.webp",
+      image: "/images/products/independence-shirt.svg",
       discount: 20,
       sold: 345,
       stock: 110,
@@ -174,7 +175,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "clayPot",
       price: 45.00,
       originalPrice: 55.00,
-      image: "/images/products/clay-pot.webp",
+      image: "/images/products/clay-pot.svg",
       discount: 18,
       sold: 78,
       stock: 34,
@@ -187,7 +188,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "highlandsHoney",
       price: 38.00,
       originalPrice: 45.00,
-      image: "/images/products/madang-honey.webp",
+      image: "/images/products/madang-honey.svg",
       discount: 16,
       sold: 234,
       stock: 67,
@@ -200,7 +201,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "tapaCLoth",
       price: 65.00,
       originalPrice: 80.00,
-      image: "/images/products/oro-tapa.webp",
+      image: "/images/products/oro-tapa.svg",
       discount: 19,
       sold: 56,
       stock: 18,
@@ -213,7 +214,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "spicesCollection",
       price: 28.00,
       originalPrice: 35.00,
-      image: "/images/products/png-spices.webp",
+      image: "/images/products/png-spices.svg",
       discount: 20,
       sold: 178,
       stock: 89,
@@ -226,7 +227,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "bilumLaptop",
       price: 120.00,
       originalPrice: 150.00,
-      image: "/images/products/traditional-laptop-bag.webp",
+      image: "/images/products/traditional-laptop-bag.svg",
       discount: 20,
       sold: 89,
       stock: 32,
@@ -239,7 +240,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       nameKey: "easternCoffee",
       price: 48.00,
       originalPrice: 60.00,
-      image: "/images/products/eastern-coffee.webp",
+      image: "/images/products/eastern-coffee.svg",
       discount: 20,
       sold: 412,
       stock: 156,
@@ -254,7 +255,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
   const heroSlides = [
     {
       id: 1,
-      image: "/images/banners/hero-digital-bridge.webp",
+      image: "/images/banners/hero-digital-bridge.svg",
       title: "Connecting PNG to the Digital Future",
       subtitle: "Shop authentic PNG products from every province",
       cta: "Shop Local Crafts",
@@ -262,7 +263,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
     },
     {
       id: 2,
-      image: "/images/banners/highlands-coffee-hero.webp",
+      image: "/images/banners/highlands-coffee-hero.svg",
       title: "Premium PNG Coffee Direct from Farmers",
       subtitle: "Support local growers, taste the difference",
       cta: "Discover Highlands Coffee",
@@ -270,7 +271,7 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
     },
     {
       id: 3,
-      image: "/images/banners/free-shipping-banner.webp",
+      image: "/images/banners/free-shipping-banner.svg",
       title: "Free Shipping Nationwide",
       subtitle: "All islands • All provinces • No minimum order",
       cta: "Start Shopping",
@@ -326,100 +327,44 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
     {
       name: "Traditional Crafts",
       nameKey: "traditionalCrafts",
-      image: "/images/categories/traditional-crafts-bg.webp",
+      image: "/images/categories/traditional-crafts.svg",
       count: "2,345 items"
     },
     {
       name: "PNG Coffee",
       nameKey: "pngCoffee",
-      image: "/images/categories/coffee-beans-bg.webp",
+      image: "/images/categories/png-coffee.svg",
       count: "156 varieties"
     },
     {
       name: "Local Foods",
       nameKey: "localFoods",
-      image: "/images/categories/local-foods-bg.webp",
+      image: "/images/categories/local-foods.svg",
       count: "1,234 products"
     },
     {
       name: "PNG Fashion",
       nameKey: "pngFashion",
-      image: "/images/categories/png-fashion-bg.webp",
+      image: "/images/categories/png-fashion.svg",
       count: "890 items"
     },
     {
       name: "Personal Care",
       nameKey: "personalCare",
-      image: "/images/categories/personal-care-bg.webp",
+      image: "/images/categories/personal-care.svg",
       count: "567 products"
     },
     {
       name: "Modern PNG",
       nameKey: "modernPng",
-      image: "/images/categories/modern-png-bg.webp",
+      image: "/images/categories/modern-png.svg",
       count: "432 items"
     }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Premium Header */}
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <nav className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                LinkPNG
-              </h1>
-            </div>
-
-            {/* Search Bar */}
-            <div className="flex-1 max-w-xl mx-8">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search for products, brands, and more..."
-                  className="w-full px-4 py-2 pl-10 pr-4 text-sm border border-gray-200 rounded-full focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
-                />
-                <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
-              </div>
-            </div>
-
-            {/* User Actions */}
-            <div className="flex items-center space-x-6">
-              <button className="relative p-2 text-gray-600 hover:text-orange-600 transition-colors">
-                <Bell className="w-6 h-6" />
-                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-              </button>
-              <button className="relative p-2 text-gray-600 hover:text-orange-600 transition-colors">
-                <ShoppingCart className="w-6 h-6" />
-                <span className="absolute -top-1 -right-1 bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  2
-                </span>
-              </button>
-              <button className="p-2 text-gray-600 hover:text-orange-600 transition-colors">
-                <User className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </nav>
-
-        {/* Location Bar */}
-        <div className="bg-gray-50 border-t border-gray-100">
-          <div className="container mx-auto px-4 py-2 flex items-center text-sm text-gray-600">
-            <MapPin className="w-4 h-4 mr-2 text-orange-600" />
-            <span>Deliver to <strong>Port Moresby</strong></span>
-            <button className="ml-2 text-orange-600 hover:underline">Change</button>
-            <div className="ml-auto flex items-center space-x-4">
-              <button className="flex items-center hover:text-orange-600">
-                <Globe className="w-4 h-4 mr-1" />
-                <span>English</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Carousel */}
       <section className="relative h-[400px] overflow-hidden">
@@ -470,16 +415,16 @@ export default function HomePage({ products: propProducts }: HomePageProps) {
       </section>
 
       {/* Quick Actions - Single Row */}
-      <section className="bg-white py-6 shadow-sm">
+      <section className="bg-white py-6 shadow-sm overflow-visible">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center overflow-x-auto scrollbar-hide">
+          <div className="flex justify-between items-center overflow-x-auto overflow-y-visible scrollbar-hide py-2">
             {quickActions.map((action, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentPage(action.page)}
                 className="flex flex-col items-center min-w-[80px] group"
               >
-                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${action.color} flex items-center justify-center mb-2 transform transition-transform group-hover:scale-110`}>
+                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${action.color} flex items-center justify-center mb-2 transform transition-transform group-hover:scale-110 shadow-md group-hover:shadow-lg`}>
                   <action.icon className="w-7 h-7 text-white" />
                 </div>
                 <span className="text-xs text-gray-700 font-medium">{action.label}</span>
