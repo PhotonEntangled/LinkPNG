@@ -1,0 +1,14 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Pod -->
+    <ellipse cx="50" cy="50" rx="40" ry="25" fill="#8B4513"/>
+    <path d="M10 50 C 20 30, 80 30, 90 50" stroke="#A0522D" stroke-width="3" fill="none"/>
+    <path d="M10 50 C 20 70, 80 70, 90 50" stroke="#A0522D" stroke-width="3" fill="none"/>
+
+    <!-- Beans -->
+    <circle cx="35" cy="50" r="8" fill="#D2691E"/>
+    <circle cx="50" cy="50" r="8" fill="#D2691E"/>
+    <circle cx="65" cy="50" r="8" fill="#D2691E"/>
+
+    <!-- Stem -->
+    <path d="M50 25 C 55 15, 65 15, 60 25" stroke="#5C2E00" stroke-width="4" fill="none"/>
+</svg>

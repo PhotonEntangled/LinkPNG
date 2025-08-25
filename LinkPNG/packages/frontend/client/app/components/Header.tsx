@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Search, Menu, ShoppingCart, User, Mic, MicOff, Bell, Globe, Gamepad2, Play } from "lucide-react"
+import { Search, Menu, ShoppingCart, User, Mic, MicOff, Bell, Globe, Gamepad2, Play, Wallet } from "lucide-react"
 import { useApp } from "../hooks/useApp"
 import { useLanguage } from "../context/LanguageContext"
 import { useDemoMode } from "../context/DemoModeContext"
@@ -192,33 +192,42 @@ export default function Header() {
               )}
             </button>
 
-            {/* Admin Access */}
-            <button 
-              className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.location.href = '/admin'
-                }
-              }}
-              title="Admin Dashboard"
-            >
-              <User className="w-6 h-6" />
-              <span className="hidden md:block text-sm">Admin</span>
-            </button>
+            {/* Action Icons */}
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setCurrentPage('wallet')}
+                className="relative p-2 text-gray-600 hover:text-png-red"
+              >
+                <Wallet className="w-6 h-6" />
+              </button>
+              {/* Admin Access */}
+              <button 
+                className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.location.href = '/admin'
+                  }
+                }}
+                title="Admin Dashboard"
+              >
+                <User className="w-6 h-6" />
+                <span className="hidden md:block text-sm">Admin</span>
+              </button>
 
-            {/* Seller Access */}
-            <button 
-              className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.location.href = '/seller'
-                }
-              }}
-              title="Seller Dashboard"
-            >
-              <User className="w-6 h-6" />
-              <span className="hidden md:block text-sm">Seller</span>
-            </button>
+              {/* Seller Access */}
+              <button 
+                className="flex items-center gap-2 p-2 text-gray-600 hover:text-png-red"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.location.href = '/seller'
+                  }
+                }}
+                title="Seller Dashboard"
+              >
+                <User className="w-6 h-6" />
+                <span className="hidden md:block text-sm">Seller</span>
+              </button>
+            </div>
           </div>
         </div>
 

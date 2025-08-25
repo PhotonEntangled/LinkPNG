@@ -7,7 +7,7 @@ import FlashSale from "./FlashSale"
 import ProductCard from "./ProductCard"
 import Footer from "./Footer"
 import FloatingGameButton from "./FloatingGameButton"
-import { Zap, CreditCard, Utensils, Gift, Video, Shirt, Smartphone, Globe, Store } from "lucide-react"
+import { Zap, CreditCard, Utensils, Gift, Video, Shirt, Smartphone, Globe, Store, Gamepad2, Landmark, Car, Package } from "lucide-react"
 import Image from "next/image"
 
 interface Product {
@@ -175,15 +175,17 @@ export default function HomePage() {
 
   // Move arrays inside component to access t() function
   const quickActions = [
-    { icon: Zap, label: t("topUp"), color: "bg-blue-500" },
-    { icon: CreditCard, label: t("payBills"), color: "bg-green-500" },
-    { icon: Utensils, label: t("linkpngFood"), color: "bg-red-500" },
-    { icon: Gift, label: t("promos"), color: "bg-purple-500" },
-    { icon: Video, label: t("live"), color: "bg-pink-500" },
-    { icon: Shirt, label: t("fashion"), color: "bg-indigo-500" },
-    { icon: Smartphone, label: t("electronics"), color: "bg-yellow-500" },
-    { icon: Globe, label: t("globalDeals"), color: "bg-teal-500" },
-  ]
+    { label: 'Top Up', icon: Smartphone, color: 'bg-blue-500' },
+    { label: 'Pay Bills', icon: CreditCard, color: 'bg-green-500' },
+    { label: 'Food', icon: Utensils, color: 'bg-orange-500' },
+    { label: 'Ride', icon: Car, color: 'bg-gray-800'},
+    { label: 'Delivery', icon: Package, color: 'bg-cyan-500'},
+    { label: 'Promos', icon: Gift, color: 'bg-red-500' },
+    { label: 'Games', icon: Gamepad2, color: 'bg-purple-500' },
+    { label: 'Invest', icon: Landmark, color: 'bg-indigo-500' },
+    { label: 'Live', icon: Video, color: 'bg-pink-500' },
+    { label: 'Fashion', icon: Shirt, color: 'bg-teal-500' },
+];
 
   const categories = [
     {
@@ -271,7 +273,25 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
             {quickActions.map((action, index) => (
-              <div key={index} className="flex flex-col items-center cursor-pointer hover:opacity-80">
+              <div 
+                key={index} 
+                className="flex flex-col items-center cursor-pointer hover:opacity-80"
+                onClick={() => {
+                  if (action.label === 'Invest') {
+                    setCurrentPage('financial-services');
+                  }
+                  if (action.label === 'Pay Bills') {
+                    setCurrentPage('bill-payments');
+                  }
+                  if (action.label === 'Ride') {
+                    setCurrentPage('ride-hailing');
+                  }
+                  if (action.label === 'Delivery') {
+                    setCurrentPage('hyperlocal-delivery');
+                  }
+                  // TODO: Add handlers for other quick actions
+                }}
+              >
                 <div className={`w-12 h-12 rounded-full ${action.color} flex items-center justify-center mb-2`}>
                   <action.icon className="w-6 h-6 text-white" />
                 </div>

@@ -11,6 +11,7 @@ import { Progress } from "@/components/ui/progress"
 import Image from "next/image"
 import AddProductModal from "@/app/components/AddProductModal"
 import ProductActions from "@/app/components/ProductActions"
+import { SalesPerformanceChart, TrafficSourcesChart, TrustScoreTrendChart } from "@/app/components/charts"
 import { useToast } from "@/components/ui/use-toast"
 import { useApp } from "../hooks/useApp"
 
@@ -402,177 +403,31 @@ export default function SellerDashboard() {
           </TabsContent>
 
           <TabsContent value="analytics" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">K12,450</div>
-                <p className="text-xs text-muted-foreground">+20.1% from last month</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
-                <Package className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">1,247</div>
-                <p className="text-xs text-muted-foreground">+12% from last month</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Conversion Rate</CardTitle>
-                <BarChart3 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">3.2%</div>
-                <p className="text-xs text-muted-foreground">+0.5% from last month</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Page Views</CardTitle>
-                <Eye className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">38,942</div>
-                <p className="text-xs text-muted-foreground">+8.3% from last month</p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Top Performing Products</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src="/images/products/bilum-bag.avif"
-                        alt="Traditional Bilum"
-                        width={40}
-                        height={40}
-                        className="rounded"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Traditional Bilum Bag</p>
-                        <p className="text-xs text-gray-500">K85.00</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-medium text-sm">89 sales</p>
-                      <p className="text-xs text-green-600">+15%</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src="/images/products/highlands-coffee.svg"
-                        alt="PNG Coffee"
-                        width={40}
-                        height={40}
-                        className="rounded"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">PNG Coffee Beans</p>
-                        <p className="text-xs text-gray-500">K42.00</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-medium text-sm">156 sales</p>
-                      <p className="text-xs text-green-600">+22%</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src="/images/products/kundu-drum.svg"
-                        alt="Kundu Drum"
-                        width={40}
-                        height={40}
-                        className="rounded"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Traditional Kundu Drum</p>
-                        <p className="text-xs text-gray-500">K125.00</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-medium text-sm">34 sales</p>
-                      <p className="text-xs text-green-600">+8%</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <CardTitle>Traffic Sources</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Direct</span>
-                    <div className="flex items-center gap-2">
-                      <Progress value={45} className="w-24 h-2" />
-                      <span className="text-sm font-medium">45%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Search</span>
-                    <div className="flex items-center gap-2">
-                      <Progress value={32} className="w-24 h-2" />
-                      <span className="text-sm font-medium">32%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Social Media</span>
-                    <div className="flex items-center gap-2">
-                      <Progress value={18} className="w-24 h-2" />
-                      <span className="text-sm font-medium">18%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Referrals</span>
-                    <div className="flex items-center gap-2">
-                      <Progress value={5} className="w-24 h-2" />
-                      <span className="text-sm font-medium">5%</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Sales Performance</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <BarChart3 className="w-16 h-16 text-gray-400" />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Trust Score Trend</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="w-16 h-16 text-gray-400" />
-                  </div>
-                </CardContent>
-              </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Sales Performance</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <SalesPerformanceChart />
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Traffic Sources</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <TrafficSourcesChart />
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Trust Score Trend</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <TrustScoreTrendChart />
+                    </CardContent>
+                </Card>
             </div>
           </TabsContent>
 
